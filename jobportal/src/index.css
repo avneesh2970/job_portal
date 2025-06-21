@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "tailwindcss";
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.logo-slider {
+  animation: slide 20s linear infinite;
+  white-space: nowrap;
+  
+}
+@media (max-width: 768px) {
+  .logo-slider {
+    animation-duration: 10s; /* faster */
+  }
+}
