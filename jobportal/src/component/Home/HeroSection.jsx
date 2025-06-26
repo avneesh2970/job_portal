@@ -1,10 +1,5 @@
-import {
-  FaSearch,
-  FaMapMarkerAlt,
-  FaBriefcase,
-  FaInstagram,
-} from "react-icons/fa";
-import React from 'react'
+import {FaSearch,FaMapMarkerAlt,FaBriefcase,FaInstagram} from "react-icons/fa";
+import React from 'react';
 import vodafone from "../photos/vodafone.png";
 import intel from "../photos/intel-3.png";
 import tesla from "../photos/tesla-9.png";
@@ -20,11 +15,12 @@ import {
   FaFigma,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-
+import './css/HeroSection.css';
 const HeroSection = () => {
   return (
     <>
-      <div className=" bg-[#F9FCFF] m-auto flex flex-col  items-center justify-center text-center  relative w-full h-screen  ">
+      <div className="w-full h-11/12 flex-col my-auto   flex items-center justify-center overflow-hidden">
+  <div className="flex flex-col text-center w-full h-screen justify-center items-center my-auto relative -mt-12">
         {/* Heading */}
         <h1 className="text-4xl md:text-6xl font-semibold  text-black z-1">
           Join us & <span className="text-blue-400">Explore</span> <br />
@@ -36,7 +32,10 @@ const HeroSection = () => {
           we've helped recruit excellent applicants over the years.
         </p>
 
-        <div className="bg-white mt-10 p-4 sm:p-6 rounded-lg flex flex-col sm:flex-row shadow-lg gap-4 justify-between items-center max-w-5xl w-full border border-gray-200 z-1" style={{boxShadow: "1px 1px 5px 0.5px  gray"}}>
+     <div
+  className=" sticky top-0 bg-white mt-10 p-4 sm:p-6 rounded-lg flex flex-col sm:flex-row shadow-lg gap-4 justify-between items-center max-w-5xl w-full border border-gray-200 z-10 overflow-y-hidden"
+  style={{ boxShadow: "1px 1px 5px 0.5px gray" }}
+>
           <div className="flex items-center w-full sm:w-auto sm:border-r sm:border-r-gray-100 px-2 sm:px-3 ">
             <FaSearch className="text-[#4640DE] mr-2" />
             <input
@@ -67,6 +66,7 @@ const HeroSection = () => {
           <button className="bg-[#4640DE] text-white font-medium py-2 px-4 rounded-md w-full sm:w-auto mt-2 sm:mt-0">
             Search
           </button>
+        </div>
         </div>
         </div>
 
@@ -114,32 +114,20 @@ const HeroSection = () => {
 
 
       
-          <div className="relative overflow-hidden w-full">
-          <div className="logo-slider flex justify-evenly  items-center gap-6  my-10">
-            {" "}
-            {/**logo-slider from index.css */}
-            <img src={vodafone} alt="vodafon" />
-            <img src={intel} alt="intel" />
-            <img src={tesla} alt="tesla" />
-            <img src={amd} alt="amd" />
-            <img src={talkit} alt="talkit" />
-            <img src={vodafone} alt="vodafon" />
-            <img src={intel} alt="intel" />
-            <img src={tesla} alt="tesla" />
-            <img src={amd} alt="amd" />
-            <img src={talkit} alt="talkit" />
-            <img src={vodafone} alt="vodafon" />
-            <img src={intel} alt="intel" />
-            <img src={tesla} alt="tesla" />
-            <img src={amd} alt="amd" />
-            <img src={talkit} alt="talkit" />
-            <img src={vodafone} alt="vodafon" />
-            <img src={intel} alt="intel" />
-            <img src={tesla} alt="tesla" />
-            <img src={amd} alt="amd" />
-            <img src={talkit} alt="talkit" />
-          </div>
-        </div>
+         <div className="relative overflow-hidden w-full mt-20 bg-white">
+  <div className="logo-slider-track flex animate-slide">
+    {[...Array(10)].map((_, i) => (
+      <div key={i} className="flex gap-10 items-center min-w-max">
+        <img src={vodafone} alt="vodafone" className="h-8 w-auto" />
+        <img src={intel} alt="intel" className="h-8 w-auto" />
+        <img src={tesla} alt="tesla" className="h-8 w-auto" />
+        <img src={amd} alt="amd" className="h-8 w-auto" />
+        <img src={talkit} alt="talkit" className="h-8 w-auto" />
+      </div>
+    ))}
+  </div>
+</div>
+
     </>
   );
 };

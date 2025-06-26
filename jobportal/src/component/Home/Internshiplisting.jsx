@@ -1,7 +1,3 @@
-
-
-
-
 import React,{useEffect, useState} from "react";
 import { FaArrowRight } from "react-icons/fa";
 import image1 from "../photos/logo.png";
@@ -84,8 +80,13 @@ const Intershiplisting = () => {
   
   const [jobdata, setjobdata] = useState([]);
   console.log('info job', jobdata)
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
+    setLoading(true);
+    setError(null);
+    
     const fetchData = async () => {
       try {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
@@ -98,6 +99,9 @@ const Intershiplisting = () => {
         setjobdata(formattedData)
       } catch (err) {
         console.error(err);
+        setError('Failed to fetch Internship data. Please try again later.');
+      }finally{
+        setLoading(false);
       }
     };
   
@@ -148,8 +152,20 @@ const Intershiplisting = () => {
           Show all Internships <FaArrowRight />
         </a>
       </div>
-
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {loading ? (
+        <div className="flex justify-center items-center h-[300px] w-full">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-600 border-solid"></div>
+        </div>
+      ): error ?(
+         <div className="text-red-500 text-center mt-10">
+            {error}
+          </div>
+      ): jobdata.length === 0 ? (
+          <div className="text-gray-500 text-center mt-10">
+              No Internship Offers Available
+            </div>
+      ) : (
+         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {jobdata.map((job) => (
           <div
             key={job._id}
@@ -208,6 +224,9 @@ const Intershiplisting = () => {
           </div>
         ))}
       </div>
+      )
+      }
+     
     </section>
   );
 };

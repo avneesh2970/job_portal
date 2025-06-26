@@ -123,7 +123,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-white"></div>
         </motion.div>
 
-        <motion.div className="relative z-10 p-6" style={{ opacity: heroTextOpacity, y: heroTextY }}>
+        <motion.div className="flex justify-centerm items-center flex-col z-10 p-6" style={{ opacity: heroTextOpacity, y: heroTextY }}>
           <motion.h1
             className="text-5xl md:text-4xl lg:text-6xl font-bold tracking-tight !leading-tight"
             initial={{ opacity: 0, y: 20 }}

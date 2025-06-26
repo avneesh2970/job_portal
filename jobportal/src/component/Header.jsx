@@ -83,7 +83,7 @@ const Header = () => {
 
 
   return (
-    <nav className="bg-white w-full shadow-md sticky top-0 z-20">
+    <nav className="bg-white w-full h-2/12 shadow-md sticky flex justify-center items-center top-0 z-20">
       <div className="container mx-auto  flex justify-between items-center p-2.5 ">
         {/* Logo */}
         <div onClick={()=>navigate('/')} className="flex items-center space-x-2">

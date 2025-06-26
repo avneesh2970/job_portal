@@ -3,7 +3,9 @@ import { FaQuoteLeft } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import AOS from 'aos';
+import { useEffect } from "react";
+import 'aos/dist/aos.css';
 // Closure for testimonials
 const useTestimonials = () => {
   const testimonials = [
@@ -32,6 +34,13 @@ const useTestimonials = () => {
       text: "I found my ideal remote job through this platform. The job alerts were precise and saved me a lot of time. Absolutely love it!",
     },
   ];
+
+  useEffect(() => {
+  AOS.init({
+    duration: 1000, // default duration (optional)
+    once: true,     // whether animation should happen only once
+  });
+}, []);
 
   const getTestimonials = () => testimonials;
 
@@ -76,11 +85,14 @@ const TestimonialSection = () => {
         Connecting professionals with their dream jobs.
       </p>
 
-      <div className="mt-12">
+      <div className="mt-12"      data-aos="fade-right" aos-duration="300">
         <Slider {...settings}>
           {testimonials.map((item, index) => (
-            <div key={index} className="px-4">
-              <div className="rounded-xl shadow-lg py-9 px-8 transition duration-300 bg-[#F3F2FF] hover:bg-blue-700 hover:text-white">
+            <div 
+            key={index}
+            data-aos="fade-right" aos-duration="300"
+            >
+             <div className="rounded-xl shadow-lg py-9 px-8 transition duration-300 transform hover:scale-105 bg: bg-[#F3F2FF]">
                 <FaQuoteLeft className="text-3xl text-blue-600 hover:text-white" />
                 <p className="mt-4 text-sm leading-loose">{item.text}</p>
 

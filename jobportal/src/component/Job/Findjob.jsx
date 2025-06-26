@@ -21,6 +21,8 @@ const Findjob = () => {
   const [jobsPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
 
+  
+
     // Get current jobs
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
@@ -163,7 +165,7 @@ const { ['Full-time']: fullTimeCount,
         setjobdata(data.data);
         // Apply filters immediately after fetching data
         applyFilters(data.data);
-        setLoading
+        setLoading(true)
       } catch (err) {
         console.error(err);
       } finally {
@@ -187,15 +189,15 @@ const { ['Full-time']: fullTimeCount,
     console.log('filtered', filtered);
 
     // Filter by search term
-    if (searchTerm) {
-      const search = searchTerm.toLowerCase();
-      filtered = filtered.filter(job => 
-        job.jobTitle?.toLowerCase().includes(search) || 
-        job.description?.toLowerCase().includes(search) ||
-        job.company?.toLowerCase().includes(search) ||
-        job.requiredSkills?.some(skill => skill.toLowerCase().includes(search))
-      );
-    }
+    // if (searchTerm) {
+    //   const search = searchTerm.toLowerCase();
+    //   filtered = filtered.filter(job => 
+    //     job.jobTitle?.toLowerCase().includes(search) || 
+    //     job.description?.toLowerCase().includes(search) ||
+    //     job.company?.toLowerCase().includes(search) ||
+    //     job.requiredSkills?.some(skill => skill.toLowerCase().includes(search))
+    //   );
+    // }
 
     // Filter by location
     if (selectedLocation !== "Select Location") {
@@ -378,8 +380,9 @@ const { ['Full-time']: fullTimeCount,
 
   const handleSearchTermChange = (e) => {
     const value = e.target.value;
-    console.log('Search Term:', value);
+   
     setSearchTerm(value);
+      console.log('Search Term:', value);
   }
 
 
@@ -437,7 +440,7 @@ const { ['Full-time']: fullTimeCount,
         <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
           <Search className="text-gray-400 h-5 w-5 mr-2" />
           <input
-            type="search"
+          
             placeholder="Search for keywords"
             className="bg-transparent w-full outline-none text-gray-700 text-sm"
             value={searchTerm}

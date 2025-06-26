@@ -85,15 +85,16 @@ export default function ContactPage() {
             ></iframe>
           </div>
            <div className="space-y-4">
-            <div className="flex items-center gap-2"><Mail /> contact@yourdomain.com</div>
-            <div className="flex items-center gap-2"><Phone /> +91 9876543210</div>
-            <div className="flex items-center gap-2"><MapPin /> 123 Main Street, City, Country</div>
+            <div className="flex items-center gap-2"><Mail /> info@novanectar.co.in</div>
+            <div className="flex items-center gap-2"><Phone />+91 8979891703  <br />
++91 8979891705</div>
+            <div className="flex items-center gap-2"><MapPin />GMS Rd, Haripuram, Kanwali, Dehradun, Uttarakhand 248001</div>
           </div>
-          <div className="flex gap-4 mt-4 text-blue-600">
+          {/* <div className="flex gap-4 mt-4 text-blue-600">
             <Linkedin className="hover:scale-110 transition-transform cursor-pointer" />
             <Twitter className="hover:scale-110 transition-transform cursor-pointer" />
             <Github className="hover:scale-110 transition-transform cursor-pointer" />
-          </div>
+          </div> */}
         </motion.div>
       </div>
 
