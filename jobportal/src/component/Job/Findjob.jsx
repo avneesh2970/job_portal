@@ -575,8 +575,16 @@ const { ['Full-time']: fullTimeCount,
     </div>
   );
 
+  const data = JSON.parse(localStorage.getItem("user"));
+  const user_id = data.id;
+  console.log("User id:", user_id);
+
+ 
+
   // Job card component
-  const JobCard = ({ job }) => (
+  const JobCard = ({ job }) => {
+     const hasApplied = (job.studentApplied || []).includes(user_id); // ✅ moved inside
+    return (
     <div className="border border-gray-200 rounded-lg p-6 mb-4 hover:border-indigo-500 hover:shadow-md transition-all">
       <div className="flex justify-between">
         <div className="flex space-y-3.5">
@@ -631,16 +639,23 @@ const { ['Full-time']: fullTimeCount,
         
         {/* Apply button */}
         <div className="flex flex-col items-end justify-between">
-          <button 
-            className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg text-sm font-medium"
-            onClick={() => handleApplyNow(job)}
-          >
-            Apply Now
-          </button>
+         <button
+          onClick={() => {
+            if (!hasApplied) {
+            handleApplyNow(job);
+            }
+          }}
+          
+          className={`${
+            hasApplied ? 'bg-zinc-700 cursor-not-allowed' : '   bg-violet-500 hover:bg-[#4338ca]'
+          } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
+        >
+          {hasApplied ? 'Applied' : 'Apply Now'}
+        </button>
         </div>
       </div>
-    </div>
-  );
+    </div>)
+  };
 
   const Pagination = () => {
     // Generate page numbers

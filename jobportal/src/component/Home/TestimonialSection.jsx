@@ -85,12 +85,12 @@ const TestimonialSection = () => {
         Connecting professionals with their dream jobs.
       </p>
 
-      <div className="mt-12"      data-aos="fade-right" aos-duration="300">
+      <div className="mt-12"       >
         <Slider {...settings}>
           {testimonials.map((item, index) => (
             <div 
             key={index}
-            data-aos="fade-right" aos-duration="300"
+            data-aos="flip-left" aos-duration="1500"
             >
              <div className="rounded-xl shadow-lg py-9 px-8 transition duration-300 transform hover:scale-105 bg: bg-[#F3F2FF]">
                 <FaQuoteLeft className="text-3xl text-blue-600 hover:text-white" />
