@@ -19,7 +19,7 @@ import CandApplication from './candidate_dashboard/component/application/MyAppli
 import CandProfilePage from './candidate_dashboard/pages/ProfilePage.jsx'
 import CandProfileSetting from './candidate_dashboard/pages/ProfileSetting.jsx'
 import CandEducationSkillsForm from './candidate_dashboard/pages/EducationSkillForm.jsx'
-import CandLogindetails from './candidate_dashboard/pages/Logindetails.jsx'
+import CandLogindetails from './candidate_dashboard/pages/LoginDetails.jsx'
 import CandSetting from './candidate_dashboard/component/candidateSetting/CandidateSetting.jsx'
 import CandSavedJobs from './candidate_dashboard/component/savedjob/Savedjob.jsx'
 import CompApplayout from './company_dashboard/Applayout.jsx'
