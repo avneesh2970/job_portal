@@ -165,7 +165,7 @@ function Dashboard() {
     const [job, setJob] = useState([]);
      const [user, setUser] = useState(null);
     const fetchdata = async () => {
-      const res = await axios.get("http://localhost:5000/api/applications")
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/applications`)
       console.log('hey  ',res.data.applications);
       setApplicant(res.data.applications);
     }

@@ -31,7 +31,7 @@ const SocialLinks = () => {
     console.log(formData);
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/socialMediaLinks", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/socialMediaLinks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -169,7 +169,7 @@ const TeamMembers = () => {
 
     try {
       // Add New Member (POST Request)
-      const response = await fetch("http://localhost:4000/api/v1/teamMember", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/teamMember`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -207,7 +207,7 @@ const TeamMembers = () => {
   // Fetch All Members (Separate Function)
   const getAllMembers = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/v1/getAllMember", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/getAllMember`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

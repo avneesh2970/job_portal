@@ -83,8 +83,8 @@ function JobDetails() {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/job/jobpost/${jobId}`);
-        const res = await axios.get(`http://localhost:5000/job/jobpost/`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${jobId}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/`);
         setAllJobs(res.data);
         const data = response.data;
         console.log("Job data fetched:", data);
@@ -201,7 +201,7 @@ if (videoIntroduction) {
         submissionData.append("job", job._id);
 
        try {
-    const response = await axios.post('http://localhost:5000/api/submit-application', submissionData);
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/submit-application`, submissionData);
     console.log("Submitted:", response.data);
       setShowSuccessModal(true); // ✅ Show the modal
   } catch (error) {

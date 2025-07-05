@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  axios.defaults.baseURL = "http://localhost:5000";
+  axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URL}`;
   axios.defaults.withCredentials = true;
 
   useEffect(() => {

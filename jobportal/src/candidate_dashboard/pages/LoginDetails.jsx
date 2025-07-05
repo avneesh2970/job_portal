@@ -29,7 +29,7 @@ const Settings = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/user/update-credentials', formData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/update-credentials`, formData);
       console.log(response.data);
       alert('Credentials updated successfully!'); // Replace with toast if desired
     } catch (error) {
@@ -45,7 +45,7 @@ const Settings = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/logindetails/update-password', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/logindetails/update-password`, {
         email: formData.email, // Assuming email is used to identify the user
         oldPassword: forgetPasswordData.oldPassword,
         newPassword: forgetPasswordData.newPassword,

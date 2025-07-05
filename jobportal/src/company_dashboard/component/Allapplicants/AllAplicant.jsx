@@ -22,7 +22,7 @@ function AllAplicant() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const res = await axios.get('http://localhost:5000/api/applications');
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/applications`);
             console.log(res.data);
           
             setapllicant(res.data.applications);

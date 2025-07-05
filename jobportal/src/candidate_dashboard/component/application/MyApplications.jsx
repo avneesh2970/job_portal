@@ -18,7 +18,7 @@ const MyApplications = () => {
       const data = JSON.parse(localStorage.getItem("user"));
       const user_id = data.id;
       console.log("User id:", user_id);
-      const response = await axios.get(`http://localhost:5000/job/user/${user_id}/applied-jobs`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/user/${user_id}/applied-jobs`);
       setApplications(response.data.user.applied);
       console.log("Applied jobs:", response.data.user.applied);
     } catch (err) {

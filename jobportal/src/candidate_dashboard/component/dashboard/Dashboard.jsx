@@ -146,7 +146,7 @@ function Dashboard() {
       const data = JSON.parse(localStorage.getItem("user"));
       const user_id = data.id;
       console.log("User id:", user_id);
-      const apply = await axios.get(`http://localhost:5000/job/user/${user_id}/applied-jobs`);
+      const apply = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/user/${user_id}/applied-jobs`);
       setUserApplied( apply.data.user.applied);
       setApplied(apply.data.user.applied.length);
     } catch (error) {

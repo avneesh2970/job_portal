@@ -22,7 +22,7 @@ function FindJob() {
     useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/job/jobpost');
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
         setJobs(response.data); // Adjust based on your API response shape
       } catch (error) {
         console.error('Error fetching jobs:', error);

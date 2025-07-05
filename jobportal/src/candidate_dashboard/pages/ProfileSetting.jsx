@@ -63,7 +63,7 @@ const ProfileSettings = () => {
     });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/user/profile', data, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/profile`, data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
