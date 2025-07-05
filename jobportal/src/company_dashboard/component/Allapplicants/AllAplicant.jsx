@@ -36,7 +36,7 @@ function AllAplicant() {
 
     const handleStatusChange = async (userId, jobId, status) => {
   try {
-    await axios.patch(`/api/users/${userId}/applications/${jobId}/status`, {
+    await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/users/${userId}/applications/${jobId}/status`, {
       status,
     });
 
