@@ -36,7 +36,7 @@ function AllAplicant() {
 
     const handleStatusChange = async (userId, jobId, status) => {
   try {
-    await axios.put(`/api/users/${userId}/applications/${jobId}/status`, {
+    await axios.patch(`/api/users/${userId}/applications/${jobId}/status`, {
       status,
     });
 
