@@ -49,13 +49,13 @@ const teamMembers = [
 
 const values = [
   {
-    icon: <Lightbulb className="w-10 h-10 text-amber-500" />,
+    icon: <Lightbulb className="w-10 h-10 text-amber-400" />,
     title: "Igniting Potential",
     description:
       "We believe everyone holds unique talents. Our mission is to provide the spark that turns potential into achievement.",
   },
   {
-    icon: <Sparkles className="w-10 h-10 text-rose-500" />,
+    icon: <Sparkles className="w-10 h-10 text-teal-400" />,
     title: "Crafting Connections",
     description:
       "Beyond algorithms, we foster genuine connections that lead to meaningful career paths and thriving teams.",
@@ -108,11 +108,11 @@ export default function AboutPage() {
   const heroImageScale = useTransform(heroScrollYProgress, [0, 1], [1, 1.3])
 
   return (
-    <div className="overflow-x-hidden font-serif text-gray-700 dark:text-gray-300 antialiased">
+    <div className="overflow-x-hidden flex flex-col font-serif text-gray-700 dark:text-gray-300 antialiased">
       {/* Hero Section */}
       <motion.section
         ref={heroRef}
-        className="relative h-[100vh] md:h-[120vh] flex flex-col items-center justify-center text-center text-black overflow-hidden"
+        className="relative h-screen flex flex-col my-auto items-center justify-center text-center text-black overflow-hidden "
       >
         <motion.div className="absolute inset-0 z-0" style={{ scale: heroImageScale }}>
           <img
@@ -123,14 +123,14 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-white"></div>
         </motion.div>
 
-        <motion.div className="flex justify-centerm items-center flex-col z-10 p-6" style={{ opacity: heroTextOpacity, y: heroTextY }}>
+        <motion.div className="flex justify-center m-auto h-screen w-full items-center flex-col z-10 -top-50 -mt-10" style={{ opacity: heroTextOpacity, y: heroTextY }}>
           <motion.h1
             className="text-5xl md:text-4xl lg:text-6xl font-bold tracking-tight !leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "circOut" }}
           >
-            Where Careers <span className="text-[#4640DE]">Take Flight</span>.
+            Where Careers <span className="text-blue-400">Take Flight</span>.
           </motion.h1>
           <motion.p
             className="mt-8 max-w-3xl mx-auto text-lg md:text-2xl text-gray-400"
@@ -138,13 +138,13 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: "circOut" }}
           >
-            We're not just a job portal; we're your dedicated partner in navigating the dynamic world of careers and
+            We're not just a job portal, we're your dedicated partner in navigating the dynamic world of careers and
             talent acquisition.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8, ease: "circOut" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "circOut" }}
             className="mt-12"
           >
             <a
@@ -172,7 +172,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "circOut" }}
+              transition={{ duration: 0.4, ease: "circOut" }}
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900  mb-6">
@@ -231,7 +231,7 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center"
+                className=" bg-blue-700 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center"
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
@@ -247,7 +247,7 @@ export default function AboutPage() {
       </motion.section>
 
       {/* Meet the Team Section */}
-      <motion.section
+      {/* <motion.section
         className="py-24 md:py-32 bg-white dark:text-[#4640DE]"
         variants={sectionVariants}
         initial="hidden"
@@ -304,7 +304,7 @@ export default function AboutPage() {
             ))}
           </motion.div>
         </div>
-      </motion.section>
+      </motion.section> */}
 
       {/* CTA Section */}
       <motion.section
@@ -320,13 +320,13 @@ export default function AboutPage() {
             alt="Dynamic abstract background"
             className="w-full h-full object-cover opacity-30 dark:opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-100 via-slate-100/80 to-transparent dark:from-blue-400 dark:via-blue-600"></div>
+          <div className="absolute text-blue-600"></div>
         </div>
         <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 ">
             Ready to <span className="text-[#4640DE]">Elevate</span> Your Journey?
           </h2>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 ">
             Whether you're seeking your dream role or the perfect talent, your next chapter starts here.
           </p>
           <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">

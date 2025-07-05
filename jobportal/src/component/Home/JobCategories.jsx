@@ -11,14 +11,14 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const categories = [
-  { icon:image1 , title: "Human Resource", job: "120 jobs available" },
-  { icon: image2, title: "Design", job: "98 jobs available" },
-  { icon: image3, title: "Marketing", job: "75 jobs available" },
-  { icon: image4, title: "Accounting", job: "60 jobs available" },
-  { icon: image5, title: "Development", job: "150 jobs available" },
-  { icon: image6, title: "Health and Care", job: "45 jobs available" },
-  { icon: image7, title: "Project Management", job: "90 jobs available" },
-  { icon: image8, title: "Real Estate Business", job: "30 jobs available" }
+  { icon:image1 , title: "Human Resource", job: "" },
+  { icon: image2, title: "Design", job: " " },
+  { icon: image3, title: "Marketing", job: " " },
+  { icon: image4, title: "Accounting", job: " " },
+  { icon: image5, title: "Development", job: " " },
+  { icon: image6, title: "Health and Care", job: " " },
+  { icon: image7, title: "Project Management", job: " " },
+  { icon: image8, title: "Real Estate Business", job: " " }
 ];
 
 const JobCategories = () => {
@@ -45,7 +45,7 @@ const JobCategories = () => {
     key={index}
     data-aos="flip-left"
     data-aos-duration="2000"
-    className="py-4 px-0 bg-[#F3F2FF] rounded-lg hover:shadow-xl transition transform hover:scale-105 cursor-pointer"
+    className="py-4 px-0 bg-blue-200 rounded-lg hover:shadow-xl transition transform hover:scale-105 cursor-pointer"
   >
     <div className="flex justify-center items-center w-16 h-16 rounded-full mx-auto text-blue-400">
       <img src={category.icon} alt={category.title} />
@@ -53,7 +53,7 @@ const JobCategories = () => {
     <h3 className="text-xl font-semibold text-gray-800">{category.title}</h3>
     <p className="text-gray-500">{category.job}</p>
     <a href="#" className="text-blue-400 mt-1 inline-block font-medium hover:underline transition">
-      Explore Jobs →
+      {/* Explore Jobs → */}
     </a>
   </div>
 ))}

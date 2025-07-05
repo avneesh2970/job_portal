@@ -146,14 +146,15 @@ const Header = () => {
           userType === "candidate" ? (
             <button
               className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-              onClick={handleOpenCandidate}
+              onClick={() => window.open('/candidate_dashboard', '_blank')}
+              // onClick={()=>navigate('/candidate_dashboard')}
             >
               Candidate Dashboard
             </button>
           ) : (
             <button
               className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-              onClick={handleOpenCompany}
+              onClick={() => window.open('/company_dashboard', '_blank')}
             >
               Recruiter Dashboard
             </button>

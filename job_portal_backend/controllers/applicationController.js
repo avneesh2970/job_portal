@@ -412,8 +412,8 @@ const applicationController = {
         additionalInfo
       } = req.body;
 
-      const userId = req.body.userId;
-      const jobId = req.body.jobId;
+      const userId = req.body.user;
+      const jobId = req.body.job;
 
       const user = await User.findById(userId);
       const job = await JobPost.findById(jobId);
@@ -421,7 +421,10 @@ const applicationController = {
       if (user && job) {
         // Update user's applied jobs
         if (!user.applied.includes(jobId)) {
-          user.applied.push(jobId);
+          user.applied.push({
+          job: jobId,
+          status: 'Submitted'
+        });
           await user.save();
         }
 
@@ -437,6 +440,8 @@ const applicationController = {
 
       // Create new application document
       const application = new Application({
+        user: userId, // Reference to the user
+        job: jobId, // Reference to the job
         fullName,
         email,
         phone,
@@ -484,7 +489,9 @@ const applicationController = {
 
   getApplicationById: async (req, res) => {
     try {
-      const application = await Application.findById(req.params.id);
+      const application = await Application.findById(req.params.id)
+       .populate('candidate', 'fullName email')    // Populate candidate details
+      .populate('job', 'title company location'); // Populate job details
       
       if (!application) {
         return res.status(404).json({
@@ -504,7 +511,35 @@ const applicationController = {
         message: 'Error retrieving application details'
       });
     }
+  },
+  updateApplicationStatus: async (req, res) => {
+  const { userId, jobId } = req.params;
+  const { newStatus } = req.body;
+
+  const validStatuses = ['Submitted', 'Under Review', 'Interview', 'Offered', 'Rejected'];
+
+  if (!validStatuses.includes(newStatus)) {
+    return res.status(400).json({ success: false, message: 'Invalid status' });
   }
+
+  try {
+    const user = await User.findById(userId);
+    const app = user.applied.find(a => a.job.toString() === jobId);
+
+    if (!app) {
+      return res.status(404).json({ message: 'Application not found.' });
+    }
+
+    app.status = newStatus;
+    await user.save();
+
+    res.status(200).json({ message: 'Application status updated.', updated: app });
+  } catch (err) {
+    console.error('Status Update Error:', err);
+    res.status(500).json({ message: 'Could not update status' });
+  }
+}
+
 };
 
 const userController = {
@@ -783,7 +818,151 @@ const userController = {
       console.error('Profile error:', error);
       res.status(500).json({ message: 'Server error' });
     }
+  },
+
+  getProfilebyId: async (req, res) => {
+      const userId = req.params.id;
+      console.log('User ID:', userId);
+      try {
+        const user = await  User.findById(userId).select('-password');
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+      }catch(error) {
+        console.error('Profile by ID error:', error);
+        res.status(500).json({ message: 'Server error' });
+
+      }
+},
+
+  // for updating the status of an application
+  updateStatus : async (req, res) => {
+  const { userId, jobId } = req.params;
+  const { status } = req.body;
+  console.log('status', status);
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const jobIndex = user.applied.findIndex(
+      (app) => app.job.toString() === jobId
+    );
+
+    if (jobIndex === -1) return res.status(404).json({ message: 'Application not found for this user' });
+
+    user.applied[jobIndex].status = status;
+    await user.save();
+
+    res.status(200).json({ success: true, message: 'Status updated' });
+  } catch (error) {
+    console.error('Error updating status:', error);
+    res.status(500).json({ message: 'Server error' });
   }
+},
+
+
+  // Toggle saved job (save if not exists, remove if already saved)
+toggleSavedJob : async (req, res) => {
+   const userId = req.params.userId;
+  const jobId = req.params.jobId;
+
+  const user = await User.findById(userId);
+
+  if (!user) return res.status(404).json({ message: 'User not found' });
+
+  const alreadySaved = user.savedJobs.includes(jobId);
+
+  if (alreadySaved) {
+    // Remove from savedJobs
+    user.savedJobs.pull(jobId);
+  } else {
+    // Add to savedJobs
+    user.savedJobs.push(jobId);
+  }
+
+  await user.save();
+  res.json({ saved: !alreadySaved });
+},
+
+
+  getSavedJobs: async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId).populate('savedJobs');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(user.savedJobs);
+  } catch (error) {
+    console.error('Error fetching saved jobs:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+},
+removeSavedJob : async (req, res) => {
+  const { userId, jobId } = req.params;
+
+  try {
+    await User.findByIdAndUpdate(userId, {
+      $pull: { savedJobs: jobId }
+    });
+
+    res.status(200).json({ message: 'Job removed from saved list' });
+  } catch (error) {
+    console.error('Error removing saved job:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+},
+updateProfile : async (req, res) => {
+  const userId = req.params.id;
+  const {name,profile, phone,pinCode, state, addressLine1, addressLine2, city, country, dateOfBirth, email, gender} = req.body;
+  console.log(name,profile, phone, pinCode, state, addressLine1, addressLine2, city, country, dateOfBirth, email  ,gender);
+  try{
+    const user = await User.findById(userId);
+    if(!user){
+      return res.status(404).json({ message: 'User not found' });
+    }
+     // ✅ Update fields manually
+    user.name = name || user.name;
+    user.profile = profile || user.profile;
+    user.phone = phone || user.phone;
+    user.address.country = country || user.address.country;
+    user.address.state = state || user.address.state;
+    user.address.city = city || user.address.city;
+    user.address.pincode = pinCode || user.address.pincode;
+    user.address.address1 = addressLine1 || user.address.address1;
+    user.address.address2 = addressLine2 || user.address.address2;
+    user.dateOfBirth = dateOfBirth || user.dateOfBirth;
+    user.email = email || user.email;
+    user.gender = gender || user.gender;
+
+     if (req.file) {
+      user.image = `/uploads/users/${req.file.filename}`;
+    }
+
+    await user.save(); // ✅ Save changes to DB
+
+    res.status(200).json({ 
+      success: true,
+      message: 'Profile updated successfully',
+      user
+    });
+
+    
+  }catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Server error during profile update' 
+    })};
+}
 };
+
+
+
 
 module.exports = { applicationController, userController };

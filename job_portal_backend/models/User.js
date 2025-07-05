@@ -9,9 +9,44 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpires: Date,
   lastLogin: Date,
   createdAt: { type: Date, default: Date.now },
+  image: { type: String },  //for image uplaod
+
+  // ✅ Personal Information
+  name: { type: String, trim: true },
+  profile: { type: String, trim: true }, // Profile name or title
+  phone: { type: String },
+  dateOfBirth: { type: Date },
+  gender: { type: String, enum: ['Male', 'Female', 'Other'] },
+
+   // ✅ Address Fields
+  address: {
+    country: { type: String },
+    state: { type: String },
+    city: { type: String },
+    pincode: { type: String },
+    address1: { type: String },
+    address2: { type: String }
+  },
 
   // ✅ Always defined, but only used if userType === 'candidate'
-  applied: [{ type: mongoose.Schema.Types.ObjectId, ref: "JobPost" }]
+  applied: [
+   {
+    job: { type: mongoose.Schema.Types.ObjectId, ref: "JobPost" },
+    status: {
+      type: String,
+      enum: ['Submitted', 'Under Review', 'Interview', 'Offered', 'Rejected'],
+      default: 'Submitted'
+    },
+    appliedAt: { type: Date, default: Date.now }
+  }
+    
+  ],
+  // ✅ Jobs the candidate has saved/bookmarked
+  savedJobs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "JobPost"
+    }]
 });
 
 

@@ -90,10 +90,11 @@ const getUserWithAppliedJobs = async (req, res) => {
     //   console.log('user', usere)
 
     const user = await User.findById(userId).populate({
-      path: "applied",              // field in User schema
-      model: "JobPost",             // must match the model name
-      
+      path: 'applied.job',
+      model: 'JobPost',
+      select: 'companyLogo jobTitle companyName location' // Optional: only select fields you need
     });
+
 
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });

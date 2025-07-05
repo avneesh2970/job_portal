@@ -105,8 +105,8 @@ const handleSubmit = async (e) => {
 
     // ✅ Add userId and jobId
     const user = JSON.parse(localStorage.getItem("user"));
-    submitData.append("userId", user?.id); // or user._id depending on your schema
-    submitData.append("jobId", jobDetails._id);
+    submitData.append("user", user?.id); // or user._id depending on your schema
+    submitData.append("job", jobDetails._id);
 
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/submit-application`, {
       method: "POST",
