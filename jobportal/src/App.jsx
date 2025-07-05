@@ -27,7 +27,7 @@ import Comp_Dashboard from './company_dashboard/component/dashboard/Dashboard.js
 import Company_Profile from './company_dashboard/component/company/CompanyProfile.jsx'
 import MessagingUI from './company_dashboard/component/message/Message.jsx'
 import PostJob from './company_dashboard/component/PostJob/postjob.jsx'
-import Viewjob from './company_dashboard/component/PostJob/viewjob.jsx'
+import Viewjob from './company_dashboard/component/PostJob/viewJob.jsx'
 import Update from './company_dashboard/component/PostJob/update.jsx'
 import CompSettingpage from './company_dashboard/component/setting/Setting.jsx'
 import AllAplicant from './company_dashboard/component/Allapplicants/AllAplicant.jsx'
