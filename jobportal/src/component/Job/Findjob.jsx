@@ -576,7 +576,7 @@ const { ['Full-time']: fullTimeCount,
   );
 
   const data = JSON.parse(localStorage.getItem("user"));
-  const user_id = data.id;
+  const user_id = data?.id;
   console.log("User id:", user_id);
 
  
