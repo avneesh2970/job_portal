@@ -34,7 +34,7 @@ console.log((jobdata));
 
   useEffect(() => {
     getJobDetail();
-  
+  zzz
    
   }, [id]);
  

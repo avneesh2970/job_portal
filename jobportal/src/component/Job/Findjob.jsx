@@ -178,7 +178,7 @@ const { ['Full-time']: fullTimeCount,
 
   // Apply filters whenever filters state changes
   useEffect(() => {
-    applyFilters(jobdata);
+    // applyFilters(jobdata);
     setCurrentPage(1);
   }, [filters]);
 
@@ -189,15 +189,15 @@ const { ['Full-time']: fullTimeCount,
     console.log('filtered', filtered);
 
     // Filter by search term
-    // if (searchTerm) {
-    //   const search = searchTerm.toLowerCase();
-    //   filtered = filtered.filter(job => 
-    //     job.jobTitle?.toLowerCase().includes(search) || 
-    //     job.description?.toLowerCase().includes(search) ||
-    //     job.company?.toLowerCase().includes(search) ||
-    //     job.requiredSkills?.some(skill => skill.toLowerCase().includes(search))
-    //   );
-    // }
+    if (searchTerm) {
+      const search = searchTerm.toLowerCase();
+      filtered = filtered.filter(job => 
+        job.jobTitle?.toLowerCase().includes(search) || 
+        job.description?.toLowerCase().includes(search) ||
+        job.company?.toLowerCase().includes(search) ||
+        job.requiredSkills?.some(skill => skill.toLowerCase().includes(search))
+      );
+    }
 
     // Filter by location
     if (selectedLocation !== "Select Location") {
@@ -335,6 +335,7 @@ const { ['Full-time']: fullTimeCount,
     setFilteredJobs(filtered);
     setTotalPages(Math.ceil(filtered.length / jobsPerPage));
   };
+  // console.log('filteredJobs', filteredJobs.length);
 
   const formatDate = (createdAt) => {
     const date = new Date(createdAt);
@@ -379,10 +380,10 @@ const { ['Full-time']: fullTimeCount,
 
 
   const handleSearchTermChange = (e) => {
-    const value = e.target.value;
-   
-    setSearchTerm(value);
-      console.log('Search Term:', value);
+    // const value = e.target.value;
+   console.log('Search Term:', e.target.value);
+    setSearchTerm(e.target.value);
+      // console.log('Search Term:', value);
   }
 
 
@@ -412,9 +413,24 @@ const { ['Full-time']: fullTimeCount,
     }
   };
 
-  const locations = ["New York", "San Francisco", "Los Angeles", "Chicago", "Austin", "Remote", "Delhi"];
+  const locations = ["Dehradun","Delhi", "Mumbai", "Pune", "Bangalore", "Noida",  "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
 
   const categories = ["Design", "Marketing", "Engineering", "Sales", "Business", "Human Resources", "IT"];
+
+
+
+//   const handleSearch = () => {
+//   const filtered = jobdata.filter((job) => {
+//     const matchesSearch = job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase());
+//     const matchesLocation = selectedLocation === "Select Location" || job.location === selectedLocation;
+//     const matchesCategory = selectedCategory === "Select Category" || job.category === selectedCategory;
+//     return matchesSearch && matchesLocation && matchesCategory;
+//   });
+
+//   setFilteredJobs(filtered);
+// };
+
+
 
   const handleSearch = () => {
     // This will trigger the useEffect that applies filters
@@ -433,104 +449,7 @@ const { ['Full-time']: fullTimeCount,
     setSelectedCategory("Select Category");
   };
 
-  const SearchForm = () => (
-    <div className="bg-white rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
-      <div className="flex flex-col md:flex-row items-center gap-4">
-
-        <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
-          <Search className="text-gray-400 h-5 w-5 mr-2" />
-          <input
-          
-            placeholder="Search for keywords"
-            className="bg-transparent w-full outline-none text-gray-700 text-sm"
-            value={searchTerm}
-            onChange={(e)=>handleSearchTermChange(e)}
-          />
-        </div>
-
-        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
-          <MapPin className="text-gray-400 h-5 w-5 mr-2" />
-          <div 
-            className="flex justify-between items-center w-full cursor-pointer"
-            onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
-          >
-            <span className="text-sm text-gray-700">{selectedLocation}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 text-gray-500 transition-transform ${isLocationDropdownOpen ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-          
-
-          {isLocationDropdownOpen && (
-            <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-              {locations.map((location, index) => (
-                <div 
-                  key={index} 
-                  className="px-4 py-2 text-black hover:bg-gray-100 cursor-pointer text-sm"
-                  onClick={() => {
-                    setSelectedLocation(location);
-                    setIsLocationDropdownOpen(false);
-                  }}
-                >
-                  {location}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
-          <Briefcase className="text-gray-400 h-5 w-5 mr-2" />
-          <div 
-            className="flex justify-between items-center w-full cursor-pointer"
-            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-          >
-            <span className="text-sm text-gray-700">{selectedCategory}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 text-gray-500 transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-
-          {isCategoryDropdownOpen && (
-            <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-              {categories.map((category, index) => (
-                <div 
-                  key={index} 
-                  className="px-4 py-2 text-black hover:bg-gray-200 cursor-pointer text-sm"
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setIsCategoryDropdownOpen(false);
-                  }}
-                >
-                  {category}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        
-        {/* Search Button */}
-        <button 
-          className="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-medium text-sm"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
-      </div>
-    </div>
-  );
+ 
 
   // Filter component
   const FilterSection = ({ title, items, category, collapsible = true }) => (
@@ -779,6 +698,10 @@ const { ['Full-time']: fullTimeCount,
     );
   };
 
+  useEffect(() => {
+  applyFilters(jobdata);
+}, [searchTerm, selectedLocation, selectedCategory, filters]);
+
   
 
   return (
@@ -791,7 +714,105 @@ const { ['Full-time']: fullTimeCount,
             <p className="text-lg mb-8">
               Find your next career at companies like HubSpot, Nike, and many more.
             </p>
-            <SearchForm />
+             <div className="bg-white rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
+      <div className="flex flex-col md:flex-row items-center gap-4">
+
+        <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+          <Search className="text-gray-400 h-5 w-5 mr-2" />
+          <input
+          
+            placeholder="Search for keywords"
+            className="bg-transparent w-full outline-none text-gray-700 text-sm"
+            value={searchTerm}
+            onChange={(e)=>handleSearchTermChange(e)}
+          />
+        </div>
+
+        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+          <MapPin className="text-gray-400 h-5 w-5 mr-2" />
+          <div 
+            className="flex justify-between items-center w-full cursor-pointer"
+            onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
+          >
+            <span className="text-sm text-gray-700">{selectedLocation}</span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className={`h-4 w-4 text-gray-500 transition-transform ${isLocationDropdownOpen ? 'rotate-180' : ''}`} 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+          
+
+          {isLocationDropdownOpen && (
+  <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 w-auto">
+    <div className="h-64 overflow-y-auto">
+      {locations.map((location, index) => (
+        <div 
+          key={index}
+          className="px-4 py-2 text-black hover:bg-gray-100 cursor-pointer text-sm"
+          onClick={() => {
+            setSelectedLocation(location);
+            setIsLocationDropdownOpen(false);
+          }}
+        >
+          {location}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+        </div>
+
+        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+          <Briefcase className="text-gray-400 h-5 w-5 mr-2" />
+          <div 
+            className="flex justify-between items-center w-full cursor-pointer"
+            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+          >
+            <span className="text-sm text-gray-700">{selectedCategory}</span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className={`h-4 w-4 text-gray-500 transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
+          {isCategoryDropdownOpen && (
+            <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+              {categories.map((category, index) => (
+                <div 
+                  key={index} 
+                  className="px-4 py-2 text-black hover:bg-gray-200 cursor-pointer text-sm"
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setIsCategoryDropdownOpen(false);
+                  }}
+                >
+                  {category}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        
+        {/* Search Button */}
+        <button 
+          className="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-medium text-sm"
+          onClick={handleSearch}
+        >
+          Search {filteredJobs.length} jobs
+        </button>
+      </div>
+    </div>
           </div>
         </div>
       </div>
