@@ -11,74 +11,7 @@ import axios from 'axios';
 import { FileJsonIcon } from "lucide-react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-const jobs = [
-  {
-    id: 1,
-    company: "NovaNecter Services PVT. LTD.",
-    position: "B.D.E (Business Development Executive)",
-    description: "It is a long established fact that a reader of a page when looking at its layout.",
-    type: "Full Time",
-    daysAgo: "2 Day ago",
-    location: "Dehradun",
-    experience: "Fresher or 1 Year Experience",
-    logo: image1,
-  },
-  {
-    id: 2,
-    company: "NovaNecter Services PVT. LTD.",
-    position: "I.T Sales",
-    description: "It is a long established fact that a reader of a page when looking at its layout.",
-    type: "Full Time",
-    daysAgo: "2 Day ago",
-    location: "Dehradun",
-    experience: "Fresher or 1 Year Experience",
-    logo: image1,
-  },
-  {
-    id: 3,
-    company: "NovaNecter Services PVT. LTD.",
-    position: "UI/UX Designer",
-    description: "It is a long established fact that a reader of a page when looking at its layout.",
-    type: "Full Time",
-    daysAgo: "2 Day ago",
-    location: "Dehradun",
-    experience: "Fresher or 1 Year Experience",
-    logo: image1,
-  },
-  {
-    id: 4,
-    position: "Graphic Designer",
-    company: "NovaNecter Services PVT. LTD.",
-    description: "It is a long established fact that a reader of a page when looking at its layout.",
-    type: "Full Time",
-    daysAgo: "2 Day ago",
-    location: "Dehradun",
-    experience: "Fresher or 1 Year Experience",
-    logo: image1,
-  },
-  {
-    id: 5,
-    position: "Social Media Executive",
-    company: "NovaNecter Services PVT. LTD.",
-    description: "It is a long established fact that a reader of a page when looking at its layout.",
-    type: "Full Time",
-    daysAgo: "2 Day ago",
-    location: "Dehradun",
-    experience: "Fresher or 1 Year Experience",
-    logo: image1,
-  },
-  {
-    id: 6,
-    company: "NovaNecter Services PVT. LTD.",
-    position: "Video Editor",
-    description: "It is a long established fact that a reader of a page when looking at its layout.",
-    type: "Full Time",
-    daysAgo: "2 Day ago",
-    location: "Dehradun",
-    experience: "Fresher or 1 Year Experience",
-    logo: image1,
-  },
-];
+
 
 
 const JobListings = () => {
@@ -174,7 +107,7 @@ const JobListings = () => {
           </div>
       ): (
           <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {jobdata.map((job) => (
+              {[...jobdata].reverse().slice(0,6).map((job) => (
                 <div
                 
                   key={job._id}

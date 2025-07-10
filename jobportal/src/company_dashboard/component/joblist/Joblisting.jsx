@@ -3,9 +3,8 @@ import { Eye, ChevronDown, ChevronLeft, ChevronRight, Calendar } from 'lucide-re
 import ApplicantView from './ApplicantView';
 import axios from 'axios';
 export default function CompanyJobListing() {
-  const [jobListings, setJobListings] = useState([
+  const [jobListings, setJobListings] = useState([]);
   
-  ]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [dateRange, setDateRange] = useState("Feb 19 - Mar 25");
@@ -29,17 +28,19 @@ export default function CompanyJobListing() {
   
     const userInfo = JSON.parse(user);
     const user_email = userInfo.email;
+    console.log("User Email:", user_email);
   
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`)
       .then((response) => {
         const jobs = response.data;
-        console.log(jobs);
-        setJobListings(jobs);
-
         {
           jobs.map((job)=>{ (job.postedBy)})
         }
+        
+        setJobListings(jobs);
+
+        
         
         
       })
