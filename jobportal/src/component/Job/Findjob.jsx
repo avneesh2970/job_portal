@@ -705,16 +705,18 @@ const { ['Full-time']: fullTimeCount,
   
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section */}
       <div className="text-white py-12 relative" style={{ backgroundImage: `url(${SearchImage})`, backgroundSize: "cover", backgroundPosition: "center"}}>
+          {/* Black overlay */}
+  <div className="absolute inset-0 bg-black opacity-70 z-0"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-2">Find your Dream Job</h1>
             <p className="text-lg mb-8">
               Find your next career at companies like HubSpot, Nike, and many more.
             </p>
-             <div className="bg-white rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
+             <div className="bg-white top-0 sticky rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
       <div className="flex flex-col md:flex-row items-center gap-4">
 
         <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">

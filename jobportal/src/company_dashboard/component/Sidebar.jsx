@@ -4,9 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 function Sidebar({containerStyle, close}) {
   const navigate = useNavigate();
   const handleLogout=()=>{
-    localStorage.removeItem('user');
     alert('logout sucessfully');
-    window.close()
+    localStorage.removeItem('user');
+    localStorage.removeItem('password');  
+    navigate('/');
+ 
+   
   }
   return (
     <>

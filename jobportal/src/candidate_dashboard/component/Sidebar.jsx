@@ -6,7 +6,10 @@ function Sidebar({close, containerStyle}) {
   const handleLogout=()=>{
     
     alert('logout sucessfully');
-    window.close()
+    localStorage.removeItem('user');
+    localStorage.removeItem('password');  
+    navigate('/');
+   
   }
   return (
     <>

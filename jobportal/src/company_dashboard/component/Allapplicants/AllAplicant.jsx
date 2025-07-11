@@ -4,9 +4,24 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 
 function AllAplicant() {
     const [applicant, setapllicant] = useState([]);
+    const [data, setData] = useState([]);
     console.log('applicant status',applicant.status);
     const [status, setStatus] = useState(applicant.status); // State to manage status changes
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log('user',user.id);
     
+
+    useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && data.length > 0) {
+      const filteredData = data.filter((item) => item.user === user.id);
+      setapllicant(filteredData);
+    }
+  }, [data]);
+
+
+
       const containerVariants = {
       hidden: { opacity: 0 },
       show: {
@@ -23,9 +38,9 @@ function AllAplicant() {
         const fetchData = async () => {
           try {
             const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/applications`);
-            console.log(res.data);
+            console.log('aplicant : ',res.data.applications);
           
-            setapllicant(res.data.applications);
+            setData(res.data.applications);
           } catch (err) {
             console.error('Failed to fetch applications:', err);
           }

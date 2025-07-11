@@ -1,4 +1,4 @@
-import { FaSearch, FaMapMarkerAlt, FaBriefcase, FaInstagram } from "react-icons/fa";
+
 import React from 'react';
 import vodafone from "../photos/vodafone.png";
 import intel from "../photos/intel-3.png";
@@ -20,7 +20,7 @@ import './css/HeroSection.css';
 const HeroSection = () => {
   return (
     <>
-      <div className="bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]">
+      <div className="bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)] h-screen">
         <div className="flex flex-col md:flex-row justify-between flex-wrap p-4 md:p-12 items-center">
           {/* Heading */}
           <div className="flex-1">
@@ -39,43 +39,7 @@ const HeroSection = () => {
             <img src={hero} alt="hero" className="h-[300px] md:h-full"/>
           </div>
     </div>
-          <div className="flex flex-col text-center w-full items-center mb-12 p-4">
-          <div
-            className=" sticky top-0 bg-white mt-10 p-4 sm:p-6 rounded-lg flex flex-col sm:flex-row shadow-lg gap-4 justify-between items-center max-w-5xl w-full border border-gray-200 z-10 overflow-y-hidden"
-            style={{ boxShadow: "1px 1px 5px 0.5px gray" }}
-          >
-            <div className="flex items-center w-full sm:w-auto sm:border-r sm:border-r-gray-100 px-2 sm:px-3 ">
-              <FaSearch className="text-[#4640DE] mr-2" />
-              <input
-                type="text"
-                placeholder="Search for keywords"
-                className="outline-none border-b border-gray-400 px-2.5 border-solid  p-2 w-full"
-              />
-            </div>
-
-            <div className="flex items-center w-full sm:w-auto sm:border-r sm:border-r-gray-200 px-2 sm:px-3 ">
-              <FaMapMarkerAlt className="text-[#4640DE] mr-2" />
-              <input
-                type="text"
-                placeholder="Select Location"
-                className="outline-none p-2 w-full border-b border-gray-400  border-solid"
-              />
-            </div>
-
-            <div className="flex items-center w-full sm:w-auto px-2 sm:px-3 ">
-              <FaBriefcase className="text-[#4640DE] mr-2" />
-              <input
-                type="text"
-                placeholder="Select Category"
-                className="outline-none p-2 w-full border-b border-gray-400  border-solid "
-              />
-            </div>
-
-            <button className="bg-[#4640DE] text-white font-medium py-2 px-4 rounded-md w-full sm:w-auto mt-2 sm:mt-0">
-              Search
-            </button>
-          </div>
-          </div>
+         
       </div>
 
       {/* Partner Logos */}

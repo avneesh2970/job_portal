@@ -3,10 +3,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { FaUser, FaLock, FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "./AuthContext";
 import logo from './photos/logo.png'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaChevronDown } from "react-icons/fa";
 
 const Header = () => {
+
   const { user } = useContext(AuthContext);
   console.log('u', user);
   const [users, setUserInfo] = useState(null);
@@ -20,6 +21,10 @@ const Header = () => {
   const [isEmployeeOpen, setIsEmployeeOpen] = useState(false);
   const [isPageOpen, setIsPageOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+
+  const isActive = (path) => location.pathname === path;
 
 
   const handleOpenCompany = () => {
@@ -90,34 +95,32 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 text-gray-700 font-medium">
-          <li onClick={() => navigate('/')} className="hover:text-blue-500 cursor-pointer">Home</li>
-          <li onClick={() => navigate('/job')} className="hover:text-blue-500 cursor-pointer">Find Jobs</li>
-          <li onClick={() => navigate('/about')} className="hover:text-blue-500 cursor-pointer">About us</li>
+          <li
+        onClick={() => navigate('/')}
+       className={`cursor-pointer transition-colors duration-300 hover:text-blue-500 ${isActive('/') ? 'text-blue-500' : ''}`}
 
-
-
-
-          {/* Dropdown for Pages */}
-          {/* <li
-            className="relative hover:text-blue-500 cursor-pointer"
-            onMouseEnter={() => setIsPageOpen(true)}
-            onMouseLeave={() => setIsPageOpen(false)}
           >
-            Pages ▾
-            {isPageOpen && (
-              <ul className="absolute left-0 mt-2 w-40 bg-white shadow-md rounded-md">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Home
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Contact
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  About
-                </li>
-              </ul>
-            )}
-          </li> */}
+            Home
+          </li>
+           <li
+        onClick={() => navigate('/job')}
+        className={`cursor-pointer transition-colors duration-300 hover:text-blue-500 ${isActive('/job') ? 'text-blue-500' : ''}`}
+
+      >
+        Find Jobs
+      </li>
+           <li
+        onClick={() => navigate('/about')}
+       className={`cursor-pointer transition-colors duration-300 hover:text-blue-500 ${isActive('/about') ? 'text-blue-500 under' : ''}`}
+
+      >
+        About us
+      </li>
+
+
+
+
+          
         </ul>
 
         {/* Login & Signup */}
@@ -126,6 +129,8 @@ const Header = () => {
             <div className="relative inline-block text-left">
               <div
                 onClick={() => setDropdownOpen(!dropdownOpen)}
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
                 className="flex items-center gap-2 cursor-pointer border-2 border-[#4640DE] border-solid rounded-lg px-2.5 py-1.5 text-[#4640DE]"
               >
                 <FaUserCircle size={28} className="text-[#4640DE]" />
@@ -137,12 +142,17 @@ const Header = () => {
               </div>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 border-gray-300 bg-gray-200 border border-solid rounded-md shadow-lg z-10">
+                <div className="absolute right-0 w-48 border-gray-300 bg-gray-200 border border-solid rounded-md shadow-lg z-10"
+                 onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}>
                   {
                     userType === "candidate" ? (
                       <button
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                        onClick={() => window.open('/candidate_dashboard', '_blank')}
+                       onClick={() => {
+                          navigate('/candidate_dashboard');
+                          window.scrollTo(0, 0);
+                        }}
               // onClick={()=>navigate('/candidate_dashboard')}
                       >
                         Candidate Dashboard
@@ -150,7 +160,10 @@ const Header = () => {
                     ) : (
                       <button
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                       onClick={() => window.open('/company_dashboard', '_blank')}
+                       onClick={() =>{
+                        navigate('/company_dashboard')
+                        window.scrollTo(0, 0);
+                       }}
                       >
                         Recruiter Dashboard
                       </button>

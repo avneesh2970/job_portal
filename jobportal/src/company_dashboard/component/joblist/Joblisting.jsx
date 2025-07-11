@@ -34,11 +34,14 @@ export default function CompanyJobListing() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`)
       .then((response) => {
         const jobs = response.data;
-        {
-          jobs.map((job)=>{ (job.postedBy)})
-        }
+        // {
+        //   jobs.map((job)=>{ (job.postedBy)})
+        // }
+        const filteredJobs = jobs.filter((job) => job.postedBy === user_email);
+        console.log("Filtered Jobs:", filteredJobs);
         
-        setJobListings(jobs);
+        setJobListings(filteredJobs);
+        
 
         
         
