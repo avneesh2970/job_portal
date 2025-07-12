@@ -83,10 +83,10 @@ const MyApplications = () => {
               applications.map((app, index) => (
                <tr key={index}>
                  <td className="py-3 flex items-center gap-1 ">
-                   <img className="flex items-center justify-center object-contain w-8 h-10" src={app.job.companyLogo} alt="" />
+                   <img className="flex items-center justify-center object-contain w-8 h-10" src={app?.job?.companyLogo} alt="" />
                    <div>
-                     <div className="font-semibold">{app.job.companyName}</div>
-                     <div className="text-sm text-gray-500">{app.type}</div>
+                     <div className="font-semibold">{app?.job?.companyName}</div>
+                     <div className="text-sm text-gray-500">{app?.type}</div>
                    </div>
                  </td>
                  <td className="py-3">{app.job?.location}</td>
@@ -95,8 +95,8 @@ const MyApplications = () => {
   month: "long",
   year: "numeric"
 })}</td>
-                 <td className="py-3">{app.job.jobTitle}</td>
-                 <td className='py-3'>{app.status}</td>
+                 <td className="py-3">{app?.job?.jobTitle}</td>
+                 <td className='py-3'>{app?.status}</td>
                  {/* <td className="py-3">
                    <button className={`text-sm w-[95px] h-[34px] rounded-full ${app.statusColor}`}>
                      {app.status}
@@ -118,21 +118,21 @@ const MyApplications = () => {
               <div key={index} className="bg-white border border-gray-200 rounded-md p-4 shadow hover:shadow-md mb-4">
                 <div className="flex justify-around items-center gap-2">
                   <div className='flex items-center gap-2'>
-                    <img className="w-12 h-12 object-contain" src={app.job.companyLogo} alt="" />
+                    <img className="w-12 h-12 object-contain" src={app?.job?.companyLogo} alt="" />
                      <div>
                   
                   
-                    <h3 className="text-lg font-semibold">{app.job.companyName}</h3>
-                    <p className="text-sm text-gray-500">{app.job.jobTitle}</p>
-                    <p className="text-sm text-gray-500">{app.type}</p>
+                    <h3 className="text-lg font-semibold">{app?.job?.companyName}</h3>
+                    <p className="text-sm text-gray-500">{app?.job?.jobTitle}</p>
+                    <p className="text-sm text-gray-500">{app?.type}</p>
                   </div>
 
                   </div>
                  
                   <div className='flex flex-col items-end'>
                   <div className="ml-auto">
-                    <button className={`text-sm px-4 py-2 rounded-full ${app.statusColor}`}>
-                      {app.status}
+                    <button className={`text-sm px-4 py-2 rounded-full ${app?.statusColor}`}>
+                      {app?.status}
                     </button>
                     </div>
                   <div className="text-sm text-gray-500">

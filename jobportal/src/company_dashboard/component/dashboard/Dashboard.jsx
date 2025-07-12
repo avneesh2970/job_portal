@@ -169,9 +169,9 @@ function Dashboard() {
       console.log('...  ',res.data.applications);
       const userdata = localStorage.getItem("user");
       const parsedUser = JSON.parse(userdata);
-      const userId = parsedUser.id;
-      console.log('userId', userId);
-      const filteredData = res.data.applications.filter((item) => item.user === userId);
+      const userEmail = parsedUser.email;
+      console.log('userId', userEmail);
+      const filteredData = res.data.applications.filter((item) => item.job && item.job.postedBy === userEmail);
       setApplicant(filteredData);
     }
 

@@ -13,6 +13,7 @@ function AllAplicant() {
 
 
 
+
       const containerVariants = {
       hidden: { opacity: 0 },
       show: {
@@ -148,7 +149,7 @@ function AllAplicant() {
         
       <select
         value={appl.status}
-        onChange={(e) => handleStatusChange(appl?.user, appl?.job, e.target.value)}
+        onChange={(e) => handleStatusChange(appl?.user, appl?.job && appl.job._id, e.target.value)}
       >
         {['Submitted', 'Under Review', 'Interview', 'Offered', 'Rejected'].map(status => (
           <option value={status} key={status}>{status}</option>

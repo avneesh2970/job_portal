@@ -304,20 +304,20 @@ function Dashboard() {
                 <div className="flex items-center gap-2 py-2">
                   <div className="rounded-md w-8 h-8 overflow-hidden">
                     <img
-                      src={job.job.companyLogo}
+                      src={job?.job?.companyLogo}
                       className="w-full h-full object-cover"
                       alt=""
                     />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">{job.job.companyName}</p>
-                    <p className="text-sm text-gray-500">{job.type}</p>
+                    <p className="font-medium text-gray-900">{job?.job?.companyName}</p>
+                    <p className="text-sm text-gray-500">{  job?.type}</p>
                   </div>
                 </div>
               </td>
 
               <td className="p-3 text-gray-700">
-                {job.job.jobTitle || 'N/A'}
+                {job?.job?.jobTitle || 'N/A'}
               </td>
              <td className="p-3 align-middle text-center">
   <span
