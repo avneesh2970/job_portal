@@ -471,21 +471,24 @@ const applicationController = {
     }
   },
 
-  getAllApplications: async (req, res) => {
-    try {
-      const applications = await Application.find().sort({ appliedAt: -1 });
-      res.status(200).json({
-        success: true,
-        applications
-      });
-    } catch (error) {
-      console.error('Error fetching applications:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Error retrieving applications'
-      });
-    }
-  },
+ getAllApplications: async (req, res) => {
+  try {
+    const applications = await Application.find()
+      .populate('job') // 👈 This populates the job reference
+      .sort({ appliedAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      applications
+    });
+  } catch (error) {
+    console.error('Error fetching applications:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving applications'
+    });
+  }
+},
 
   getApplicationById: async (req, res) => {
     try {
