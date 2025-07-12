@@ -7,18 +7,9 @@ function AllAplicant() {
     const [data, setData] = useState([]);
     console.log('applicant status',applicant.status);
     const [status, setStatus] = useState(applicant.status); // State to manage status changes
+    console.log('env', import.meta.env.VITE_BACKEND_URL);
 
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log('user',user.id);
-    
 
-    useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && data.length > 0) {
-      const filteredData = data.filter((item) => item.user === user.id);
-      setapllicant(filteredData);
-    }
-  }, [data]);
 
 
 
@@ -37,6 +28,7 @@ function AllAplicant() {
     useEffect(() => {
         const fetchData = async () => {
           try {
+             console.log('VITE_BACKEND_URL:', import.meta.env.VITE_BACKEND_URL);
             const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/applications`);
             console.log('aplicant : ',res.data.applications);
           
@@ -48,6 +40,22 @@ function AllAplicant() {
       
         fetchData();
       }, []);
+
+
+      
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log('user',user.email);
+    
+
+    useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && data.length > 0) {
+   const filteredData = data.filter((item) => item.job && item.job.postedBy === user.email);
+
+
+      setapllicant(filteredData);
+    }
+  }, [data]);
 
     const handleStatusChange = async (userId, jobId, status) => {
   try {

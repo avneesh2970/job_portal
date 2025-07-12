@@ -136,7 +136,7 @@ const JobUpdate = () => {
         })
         .then((result) => {
           console.log(result)
-          navigate("/viewjob")
+          navigate("/company_dashboard/viewjob")
         })
         .catch((err) => console.log(err))
     } catch (error) {

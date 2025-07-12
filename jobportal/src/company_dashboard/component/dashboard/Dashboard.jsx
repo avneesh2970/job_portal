@@ -166,8 +166,13 @@ function Dashboard() {
      const [user, setUser] = useState(null);
     const fetchdata = async () => {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/applications`)
-      console.log('hey  ',res.data.applications);
-      setApplicant(res.data.applications);
+      console.log('...  ',res.data.applications);
+      const userdata = localStorage.getItem("user");
+      const parsedUser = JSON.parse(userdata);
+      const userId = parsedUser.id;
+      console.log('userId', userId);
+      const filteredData = res.data.applications.filter((item) => item.user === userId);
+      setApplicant(filteredData);
     }
 
    useEffect(() => {
@@ -204,8 +209,8 @@ function Dashboard() {
     },[])
   return (
     <>
-        <h2 className="text-xl  pt-5 font-semibold">Good morning, Natasha Bunny</h2>
-        <p className="text-gray-500">
+        <h2 className="text-xl  pt-5 font-semibold mx-auto">Good morning,</h2>
+        <p className="text-gray-500 mx-auto">
           Here is your job listings statistic report.
         </p>
 
@@ -222,7 +227,7 @@ function Dashboard() {
             <FaCalendarAlt className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">110</h3>
-              <p>Interview schedule for today</p>
+              <p>Interview schedule </p>
             </div>
           </div>
           <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
@@ -235,7 +240,7 @@ function Dashboard() {
         </div>
 
     
-        <div className="bg-white  rounded-lg shadow-md mt-6 mx-auto px-2 pt-2">
+        {/* <div className="bg-white  rounded-lg shadow-md mt-6 mx-auto px-2 pt-2">
           <div className="flex justify-between ">
             <h3 className="text-lg font-semibold">Job Statistics</h3>
             <div className="flex rounded-2xl">
@@ -385,11 +390,11 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mt-6 mx-auto">
-          <h3 className="text-lg font-semibold">Job Updates</h3>
-          <div className="grid lg:grid-cols-3 grid-cols-2 gap-4 mt-4 mb-2">
+          <h3 className="text-lg font-semibold">Job Uploaded ({userJobs.length})</h3>
+          <div className="grid lg:grid-cols-3 grid-cols-2  mt-4 mb-2">
           {userJobs.map((job, index) => (
         <DashJobCard key={index} {...job} />
       ))}

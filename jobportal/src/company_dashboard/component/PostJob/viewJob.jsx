@@ -161,7 +161,7 @@ const ViewJob = () => {
 
             <div className="mt-4 flex flex-col sm:flex-row sm:justify-end gap-2 text-center">
               <Link
-                to={`/updatejob/${job._id}`}
+                to={`/company_dashboard/updatejob/${job._id}`}
                 className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow"
               >
                 Update

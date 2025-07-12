@@ -49,7 +49,7 @@ function Sidebar({containerStyle, close}) {
         </nav>
         <hr className='border border-zinc-300 shadow-[0_0_8px_rgba(0,0,0,0.1)] ' />
         <nav className=' pt-5 pb-6 text-lg pl-5.5 '>
-        <Link to="" className=" cursor-pointer block p-2 rounded ">
+        <Link to="#" className=" cursor-pointer block p-2 rounded ">
             Setting
           </Link>
           <Link to="#" onClick={close} className=" cursor-pointer block p-2 rounded ">

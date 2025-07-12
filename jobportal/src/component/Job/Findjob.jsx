@@ -28,6 +28,7 @@ const Findjob = () => {
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
   // console.log('currentJobs', currentJobs);
+ 
 
     const typeCounts = {
   'Full-time': 0,
@@ -162,7 +163,8 @@ const { ['Full-time']: fullTimeCount,
       try {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
         console.log('data', data.data);
-        setjobdata(data.data);
+       setjobdata([...data.data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+
         // Apply filters immediately after fetching data
         applyFilters(data.data);
         setLoading(true)
@@ -882,9 +884,12 @@ const { ['Full-time']: fullTimeCount,
                     {/* Job Cards */}
                     {currentJobs.length > 0 ? (
                       <div className="space-y-6">
-                        {currentJobs.map(job => (
+                       {[...currentJobs]
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // newest first
+                        .map(job => (
                           <JobCard key={job._id || job.id} job={job} />
-                        ))}
+                      ))}
+
                       </div>
                     ) : (
                       <div className="text-center py-10">
