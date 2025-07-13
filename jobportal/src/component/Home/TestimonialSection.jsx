@@ -56,7 +56,7 @@ const TestimonialSection = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -91,10 +91,12 @@ const TestimonialSection = () => {
             <div 
             key={index}
             data-aos="flip-left" aos-duration="1500"
+            className="px-2 my-2  "
+        style={{ boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.3)" }}
             >
-             <div className="rounded-xl shadow-lg py-9 px-8 transition duration-300 transform hover:scale-105 bg: bg-[#F3F2FF]">
+             <div className="rounded-xl border-2 border-zinc-300 shadow-lg py-9 px-8 transition duration-300 transform hover:scale-105  bg-[#F3F2FF]">
                 <FaQuoteLeft className="text-3xl text-blue-600 hover:text-white" />
-                <p className="mt-4 text-sm leading-loose">{item.text}</p>
+                <p className="mt-4 text-sm leading-loose line-clamp-3">{item.text}</p>
 
                 <div className="flex items-center mt-6">
                   <img

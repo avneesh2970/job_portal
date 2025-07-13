@@ -166,7 +166,7 @@ const Intershiplisting = () => {
             </div>
       ) : (
          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {jobdata.map((job) => (
+        {jobdata.slice(0,6).map((job) => (
           <div
             key={job._id}
             onClick={() => {
@@ -196,7 +196,8 @@ const Intershiplisting = () => {
             <div className="flex items-center gap-4 mt-6">
               <img src={job.companyLogo} alt={job.company} className="w-14 h-14 rounded-full" />
               <div>
-                <h3 className="text-xl font-bold">{job.jobTitle}</h3>
+                <h3 className="text-xl font-bold line-clamp-1">{job.jobTitle}</h3>
+
                 <p className="text-sm text-gray-500">{job.companyName}</p>
               </div>
             </div>

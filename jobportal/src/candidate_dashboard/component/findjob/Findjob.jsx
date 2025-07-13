@@ -92,7 +92,7 @@ function FindJob() {
                 {/* Job Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 mt-6">
                     {jobs.map((items , index) => (
-                        <JobCard key={items.id} selected={index === 0} jobs={items} />
+                        <JobCard key={items.id}  jobs={items} />
                     ))}
                 </div>
 

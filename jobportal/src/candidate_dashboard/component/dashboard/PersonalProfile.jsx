@@ -38,7 +38,7 @@ export default function PersnolProfile({ user }) {
       <div className="mt-4">
         <h3 className="text-gray-700 font-medium">Personal Details</h3>
         <div className="grid grid-cols-2 gap-3 mt-2">
-          {user.personalDetails.map((detail, index) => (
+          { user.personalDetails && user.personalDetails.map((detail, index) => (
             <div key={index} className="bg-gray-100 p-2 rounded-lg text-center text-sm">
               <p className="text-gray-500">{detail.label}</p>
               <p className="font-medium">{detail.value}</p>

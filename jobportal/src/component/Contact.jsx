@@ -75,15 +75,17 @@ export default function ContactPage() {
           className="space-y-6"
         >
           
-          <div className="h-64 bg-gray-200 rounded-xl shadow-inner overflow-hidden">
-            <iframe
-              src="https://maps.google.com/maps?q=delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              loading="lazy"
-            ></iframe>
-          </div>
+        <div className="h-64 bg-gray-200 rounded-xl shadow-inner overflow-hidden">
+  <iframe
+    src="https://maps.google.com/maps?q=GMS%20Road%2C%20Dehradun&t=&z=13&ie=UTF8&iwloc=&output=embed"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    loading="lazy"
+    allowFullScreen
+  ></iframe>
+</div>
+
            <div className="space-y-4">
             <div className="flex items-center gap-2"><Mail /> info@novanectar.co.in</div>
             <div className="flex items-center gap-2"><Phone />+91 8979891703  <br />

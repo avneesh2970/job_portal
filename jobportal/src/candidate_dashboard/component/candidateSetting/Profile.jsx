@@ -115,42 +115,44 @@ useEffect(() => {
       {/* file upload */}
       <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
         <div className='flex-1'>Profile Photo</div>
-        <div className='flex-1 flex flex-col md:flex-row items-center gap-6'>
-         {image ? (
-  <img
-    src={image}
-    alt="Profile"
-    className="object-cover w-20 h-20"
-  />
-) : data.image ? (
-  <img
-    src={`${import.meta.env.VITE_BACKEND_URL}${data.image}`}
-    alt="Profile"
-    className="object-cover w-20 h-20"
-  />
-) : (
-  <HiOutlineUserCircle className="w-full h-full text-[#A0A0A0]" />
-)}
+   <div className="flex justify-center mx-auto flex-col md:flex-row items-center gap-6">
+  <div className="w-24 h-24 flex items-center justify-center rounded-full overflow-hidden  bg-gray-100 border border-gray-300">
+    {image ? (
+      <img
+        src={image}
+        alt="Profile"
+        className="object-cover w-full h-full"
+      />
+    ) : data.image ? (
+      <img
+        src={`${import.meta.env.VITE_BACKEND_URL}${data.image}`}
+        alt="Profile"
+        className="object-cover w-full h-full"
+      />
+    ) : (
+      <HiOutlineUserCircle className="text-[#A0A0A0] w-24 h-24" />
+    )}
+  </div>
 
-          <label
-            htmlFor="file-upload"
-            className="cursor-pointer w-64 h-32 border-2 border-dashed border-[#4640DE] rounded-md flex flex-col items-center justify-center text-center hover:bg-purple-50 transition"
-          >
-            <FiUploadCloud className="text-[#4640DE] text-3xl mb-2" />
-            <p className="text-[16px] text-[#A0A0A0]">
-              <span className="text-blue-600 font-medium">Click to replace</span> or drag and drop<br />
-              PNG or JPG (max. 400 x 400px)
-            </p>
-            <input
-              type="file"
-              id="file-upload"
-              accept=".png, .jpg, .jpeg"
-              className="hidden"
-              onChange={(e)=>handleImageChange(e)}
+  <label
+    htmlFor="file-upload"
+    className="cursor-pointer w-64 h-32 border-2 border-dashed border-[#4640DE] rounded-md flex flex-col items-center justify-center text-center hover:bg-purple-50 transition"
+  >
+    <FiUploadCloud className="text-[#4640DE] text-3xl mb-2" />
+    <p className="text-[16px] text-[#A0A0A0] leading-tight">
+      <span className="text-blue-600 font-medium">Click to replace</span> or drag and drop<br />
+      PNG or JPG (max. 400 x 400px)
+    </p>
+    <input
+      type="file"
+      id="file-upload"
+      accept=".png, .jpg, .jpeg"
+      className="hidden"
+      onChange={handleImageChange}
+    />
+  </label>
+</div>
 
-            />
-          </label>
-        </div>
       </div>
 
       <div className='border-b-1 border-[#DEE0E4]'></div>

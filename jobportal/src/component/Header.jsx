@@ -85,7 +85,7 @@ const Header = () => {
 
 
   return (
-    <nav className="bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)] w-full h-2/12 sticky flex justify-center items-center top-0 z-20">
+    <nav className="bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]   px-6 md:px-10 w-full h-2/12 sticky flex justify-center items-center top-0 z-20">
       <div className="container mx-auto  flex justify-between items-center p-2.5 ">
         {/* Logo */}
         <div onClick={() => navigate('/')} className="flex items-center space-x-2">

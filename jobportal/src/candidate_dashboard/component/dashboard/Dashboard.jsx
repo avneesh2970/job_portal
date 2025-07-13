@@ -179,7 +179,7 @@ function Dashboard() {
           <div className="bg-green-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaCalendarAlt className="text-2xl mr-2" />
             <div>
-              <h3 className="text-lg font-bold">110</h3>
+              <h3 className="text-lg font-bold">0</h3>
               <p>Interview schedule</p>
             </div>
           </div>
@@ -190,20 +190,20 @@ function Dashboard() {
               <p>Total job offer</p>
             </div>
           </div>
-          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          {/* <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaEnvelope className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">23</h3>
               <p>unread masege</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
       
         <div className="bg-white  rounded-lg shadow-md  mx-auto px-2  py-5">
           <div className=" md:grid md:grid-cols-3 gap-3">
            <div className="col-span-2" >
-              <div className="flex justify-between pb-10 ">
+              {/* <div className="flex justify-between pb-10 ">
                 <h3 className="text-lg font-semibold">Profile View</h3>
                 <div className="flex rounded-2xl">
                   <button
@@ -280,7 +280,7 @@ function Dashboard() {
                     name="Job Interview"
                   />
                 </BarChart>
-              </ResponsiveContainer>
+              </ResponsiveContainer> */}
              {userApplied.length > 0 ? (
   <div className="bg-white shadow-lg rounded-lg p-6 w-full mx-auto">
     <div className="flex justify-between items-center mb-4">

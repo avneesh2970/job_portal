@@ -45,7 +45,7 @@ const Findjob = () => {
 };
 
 
-currentJobs.forEach(job => {
+jobdata.forEach(job => {
   job.employmentType?.forEach(type => {
     if (typeCounts.hasOwnProperty(type)) {
       typeCounts[type]++;
@@ -91,7 +91,7 @@ const { ['Full-time']: fullTimeCount,
   };
   console.log('below2k', salaryCounts.below2k);
 
-  currentJobs.forEach(job => {
+  jobdata.forEach(job => {
     console.log('job.sallery', job.sallery);
   if (job.sallery) {
     const salary = job.sallery;
@@ -707,7 +707,7 @@ const { ['Full-time']: fullTimeCount,
   
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <div className="text-white py-12 relative" style={{ backgroundImage: `url(${SearchImage})`, backgroundSize: "cover", backgroundPosition: "center"}}>
           {/* Black overlay */}
@@ -715,11 +715,13 @@ const { ['Full-time']: fullTimeCount,
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-2">Find your Dream Job</h1>
+           
             <p className="text-lg mb-8">
               Find your next career at companies like HubSpot, Nike, and many more.
             </p>
-             <div className="bg-white top-0 sticky rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
-      <div className="flex flex-col md:flex-row items-center gap-4">
+            </div>
+             <div className="sticky top-0 bg-white  rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
+      <div className="  flex flex-col md:flex-row items-center gap-4">
 
         <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
           <Search className="text-gray-400 h-5 w-5 mr-2" />
@@ -732,7 +734,7 @@ const { ['Full-time']: fullTimeCount,
           />
         </div>
 
-        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+        <div className=" bg-white z-50 flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
           <MapPin className="text-gray-400 h-5 w-5 mr-2" />
           <div 
             className="flex justify-between items-center w-full cursor-pointer"
@@ -790,6 +792,7 @@ const { ['Full-time']: fullTimeCount,
             </svg>
           </div>
 
+
           {isCategoryDropdownOpen && (
             <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
               {categories.map((category, index) => (
@@ -817,7 +820,7 @@ const { ['Full-time']: fullTimeCount,
         </button>
       </div>
     </div>
-          </div>
+         
         </div>
       </div>
 

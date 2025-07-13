@@ -63,7 +63,7 @@ const Savedjob = () => {
 
               <div className="mt-4 flex gap-3">
                 <button
-                 onClick={()=>navigate(`/job/detail/${job._id}`)}
+                 onClick={()=>navigate(`candidate_dashboard/cand_job/${job._id}`)}
                   className="text-sm text-blue-600 underline cursor-pointer px-2 py-1 border border-blue-300 rounded hover:bg-blue-100  "
                 >
                   View Job

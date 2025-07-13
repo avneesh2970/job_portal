@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Bookmark, BookmarkCheck } from 'lucide-react'; // Lucide icons for bookmark
 import axios from "axios";
-function JobCard({jobs, selected }) {
+function JobCard({jobs }) {
     const navigate = useNavigate();
       const [saved, setSaved] = useState(false);
     
@@ -48,15 +48,15 @@ function JobCard({jobs, selected }) {
 
     return (
         <motion.div
-            className={`border rounded-lg p-4 max-w-full w-full ${selected ? "border-[#4f46e5]" : "border-gray-200"} shadow-sm `}
+            className={`border-2 rounded-lg p-4 max-w-full w-full border-blue-300 hover:border-blue-600  shadow-sm `}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: Math.random() * 0.3 }}
             whileHover={{ scale: 1.05 }}
         >
             <div className="flex items-center space-x-3 mb-3">
-                <div className="bg-pink-500 rounded-full p-2">
-                    <img src={jobs.companyLogo} className="w-10 h-10" />
+                <div className=" rounded-full border  bg-zinc-200">
+                    <img src={jobs.companyLogo} className="w-10 object-cover h-10" />
                 </div>
                 <div className="flex-1 flex justify-between items-center">
                     <div className="flex flex-col ">
