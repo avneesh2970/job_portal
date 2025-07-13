@@ -506,26 +506,32 @@ const { ['Full-time']: fullTimeCount,
   const JobCard = ({ job }) => {
      const hasApplied = (job.studentApplied || []).includes(user_id); // ✅ moved inside
     return (
-    <div className="border border-gray-200 rounded-lg p-6 mb-4 hover:border-indigo-500 hover:shadow-md transition-all">
+    <div className="border-2 border-blue-300 rounded-lg p-6 mb-4 hover:border-blue-700 hover:shadow-lg hover:scale-[1.01] transform transition-all duration-300 ease-in-out">
+
       <div className="flex justify-between">
         <div className="flex space-y-3.5">
           {/* Company Logo */}
-          <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-            {job.companyLogo ? (
-              <img src={job.companyLogo} alt={`${job.company} logo`} className="w-full h-full object-cover" />
-            ) : (
-              <div className={`w-full h-full flex items-center justify-center text-white text-xl font-bold ${job.color || "bg-blue-500"}`}>
-                {job.logo}
-              </div>
-            )}
-          </div>
+          <div className="w-10 h-10 rounded-full overflow-hidden border flex items-center justify-center">
+  {job.companyLogo ? (
+    <img 
+      src={job.companyLogo} 
+      alt="Company Logo"
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <div className={`w-full h-full flex items-center justify-center text-white text-xl font-bold ${job.color || "bg-blue-500"}`}>
+      {job.logo}
+    </div>
+  )}
+</div>
+
           
           {/* Job details */}
           <div className="ml-4">
             <h3 className="font-semibold text-lg text-gray-900">{job.jobTitle}</h3>
             <p className="flex flex-col gap-2 text-sm text-gray-500 mt-1">
               <div>location: {job.location}</div>
-              <div className="text-blue-500">
+              <div className="text-blue-700">
                 Date of Posting: {formatDate(job.createdAt)}
               </div>
             </p>
@@ -535,7 +541,7 @@ const { ['Full-time']: fullTimeCount,
               <div className="flex flex-wrap gap-2 mt-2">
                 {job.employmentType && job.employmentType.map((type, index) => (
                   <span 
-                    className="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-3xl" 
+                    className="bg-blue-200 text-blue-700 text-xs px-2.5 py-1 rounded-lg" 
                     key={index}
                   >
                     {type}
@@ -547,7 +553,7 @@ const { ['Full-time']: fullTimeCount,
               <div className="flex flex-wrap gap-2 mt-2">
                 {job.requiredSkills && job.requiredSkills.map((skill, index) => (
                   <span 
-                    className="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-3xl" 
+                    className="bg-blue-200 text-blue-700  text-xs px-2.5 py-1 rounded-lg" 
                     key={index}
                   >
                     {skill}
@@ -568,7 +574,7 @@ const { ['Full-time']: fullTimeCount,
           }}
           
           className={`${
-            hasApplied ? 'bg-zinc-700 cursor-not-allowed' : '   bg-violet-500 hover:bg-[#4338ca]'
+            hasApplied ? 'bg-zinc-700 cursor-not-allowed' : '   bg-blue-700 hover:bg-blue-800'
           } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
         >
           {hasApplied ? 'Applied' : 'Apply Now'}
@@ -734,11 +740,14 @@ const { ['Full-time']: fullTimeCount,
           />
         </div>
 
-        <div className=" bg-white z-50 flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+        <div className=" relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
+         onMouseEnter={() => setIsLocationDropdownOpen(true)}
+            onMouseLeave={() => setIsLocationDropdownOpen(false)}>
           <MapPin className="text-gray-400 h-5 w-5 mr-2" />
           <div 
             className="flex justify-between items-center w-full cursor-pointer"
             onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
+           
           >
             <span className="text-sm text-gray-700">{selectedLocation}</span>
             <svg 
@@ -751,10 +760,13 @@ const { ['Full-time']: fullTimeCount,
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
-          
 
-          {isLocationDropdownOpen && (
-  <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 w-auto">
+            {isLocationDropdownOpen && (
+              
+  <div className="absolute left-0 right-0 top-full  bg-white border border-gray-200 rounded-lg shadow-lg z-10"
+   onMouseEnter={() => setIsLocationDropdownOpen(true)}
+              onMouseLeave={() => setIsLocationDropdownOpen(false)}>
+   
     <div className="h-64 overflow-y-auto">
       {locations.map((location, index) => (
         <div 
@@ -771,14 +783,21 @@ const { ['Full-time']: fullTimeCount,
     </div>
   </div>
 )}
+          
+
+        
 
         </div>
 
-        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
+         onMouseEnter={() => setIsCategoryDropdownOpen(true)}
+            onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
           <Briefcase className="text-gray-400 h-5 w-5 mr-2" />
           <div 
             className="flex justify-between items-center w-full cursor-pointer"
             onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+           
+            
           >
             <span className="text-sm text-gray-700">{selectedCategory}</span>
             <svg 
@@ -794,7 +813,9 @@ const { ['Full-time']: fullTimeCount,
 
 
           {isCategoryDropdownOpen && (
-            <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+            <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10"
+             onMouseEnter={() => setIsCategoryDropdownOpen(true)}
+            onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
               {categories.map((category, index) => (
                 <div 
                   key={index} 

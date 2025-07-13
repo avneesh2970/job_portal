@@ -28,6 +28,8 @@ app.use(cors({
 
 // Serve static files from uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve uploads/resumes folder
+app.use('/uploads/resumes', express.static(path.join(__dirname, 'uploads/resume')));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {

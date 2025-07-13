@@ -24,34 +24,13 @@ function Profile({data}) {
   });
   
 
-  // Simulate API data (replace with actual API call)
-useEffect(() => {
-  const fetchUser = async () => {
-    const res = await fetch(`/api/users/${userId}`);
-    const data = await res.json();
 
-    // Flatten address for form compatibility
-    setFormData({
-      name: data.name || '',
-      email: data.email || '',
-      phone: data.phone || '',
-      gender: data.gender || '',
-      dateOfBirth: data.dateOfBirth ? data.dateOfBirth.split('T')[0] : '',
-      country: data.address?.country || '',
-      city: data.address?.city || '',
-      state: data.address?.state || '',
-      pinCode: data.address?.pincode || '',
-      addressLine1: data.address?.address1 || '',
-      addressLine2: data.address?.address2 || ''
-    });
-  };
 
-  fetchUser();
-}, []);
+
 
   useEffect(() => {
   if (data?.email) {
-    setFormData((prev) => ({ ...prev, email: data.email }));
+    setFormData((prev) => ({ ...prev, email: data.email, name: data.name || '', profile: data.profile || '', phone: data.phone || '', dateOfBirth: data.dateOfBirth || "", gender: data.gender || '', country: data.address?.country || '', city: data.address?.city || '', state: data.address?.state || '', pinCode: data.address?.pincode || '', addressLine1: data.address?.address1 || '', addressLine2: data.address?.address2 || '' }));
   }
 }, [data]);
 
@@ -114,7 +93,7 @@ useEffect(() => {
       </div>
       {/* file upload */}
       <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
-        <div className='flex-1'>Profile Photo</div>
+        <div className='flex-1 text-xl text-zinc-700 font-semibold'>Profile Photo</div>
    <div className="flex justify-center mx-auto flex-col md:flex-row items-center gap-6">
   <div className="w-24 h-24 flex items-center justify-center rounded-full overflow-hidden  bg-gray-100 border border-gray-300">
     {image ? (
@@ -158,7 +137,7 @@ useEffect(() => {
       <div className='border-b-1 border-[#DEE0E4]'></div>
       {/* candidate personal info */}
       <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
-        <div className='flex-1'>Personal Details</div>
+        <div className='flex-1 text-xl text-zinc-700 font-semibold'>Personal Details</div>
         <div className='flex-1'>
           <div action="" className=' grid gap-6'>
             <div className='flex flex-col'>
@@ -262,7 +241,7 @@ useEffect(() => {
       <div className='border-b-1 border-[#DEE0E4]'></div>
       {/* address*/}
       <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
-        <div className='flex-1'>Address Information</div>
+        <div className='flex-1 text-xl text-zinc-700 font-semibold'>Address Information</div>
         <div className='flex-1'>
           <div action="" className='grid gap-6'>
             

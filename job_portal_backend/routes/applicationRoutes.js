@@ -53,6 +53,7 @@ router.post('/auth/login', userController.login);
 router.get('/profile', userController.verifyToken, userController.getProfile);
 router.get('/profile/:id', userController.getProfilebyId);
 router.put('/profileUpdate/:id/upload-image', uploads.single('image'), userController.updateProfile);
+router.post('/profileUpdate/:id', upload.fields([{ name: 'videoIntroduction', maxCount: 1 },{ name: 'resume', maxCount: 1 }]), userController.updateResume);
 
 
 // get all the users

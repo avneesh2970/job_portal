@@ -78,7 +78,9 @@ function JobDetails() {
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const navigate = useNavigate();
      const user = JSON.parse(localStorage.getItem("user"));
-     console.log('user_email', user.email)
+     console.log('user_email', user.id)
+     const [userInfo, setUserinfo] = useState(null);
+     console.log('userInfo', userInfo)
     
   useEffect(() => {
     const fetchJob = async () => {
@@ -112,6 +114,24 @@ function JobDetails() {
 //   </div>
 // )}
 
+  useEffect(() => {
+  const fetchUserInfo = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/profile/${user.id}`
+      );
+      console.log("User Info:", response.data);
+      setUserinfo(response.data);
+      // Optionally, store it in state:
+      // setUserInfo(response.data);
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  };
+
+  fetchUserInfo();
+}, []);
+
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -129,6 +149,18 @@ function JobDetails() {
     setFormData((prev) => ({
       ...prev,
       jobTitle: job.jobTitle
+    }));
+    
+  }
+  if (userInfo) {
+    setFormData((prev) => ({
+      ...prev,
+      fullName: userInfo.name || "",
+      email: userInfo.email || "",
+      phone: userInfo.phone || "",
+      linkedInUrl: userInfo.linkedInUrl || "",
+      portfolioUrl: userInfo.portfolioUrl || "",
+      resume : userInfo.resume || "",
     }));
   }
 }, [job]);
@@ -227,7 +259,7 @@ if (videoIntroduction) {
                     {/* Job Header - Stack on mobile, row on desktop */}
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 bg-white rounded-lg w-[90%]">
                         <div className="flex items-center space-x-3 mb-4 md:mb-0">
-                            <img src={job.companyLogo} className="w-20 h-20 bg-amber-200"  alt="" />
+                            <img src={job.companyLogo} className="w-20 h-20 bg-zinc-200 rounded-lg"  alt="" />
                             <div>
                                 <h2 className="text-base md:text-xl font-semibold">{job.jobTitle}</h2>
                                 <p className="text-gray-500 text-sm mt-1 md:mt-2">
@@ -327,14 +359,14 @@ if (videoIntroduction) {
                     </div>
 
                     {/* Open Jobs Section */}
-                    <div className="bg-white-100 w-full text-start mt-8">
+                    {/* <div className="bg-white-100 w-full text-start mt-8">
                         <h2 className="text-2xl md:text-3xl mb-6">Open Jobs</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {allJobs.map((job, index) => (
                                 <JobCard key={index} job={job} />
                             ))}
                         </div>
-                    </div>
+                    </div> */}
                     {isModalOpen && (
                         <div className="absolute inset-0 flex-col overflow-scroll z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
                             <div className="relative max-w-2xl w-full mx-auto p-6 bg-white rounded-lg shadow-md overflow-y-auto ">
@@ -345,12 +377,12 @@ if (videoIntroduction) {
                                     ✖
                                 </button>
                                 <div className="flex items-center space-x-3">
-                                    <div className="bg-green-500 text-white font-bold text-lg p-2 rounded w-[88px] h-[88px] flex items-center justify-center">
-                                        ZF
+                                    <div className="bg-zinc-200 text-white font-bold text-lg p-2 rounded w-[88px] h-[68px] my-auto flex items-center justify-center">
+                                        <img src={job.companyLogo} alt="" />
                                     </div>
-                                    <div className="mb-8">
-                                        <h2 className="text-2xl font-semibold">Brand Designer</h2>
-                                        <p className="text-gray-500 text-sm mt-2">Zend &middot; Paris, France &middot; Full-Time</p>
+                                    <div className="">
+                                        <h2 className="text-2xl font-semibold object-cover">{job.companyName}</h2>
+                                        <p className="text-gray-500 text-sm mt-2">{job.location}&middot; </p>
                                     </div>
                                 </div>
                                 <hr className="mt-5" />

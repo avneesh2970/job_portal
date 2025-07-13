@@ -39,12 +39,12 @@ const MyApplications = () => {
          <h1 className="text-xl sm:text-2xl pl-4 sm:pl-0 font-semibold">My Application</h1>
          {/* <span className="text-[#A0A0A0] p-1">({applications.length})</span> */}
        </div>
-       <button
+       {/* <button
          className="flex gap-3 text-sm px-3 sm:px-4 py-2  sm:w-[96px] h-[38px] border border-[#C6C4F5] rounded-md text-[#4640DE] hover:bg-blue-100 mt-4 sm:mt-0"
          onClick={() => setIsFilterOpen(!isFilterOpen)}
        >
          Filter <img src={horizontal} alt="" />
-       </button>
+       </button> */}
 
        {isFilterOpen && (
          <div className="absolute top-full left-0 w-full flex flex-wrap justify-between p-2 bg-white rounded-md mt-2">

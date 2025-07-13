@@ -53,15 +53,15 @@ function CandidateSetting() {
           >
             {tab === 'profile' && 'My Profile'}
             {tab === 'resume' && 'Resume'}
-            {tab === 'login' && 'Login Details'}
+            {/* {tab === 'login' && 'Login Details'} */}
             {tab === 'profile Detail' && 'Profile Details'}
           </p>
         ))}
       </div>
           { activeTab === 'profile Detail' && <ProfileDetail data={userData} />}
       {activeTab === 'profile' && <Profile data={userData} />}
-      {activeTab === 'resume' && <Resume />}
-      {activeTab === 'login' && <Login />}
+      {activeTab === 'resume' && <Resume data={userData} />}
+      {/* {activeTab === 'login' && <Login />} */}
     
     </section>
   );

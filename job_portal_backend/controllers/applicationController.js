@@ -541,7 +541,8 @@ const applicationController = {
     console.error('Status Update Error:', err);
     res.status(500).json({ message: 'Could not update status' });
   }
-}
+},
+
 
 };
 
@@ -962,6 +963,46 @@ updateProfile : async (req, res) => {
       success: false,
       message: 'Server error during profile update' 
     })};
+},
+updateResume : async (req, res) => {
+  const userId = req.params.id;
+  
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update resume path
+    // user.resume = resume || user.resume;
+
+   
+
+     const parsedData = JSON.parse(req.body.data);
+    user.education = parsedData.education || [];
+    user.skills = parsedData.skills || [];
+    user.workExperience = parsedData.workExperience || [];
+     // Resume file handling
+    if (req.files && req.files.resume && req.files.resume.length > 0) {
+      user.resume = `/uploads/resumes/${req.files.resume[0].filename}`;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Resume Section updated successfully',
+      user
+    });
+  } catch (error) {
+    console.error('Error updating resume:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error during resume update'
+    });
+  }
+
 }
 };
 

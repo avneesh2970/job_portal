@@ -32,7 +32,7 @@ function JobCard({jobs }) {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
       const savedJobs = res.data.savedJobs || [];
-      console.log("Saved Jobs:", savedJobs);
+      // console.log("Saved Jobs:", savedJobs);
 
       // Check if current job is in saved list
       const isSaved = savedJobs.includes(jobs._id);
@@ -48,7 +48,8 @@ function JobCard({jobs }) {
 
     return (
         <motion.div
-            className={`border-2 rounded-lg p-4 max-w-full w-full border-blue-300 hover:border-blue-600  shadow-sm `}
+            className={`border-2 rounded-lg p-4 max-w-full w-full border-blue-300 hover:border-blue-600  shadow-sm cursor-pointer`}
+             
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: Math.random() * 0.3 }}
@@ -64,7 +65,7 @@ function JobCard({jobs }) {
                         <div className="text-xs text-gray-500">{jobs.location}</div>
                     </div>
                      <button onClick={toggleSave} className="text-blue-600 hover:text-blue-800">
-                        {saved ? <BookmarkCheck className="w-6 h-6" /> : <Bookmark className="w-6 h-6" />}
+                        {saved ? <BookmarkCheck className="text-red-600 text-sm  border-red-200 rounded hover:bg-red-50 transition" /> : <Bookmark className="w-6 h-6" />}
                         </button>
                 </div>
             </div>
@@ -99,13 +100,13 @@ function JobCard({jobs }) {
 
   disabled={hasApplied}
   className={`${
-    hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-violet-500 hover:bg-[#4338ca]'
+    hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-blue-500 hover:bg-blue-600'
   } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
 >
   {hasApplied ? 'Applied' : 'Apply Now'}
 </button>
 
-                <button onClick={()=>navigate(`/job/detail/${jobs._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
+                <button onClick={()=>navigate(`/candidate_dashboard/cand_job/${jobs._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
                     View Details
                 </button>
             </div>

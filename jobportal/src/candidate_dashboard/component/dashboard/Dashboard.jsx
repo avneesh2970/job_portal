@@ -119,6 +119,9 @@ function Dashboard() {
     const [userApplied, setUserApplied] = useState([]);
     console.log("userApplied", userApplied);
   const[job, setjob] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [userinfo, setUserinfo] = useState("");
  
   const formatDate = (dateStr) => {
   const date = new Date(dateStr);
@@ -139,6 +142,7 @@ function Dashboard() {
   useEffect(() => {
   const fetchJobs = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
       console.log(response.data); // ✅ Use response.data, not response.response
       setjob(response.data);
@@ -149,6 +153,9 @@ function Dashboard() {
       const apply = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/user/${user_id}/applied-jobs`);
       setUserApplied( apply.data.user.applied);
       setApplied(apply.data.user.applied.length);
+      const userinfo = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
+      setUserinfo(userinfo.data);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
@@ -160,15 +167,15 @@ function Dashboard() {
 
   return (
     <>
-       <h2 className="text-xl  pt-5 font-semibold">
-          Good morning, Natasha Bunny
+       <h2 className="text-xl mx-8  pt-5 font-semibold">
+          hey , {userinfo ? userinfo.name : "User"} 👋
         </h2>
-        <p className="text-gray-500">
+        <p className="text-gray-500 mx-8">
           Here is your job listings statistic report.
         </p>
 
        
-        <div className="md:flex gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4 mx-auto justify-around  ">
+        <div className="md:flex mx-8 gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4    ">
           <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaUser className="text-2xl mr-2" />
             <div>
@@ -281,7 +288,7 @@ function Dashboard() {
                   />
                 </BarChart>
               </ResponsiveContainer> */}
-             {userApplied.length > 0 ? (
+          
   <div className="bg-white shadow-lg rounded-lg p-6 w-full mx-auto">
     <div className="flex justify-between items-center mb-4">
       <h2 className="text-xl font-semibold">Recent Applied Jobs</h2>
@@ -298,48 +305,56 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {userApplied.map((job) => (
-            <tr key={job._id} className="border-b">
-             <td className="">
-                <div className="flex items-center gap-2 py-2">
-                  <div className="rounded-md w-8 h-8 overflow-hidden">
-                    <img
-                      src={job?.job?.companyLogo}
-                      className="w-full h-full object-cover"
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">{job?.job?.companyName}</p>
-                    <p className="text-sm text-gray-500">{  job?.type}</p>
-                  </div>
-                </div>
-              </td>
+       {loading ? (
+  <tr>
+    <td colSpan="4" className="text-center py-6">
+      <div className="flex justify-center">
+        <div className="w-8 h-8 border-4 border-blue-400 border-dashed rounded-full animate-spin"></div>
+      </div>
+      <p className="text-gray-500 mt-2 text-sm">Loading applied jobs...</p>
+    </td>
+  </tr>
+) : (
+  userApplied.map((job) => (
+    <tr key={job._id} className="border-b">
+      <td className="">
+        <div className="flex items-center gap-2 py-2">
+          <div className="rounded-md w-8 h-8 overflow-hidden">
+            <img
+              src={job?.job?.companyLogo}
+              className="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+          <div>
+            <p className="font-medium text-gray-900">{job?.job?.companyName}</p>
+            <p className="text-sm text-gray-500">{job?.type}</p>
+          </div>
+        </div>
+      </td>
 
-              <td className="p-3 text-gray-700">
-                {job?.job?.jobTitle || 'N/A'}
-              </td>
-             <td className="p-3 align-middle text-center">
-  <span
-    className={`inline-block px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${job.statusColor || 'bg-yellow-100 text-yellow-800'}`}
-  >
-    {job.status}
-  </span>
-</td>
-           <td className="p-3 text-gray-700 whitespace-nowrap">
-  {formatDate(job.appliedAt)}
-</td>
-            </tr>
-          ))}
+      <td className="p-3 text-gray-700">
+        {job?.job?.jobTitle || 'N/A'}
+      </td>
+      <td className="p-3 align-middle text-center">
+        <span
+          className={`inline-block px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${job.statusColor || 'bg-yellow-100 text-yellow-800'}`}
+        >
+          {job.status}
+        </span>
+      </td>
+      <td className="p-3 text-gray-700 whitespace-nowrap">
+        {formatDate(job.appliedAt)}
+      </td>
+    </tr>
+  ))
+)}
+
         </tbody>
       </table>
     </div>
   </div>
-) : (
-  <div className="bg-white shadow-lg rounded-lg p-6 w-full mx-auto">
-    <p className="text-gray-500">No recent applied jobs found.</p>
-  </div>
-)}
+
 
            </div>
 

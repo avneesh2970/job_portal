@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
   lastLogin: Date,
   createdAt: { type: Date, default: Date.now },
   image: { type: String },  //for image uplaod
+  resume : String,
 
   // ✅ Personal Information
   name: { type: String, trim: true },
@@ -46,8 +47,12 @@ const UserSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "JobPost"
-    }]
-});
+    }],
+  skills: [String],
+  education: [Object], // or [Schema.Types.Mixed]
+  workExperience: [Object],
+ 
+  });
 
 
 module.exports = mongoose.model('User', UserSchema);

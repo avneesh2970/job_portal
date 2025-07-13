@@ -1,10 +1,15 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 // Set up file storage for resume and video uploads
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, 'uploads/');
+    const resumeDir = 'uploads/resume';
+      if (!fs.existsSync(resumeDir)) {
+        fs.mkdirSync(resumeDir, { recursive: true });
+      }
+    cb(null, 'uploads/resume');
   },
   filename: function(req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
