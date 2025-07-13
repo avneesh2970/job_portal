@@ -23,7 +23,7 @@ const createJobPost = async (req, res) => {
 // ✅ Get All Job Posts
 const getAllJobPosts = async (req, res) => {
   try {
-    const jobPosts = await JobPost.find();
+    const jobPosts = await JobPost.find().sort({ createdAt: -1 });
     res.status(200).json(jobPosts);
   } catch (error) {
     res.status(500).json({ error: error.message });
