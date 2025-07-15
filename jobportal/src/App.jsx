@@ -35,7 +35,7 @@ import Joblisting from './company_dashboard/component/joblist/Joblisting.jsx'
 import  InterviewSchedule from './company_dashboard/component/Allapplicants/InterviewSchedule.jsx'
 
 import { View } from 'lucide-react'
-import HelpCenter from './candidate_dashboard/component/Helpcenter.jsx'
+import HelpCenter from './candidate_dashboard/component/HelpCenter.jsx'
 function App() {
   const [count, setCount] = useState(0)
   const router = createBrowserRouter([
