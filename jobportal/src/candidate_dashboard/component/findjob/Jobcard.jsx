@@ -56,9 +56,13 @@ function JobCard({jobs }) {
             whileHover={{ scale: 1.05 }}
         >
             <div className="flex items-center space-x-3 mb-3">
-                <div className=" rounded-full border  bg-zinc-200">
-                    <img src={jobs.companyLogo} className="w-10 object-cover h-10" />
-                </div>
+                 <div className="w-10 h-10  border rounded-full overflow-hidden">
+  <img
+    src={jobs.companyLogo || "ins"} // Fallback to default logo if companyLogo1 is not available
+    alt="Company Logo"
+    className="w-full h-full object-cover"
+  />
+</div>
                 <div className="flex-1 flex justify-between items-center">
                     <div className="flex flex-col ">
                         <div className="font-semibold text-sm">{jobs.jobTitle}</div>
@@ -71,7 +75,7 @@ function JobCard({jobs }) {
             </div>
 
             <p className="text-xs text-gray-600 mb-4 line-clamp-3">
-                {jobs.aboutCompany}
+                {jobs.jobDescription}
                 <span className="text-[#4f46e5] underline cursor-pointer"> <br /> see more.</span>
             </p>
 

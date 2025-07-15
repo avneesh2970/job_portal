@@ -845,6 +845,8 @@ const userController = {
   const { userId, jobId } = req.params;
   const { status } = req.body;
   console.log('status', status);
+  console.log('userId', userId);
+  console.log('jobId', jobId);
 
   try {
     const user = await User.findById(userId);
@@ -865,6 +867,27 @@ const userController = {
     res.status(500).json({ message: 'Server error' });
   }
 },
+  getStatus: async (req, res) => {
+  const { userId, jobId } = req.params;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const application = user.applied.find(
+      (app) => app.job.toString() === jobId
+    );
+
+    if (!application) return res.status(404).json({ message: 'Application not found' });
+
+    res.status(200).json({ status: application.status });
+  } catch (error) {
+    console.error('Error fetching status:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+},
+
+
 
 
   // Toggle saved job (save if not exists, remove if already saved)

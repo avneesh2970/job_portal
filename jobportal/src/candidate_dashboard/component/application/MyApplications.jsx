@@ -29,6 +29,7 @@ const MyApplications = () => {
   fetchAppliedJobs();
 }, []);
 
+
   const tableMarginTop = isFilterOpen ? "mt-24" : "mt-3";
 
   return (

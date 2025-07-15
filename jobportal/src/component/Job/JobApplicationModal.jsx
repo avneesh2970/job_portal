@@ -137,14 +137,14 @@ const handleSubmit = async (e) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       {/* Semi-transparent backdrop */}
-      <div className="fixed inset-0 bg-opacity-30" onClick={onClose}></div>
+      <div className="fixed inset-0 backdrop-blur-sm  mt-2/12 bg-opacity-30" onClick={onClose}></div>
       
       {/* The modal itself - centered with fixed width */}
       <div className="relative bg-white rounded-lg w-full max-w-md mx-4 overflow-y-auto max-h-[90vh]">
         {/* Modal header */}
         <div className="flex items-center p-4 border-b">
           <div className="flex items-center space-x-3">
-            <div className={`h-9 w-9 rounded-md flex items-center justify-center ${jobDetails?.color || "bg-green-500"} text-white text-base font-bold`}>
+            <div className={`h-9 w-9 rounded-md flex items-center justify-center ${jobDetails?.color || ""} text-white text-base font-bold`}>
               <img src={jobDetails.companyLogo} alt="" />
             </div>
             <div>

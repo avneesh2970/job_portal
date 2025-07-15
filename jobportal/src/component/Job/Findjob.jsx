@@ -4,77 +4,78 @@ import { Search, MapPin, Briefcase } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SearchImage from "../photos/image12.png";
 import axios from 'axios';
-
+import { motion } from "framer-motion";
+import { Bookmark, BookmarkCheck } from 'lucide-react';
 const Findjob = () => {
-  
+
   const navigate = useNavigate();
   const [jobdata, setjobdata] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   // Search inputs
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("Select Location");
   const [selectedCategory, setSelectedCategory] = useState("Select Category");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [jobsPerPage] = useState(5);
+  const [jobsPerPage] = useState(12);
   const [totalPages, setTotalPages] = useState(0);
 
-  
 
-    // Get current jobs
+
+  // Get current jobs
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
   // console.log('currentJobs', currentJobs);
- 
-
-    const typeCounts = {
-  'Full-time': 0,
-  'Part-time': 0,
-  'Remote': 0,
-  'Internship': 0,
-  'Sales': 0,
-  'Design': 0,
-  'Marketing': 0,
-  'Business': 0,
-  'HumanResources': 0,
-  'Engineering': 0,
-  
-};
 
 
-jobdata.forEach(job => {
-  job.employmentType?.forEach(type => {
-    if (typeCounts.hasOwnProperty(type)) {
-      typeCounts[type]++;
-    }
+  const typeCounts = {
+    'Full-time': 0,
+    'Part-time': 0,
+    'Remote': 0,
+    'Internship': 0,
+    'Sales': 0,
+    'Design': 0,
+    'Marketing': 0,
+    'Business': 0,
+    'HumanResources': 0,
+    'Engineering': 0,
+
+  };
+
+
+  jobdata.forEach(job => {
+    job.employmentType?.forEach(type => {
+      if (typeCounts.hasOwnProperty(type)) {
+        typeCounts[type]++;
+      }
+    });
+
+    // Check categories
+    job.categories?.forEach(category => {
+      if (typeCounts.hasOwnProperty(category)) {
+        typeCounts[category]++;
+      }
+    });
   });
 
-   // Check categories
-  job.categories?.forEach(category => {
-    if (typeCounts.hasOwnProperty(category)) {
-      typeCounts[category]++;
-    }
-  });
-});
 
 
 
 
-
-const { ['Full-time']: fullTimeCount, 
-  ['Part-time']: partTimeCount, 
-  Remote: remoteCount, 
-  Internship: internshipCount,
-  Design: designCount,
-  Sales: salesCount,
-  Marketing: marketingCount,
-  Business: businessCount,
-  HumanResources: humanResourcesCount,
-  Engineering: engineeringCount,
-  Technology: technologyCount
+  const { ['Full-time']: fullTimeCount,
+    ['Part-time']: partTimeCount,
+    Remote: remoteCount,
+    Internship: internshipCount,
+    Design: designCount,
+    Sales: salesCount,
+    Marketing: marketingCount,
+    Business: businessCount,
+    HumanResources: humanResourcesCount,
+    Engineering: engineeringCount,
+    Technology: technologyCount
   } = typeCounts;
 
   console.log('remoteCount', remoteCount);
@@ -82,9 +83,9 @@ const { ['Full-time']: fullTimeCount,
 
 
   const salaryCounts = {
-    below2k: 0, 
+    below2k: 0,
     from2kTo4k: 0,
-    from4kTo6k: 0,  
+    from4kTo6k: 0,
     from6kTo8k: 0,
     from8kTo10k: 0,
     above10k: 0
@@ -93,22 +94,23 @@ const { ['Full-time']: fullTimeCount,
 
   jobdata.forEach(job => {
     console.log('job.sallery', job.sallery);
-  if (job.sallery) {
-    const salary = job.sallery;
-    
-    if (salary < 2000) {
-      salaryCounts.below2k++;
-    } else if (salary >= 2000 && salary < 4000) {
-      salaryCounts.from2kTo4k++;
-    } else if (salary >= 4000 && salary < 6000) {
-      salaryCounts.from4kTo6k++;
-    } else if (salary >= 6000 && salary < 8000) {
-      salaryCounts.from6kTo8k++;
-    } else if (salary >= 8000 && salary < 10000) {
-      salaryCounts.from8kTo10k++;
-    } else if (salary >= 10000) {
-      salaryCounts.above10k++;
-    }}
+    if (job.sallery) {
+      const salary = job.sallery;
+
+      if (salary < 2000) {
+        salaryCounts.below2k++;
+      } else if (salary >= 2000 && salary < 4000) {
+        salaryCounts.from2kTo4k++;
+      } else if (salary >= 4000 && salary < 6000) {
+        salaryCounts.from4kTo6k++;
+      } else if (salary >= 6000 && salary < 8000) {
+        salaryCounts.from6kTo8k++;
+      } else if (salary >= 8000 && salary < 10000) {
+        salaryCounts.from8kTo10k++;
+      } else if (salary >= 10000) {
+        salaryCounts.above10k++;
+      }
+    }
   });
 
 
@@ -140,15 +142,15 @@ const { ['Full-time']: fullTimeCount,
     ],
     salaryRange: [
       { id: "below2k", label: "0 - 2,000", count: salaryCounts.below2k },
-      { id: "from2kTo4k", label: "2,000 - 4,000", count : salaryCounts.from2kTo4k },
+      { id: "from2kTo4k", label: "2,000 - 4,000", count: salaryCounts.from2kTo4k },
       { id: "from4kTo6k", label: "4,000 - 6,000", count: salaryCounts.from4kTo6k },
-      { id: "from6kTo8k", label: "6,000 - 8,000", count : salaryCounts.from6kTo8k },
-      { id: "from8kTo10k", label: "8,000 - 10,000", count : salaryCounts.from8kTo10k },
-      { id: "above10k", label: "10,000 and above", count : salaryCounts.above10k }
+      { id: "from6kTo8k", label: "6,000 - 8,000", count: salaryCounts.from6kTo8k },
+      { id: "from8kTo10k", label: "8,000 - 10,000", count: salaryCounts.from8kTo10k },
+      { id: "above10k", label: "10,000 and above", count: salaryCounts.above10k }
     ]
   };
 
-  
+
 
   const [filters, setFilters] = useState({
     jobTypes: {},
@@ -156,14 +158,14 @@ const { ['Full-time']: fullTimeCount,
     experience: {},
     salaryRange: {}
   });
-  
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
         console.log('data', data.data);
-       setjobdata([...data.data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+        setjobdata([...data.data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
 
         // Apply filters immediately after fetching data
         applyFilters(data.data);
@@ -174,7 +176,7 @@ const { ['Full-time']: fullTimeCount,
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
 
@@ -193,8 +195,8 @@ const { ['Full-time']: fullTimeCount,
     // Filter by search term
     if (searchTerm) {
       const search = searchTerm.toLowerCase();
-      filtered = filtered.filter(job => 
-        job.jobTitle?.toLowerCase().includes(search) || 
+      filtered = filtered.filter(job =>
+        job.jobTitle?.toLowerCase().includes(search) ||
         job.description?.toLowerCase().includes(search) ||
         job.company?.toLowerCase().includes(search) ||
         job.requiredSkills?.some(skill => skill.toLowerCase().includes(search))
@@ -203,16 +205,16 @@ const { ['Full-time']: fullTimeCount,
 
     // Filter by location
     if (selectedLocation !== "Select Location") {
-      filtered = filtered.filter(job => 
-        job.location === selectedLocation || 
+      filtered = filtered.filter(job =>
+        job.location === selectedLocation ||
         (selectedLocation === "Remote" && job.location?.toLowerCase().includes("remote"))
       );
     }
 
     // Filter by category/department
     if (selectedCategory !== "Select Category") {
-      filtered = filtered.filter(job => 
-        job.department === selectedCategory || 
+      filtered = filtered.filter(job =>
+        job.department === selectedCategory ||
         job.technology === selectedCategory
       );
     }
@@ -222,7 +224,7 @@ const { ['Full-time']: fullTimeCount,
     if (selectedJobTypes.length > 0) {
       filtered = filtered.filter(job => {
         if (!job.employmentType) return false;
-        
+
         // Map filter IDs to actual employment types
         const typeMap = {
           "fullTime": ["Full Time", "Full-Time"],
@@ -233,7 +235,7 @@ const { ['Full-time']: fullTimeCount,
 
         return selectedJobTypes.some(typeId => {
           const matchTerms = typeMap[typeId] || [];
-          return job.employmentType.some(type => 
+          return job.employmentType.some(type =>
             matchTerms.some(term => type.toLowerCase().includes(term.toLowerCase()))
           );
         });
@@ -257,8 +259,8 @@ const { ['Full-time']: fullTimeCount,
 
         return selectedCategories.some(catId => {
           const matchTerms = categoryMap[catId] || [];
-          return matchTerms.some(term => 
-            job.department?.toLowerCase().includes(term.toLowerCase()) || 
+          return matchTerms.some(term =>
+            job.department?.toLowerCase().includes(term.toLowerCase()) ||
             job.category?.toLowerCase().includes(term.toLowerCase()) ||
             job.technology?.toLowerCase().includes(term.toLowerCase())
           );
@@ -271,26 +273,26 @@ const { ['Full-time']: fullTimeCount,
     if (selectedExperience.length > 0) {
       filtered = filtered.filter(job => {
         if (!job.experienceLevel) return false;
-        
+
         // Check if any of the selected experience levels match the job
         return selectedExperience.some(expId => {
           switch (expId) {
             case "entry":
-              return job.experienceLevel.toLowerCase().includes("entry") || 
-                    job.experienceLevel.toLowerCase().includes("junior") ||
-                    job.experienceLevel === "0-1 years";
+              return job.experienceLevel.toLowerCase().includes("entry") ||
+                job.experienceLevel.toLowerCase().includes("junior") ||
+                job.experienceLevel === "0-1 years";
             case "year1":
               return job.experienceLevel.toLowerCase().includes("1 year") ||
-                    job.experienceLevel === "1-2 years";
+                job.experienceLevel === "1-2 years";
             case "year2":
               return job.experienceLevel.toLowerCase().includes("2 year") ||
-                    job.experienceLevel === "2-5 years";
+                job.experienceLevel === "2-5 years";
             case "year5":
               return job.experienceLevel.toLowerCase().includes("5 year") ||
-                    job.experienceLevel === "5-10 years";
+                job.experienceLevel === "5-10 years";
             case "year10":
               return job.experienceLevel.toLowerCase().includes("10") ||
-                    job.experienceLevel === "10+ years";
+                job.experienceLevel === "10+ years";
             default:
               return false;
           }
@@ -303,27 +305,27 @@ const { ['Full-time']: fullTimeCount,
     if (selectedSalary.length > 0) {
       filtered = filtered.filter(job => {
         // Skip jobs without salary info
-        if (!job.sallery ) return false;
-        
+        if (!job.sallery) return false;
+
         const salary = job.sallery || 0;
         // const salaryMax = job.salaryMax || Infinity;
-        
+
         return selectedSalary.some(salaryId => {
           switch (salaryId) {
             case "below2k":
               return salary < 2000;
             case "from2kTo4k":
-              return (salary <= 4000 && salary >= 2000) || 
-                    (salary >= 2000 && salary <= 4000);
+              return (salary <= 4000 && salary >= 2000) ||
+                (salary >= 2000 && salary <= 4000);
             case "from4kTo6k":
-              return (salary <= 6000 && salary >= 4000) || 
-                    (salary >= 4000 && salary <= 6000);
+              return (salary <= 6000 && salary >= 4000) ||
+                (salary >= 4000 && salary <= 6000);
             case "from6kTo8k":
-              return (salary <= 8000 && salary >= 6000) || 
-                    (salary >= 6000 && salary <= 8000);
+              return (salary <= 8000 && salary >= 6000) ||
+                (salary >= 6000 && salary <= 8000);
             case "from8kTo10k":
-              return (salary <= 10000 && salary >= 8000) || 
-                    (salary >= 8000 && salary <= 10000);
+              return (salary <= 10000 && salary >= 8000) ||
+                (salary >= 8000 && salary <= 10000);
             case "above10k":
               return salary > 10000 || salary > 10000;
             default:
@@ -341,14 +343,14 @@ const { ['Full-time']: fullTimeCount,
 
   const formatDate = (createdAt) => {
     const date = new Date(createdAt);
-  
+
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
-  
+
     const isToday = date.toDateString() === today.toDateString();
     const isTomorrow = date.toDateString() === tomorrow.toDateString();
-  
+
     if (isToday) {
       return "Today";
     } else if (isTomorrow) {
@@ -383,9 +385,9 @@ const { ['Full-time']: fullTimeCount,
 
   const handleSearchTermChange = (e) => {
     // const value = e.target.value;
-   console.log('Search Term:', e.target.value);
+    console.log('Search Term:', e.target.value);
     setSearchTerm(e.target.value);
-      // console.log('Search Term:', value);
+    // console.log('Search Term:', value);
   }
 
 
@@ -398,7 +400,7 @@ const { ['Full-time']: fullTimeCount,
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
-  
+
   // Go to next page
   const nextPage = () => {
     if (currentPage < totalPages) {
@@ -415,22 +417,22 @@ const { ['Full-time']: fullTimeCount,
     }
   };
 
-  const locations = ["Dehradun","Delhi", "Mumbai", "Pune", "Bangalore", "Noida",  "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
+  const locations = ["Dehradun", "Delhi", "Mumbai", "Pune", "Bangalore", "Noida", "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
 
   const categories = ["Design", "Marketing", "Engineering", "Sales", "Business", "Human Resources", "IT"];
 
 
 
-//   const handleSearch = () => {
-//   const filtered = jobdata.filter((job) => {
-//     const matchesSearch = job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase());
-//     const matchesLocation = selectedLocation === "Select Location" || job.location === selectedLocation;
-//     const matchesCategory = selectedCategory === "Select Category" || job.category === selectedCategory;
-//     return matchesSearch && matchesLocation && matchesCategory;
-//   });
+  //   const handleSearch = () => {
+  //   const filtered = jobdata.filter((job) => {
+  //     const matchesSearch = job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase());
+  //     const matchesLocation = selectedLocation === "Select Location" || job.location === selectedLocation;
+  //     const matchesCategory = selectedCategory === "Select Category" || job.category === selectedCategory;
+  //     return matchesSearch && matchesLocation && matchesCategory;
+  //   });
 
-//   setFilteredJobs(filtered);
-// };
+  //   setFilteredJobs(filtered);
+  // };
 
 
 
@@ -451,7 +453,7 @@ const { ['Full-time']: fullTimeCount,
     setSelectedCategory("Select Category");
   };
 
- 
+
 
   // Filter component
   const FilterSection = ({ title, items, category, collapsible = true }) => (
@@ -500,88 +502,82 @@ const { ['Full-time']: fullTimeCount,
   const user_id = data?.id;
   console.log("User id:", user_id);
 
- 
+
 
   // Job card component
   const JobCard = ({ job }) => {
-     const hasApplied = (job.studentApplied || []).includes(user_id); // ✅ moved inside
+    const hasApplied = (job.studentApplied || []).includes(user_id); // ✅ moved inside
     return (
-    <div className="border-2 border-blue-300 rounded-lg p-6 mb-4 hover:border-blue-700 hover:shadow-lg hover:scale-[1.01] transform transition-all duration-300 ease-in-out">
 
-      <div className="flex justify-between">
-        <div className="flex space-y-3.5">
-          {/* Company Logo */}
-          <div className="w-10 h-10 rounded-full overflow-hidden border flex items-center justify-center">
-  {job.companyLogo ? (
-    <img 
-      src={job.companyLogo} 
-      alt="Company Logo"
-      className="w-full h-full object-cover"
-    />
-  ) : (
-    <div className={`w-full h-full flex items-center justify-center text-white text-xl font-bold ${job.color || "bg-blue-500"}`}>
-      {job.logo}
-    </div>
-  )}
+      <motion.div
+        className={`border-2 rounded-lg p-4 max-w-full w-full border-blue-300 hover:border-blue-600  shadow-sm cursor-pointer`}
+
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: Math.random() * 0.3 }}
+        whileHover={{ scale: 1.05 }}
+      >
+        <div className="flex items-center space-x-3 mb-3">
+         <div className="w-10 h-10 bg-zinc-200 border rounded-full overflow-hidden">
+  <img
+    src={job.companyLogo || "ins"} // Fallback to default logo if companyLogo1 is not available
+    alt="Company Logo"
+    className="w-full h-full object-cover"
+  />
 </div>
 
-          
-          {/* Job details */}
-          <div className="ml-4">
-            <h3 className="font-semibold text-lg text-gray-900">{job.jobTitle}</h3>
-            <p className="flex flex-col gap-2 text-sm text-gray-500 mt-1">
-              <div>location: {job.location}</div>
-              <div className="text-blue-700">
-                Date of Posting: {formatDate(job.createdAt)}
-              </div>
-            </p>
-            
-            <div className="space-y-1">
-              {/* Employment Types */}
-              <div className="flex flex-wrap gap-2 mt-2">
-                {job.employmentType && job.employmentType.map((type, index) => (
-                  <span 
-                    className="bg-blue-200 text-blue-700 text-xs px-2.5 py-1 rounded-lg" 
-                    key={index}
-                  >
-                    {type}
-                  </span>
-                ))}
-              </div>
-
-              {/* Required Skills */}
-              <div className="flex flex-wrap gap-2 mt-2">
-                {job.requiredSkills && job.requiredSkills.map((skill, index) => (
-                  <span 
-                    className="bg-blue-200 text-blue-700  text-xs px-2.5 py-1 rounded-lg" 
-                    key={index}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+          <div className="flex-1 flex justify-between items-center">
+            <div className="flex flex-col ">
+              <div className="font-semibold text-sm">{job.jobTitle}</div>
+              <div className="text-xs text-gray-500">{job.location}</div>
             </div>
+            {/* <button onClick={toggleSave} className="text-blue-600 hover:text-blue-800">
+                        {saved ? <BookmarkCheck className="text-red-600 text-sm  border-red-200 rounded hover:bg-red-50 transition" /> : <Bookmark className="w-6 h-6" />}
+                        </button> */}
           </div>
         </div>
-        
-        {/* Apply button */}
-        <div className="flex flex-col items-end justify-between">
-         <button
-          onClick={() => {
-            if (!hasApplied) {
-            handleApplyNow(job);
-            }
-          }}
-          
-          className={`${
-            hasApplied ? 'bg-zinc-700 cursor-not-allowed' : '   bg-blue-700 hover:bg-blue-800'
-          } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
-        >
-          {hasApplied ? 'Applied' : 'Apply Now'}
-        </button>
+
+        <p className="text-xs text-gray-600 mb-4 line-clamp-3">
+          {job.jobDescription}
+          <span className="text-[#4f46e5] underline cursor-pointer"> <br /> see more.</span>
+        </p>
+
+        {/* Responsive Badge Section */}
+        <div className="flex flex-wrap justify-start gap-2 text-xs mb-4">
+
+          {job.employmentType.map((type, index) => {
+            return (
+              <span key={index} className="text-blue-700 bg-blue-100 px-3 rounded-md min-w-[80px] py-1  text-center">
+                {type}
+              </span>
+            );
+          })}
         </div>
-      </div>
-    </div>)
+
+        {/* Responsive Button Section */}
+
+
+        <div className="flex flex-row xs:justify-between gap-2">
+          <button
+            onClick={() => {
+              if (!hasApplied) {
+                navigate(`/job/${job._id}`);
+              }
+            }}
+
+            disabled={hasApplied}
+            className={`${hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-blue-500 hover:bg-blue-600'
+              } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
+          >
+            {hasApplied ? 'Applied' : 'Apply Now'}
+          </button>
+
+          <button onClick={() => navigate(`/job/${job._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
+            View Details
+          </button>
+        </div>
+      </motion.div>
+    )
   };
 
   const Pagination = () => {
@@ -589,8 +585,8 @@ const { ['Full-time']: fullTimeCount,
     const pageNumbers = [];
 
     const renderPageNumbers = () => {
-      const maxPagesToShow = 5;
-      
+      const maxPagesToShow = 10;
+
       if (totalPages <= maxPagesToShow) {
 
         for (let i = 1; i <= totalPages; i++) {
@@ -621,7 +617,7 @@ const { ['Full-time']: fullTimeCount,
           pageNumbers.push(totalPages);
         }
       }
-      
+
       return pageNumbers.map((number, index) => {
         if (number === "...") {
           return (
@@ -630,16 +626,15 @@ const { ['Full-time']: fullTimeCount,
             </span>
           );
         }
-        
+
         return (
           <button
             key={number}
             onClick={() => paginate(number)}
-            className={`px-4 py-2 border-t border-b ${
-              number === currentPage 
-                ? "bg-indigo-600 text-white" 
+            className={`px-4 py-2 border-t border-b ${number === currentPage
+                ? "bg-indigo-600 text-white"
                 : "text-gray-700 hover:bg-gray-100"
-            }`}
+              }`}
           >
             {number}
           </button>
@@ -650,14 +645,13 @@ const { ['Full-time']: fullTimeCount,
     return (
       <div className="mt-8 flex justify-center">
         <nav className="inline-flex items-center">
-          <button 
+          <button
             onClick={prevPage}
             disabled={currentPage === 1}
-            className={`px-2 py-2 rounded-l border ${
-              currentPage === 1 
-                ? "text-gray-300 cursor-not-allowed" 
+            className={`px-2 py-2 rounded-l border ${currentPage === 1
+                ? "text-gray-300 cursor-not-allowed"
                 : "text-indigo-600 hover:bg-gray-100"
-            }`}
+              }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -674,17 +668,16 @@ const { ['Full-time']: fullTimeCount,
               />
             </svg>
           </button>
-          
+
           {renderPageNumbers()}
-          
-          <button 
+
+          <button
             onClick={nextPage}
             disabled={currentPage === totalPages}
-            className={`px-2 py-2 rounded-r border ${
-              currentPage === totalPages 
-                ? "text-gray-300 cursor-not-allowed" 
+            className={`px-2 py-2 rounded-r border ${currentPage === totalPages
+                ? "text-gray-300 cursor-not-allowed"
                 : "text-indigo-600 hover:bg-gray-100"
-            }`}
+              }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -707,141 +700,141 @@ const { ['Full-time']: fullTimeCount,
   };
 
   useEffect(() => {
-  applyFilters(jobdata);
-}, [searchTerm, selectedLocation, selectedCategory, filters]);
+    applyFilters(jobdata);
+  }, [searchTerm, selectedLocation, selectedCategory, filters]);
 
-  
+
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <div className="text-white py-12 relative" style={{ backgroundImage: `url(${SearchImage})`, backgroundSize: "cover", backgroundPosition: "center"}}>
-          {/* Black overlay */}
-  <div className="absolute inset-0 bg-black opacity-70 z-0"></div>
+      <div className="text-white py-12 relative" style={{ backgroundImage: `url(${SearchImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+        {/* Black overlay */}
+        <div className="absolute inset-0 bg-black opacity-70 z-0"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-2">Find your Dream Job</h1>
-           
+
             <p className="text-lg mb-8">
               Find your next career at companies like HubSpot, Nike, and many more.
             </p>
-            </div>
-             <div className="sticky top-0 bg-white  rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
-      <div className="  flex flex-col md:flex-row items-center gap-4">
-
-        <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
-          <Search className="text-gray-400 h-5 w-5 mr-2" />
-          <input
-          
-            placeholder="Search for keywords"
-            className="bg-transparent w-full outline-none text-gray-700 text-sm"
-            value={searchTerm}
-            onChange={(e)=>handleSearchTermChange(e)}
-          />
-        </div>
-
-        <div className=" relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
-         onMouseEnter={() => setIsLocationDropdownOpen(true)}
-            onMouseLeave={() => setIsLocationDropdownOpen(false)}>
-          <MapPin className="text-gray-400 h-5 w-5 mr-2" />
-          <div 
-            className="flex justify-between items-center w-full cursor-pointer"
-            onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
-           
-          >
-            <span className="text-sm text-gray-700">{selectedLocation}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 text-gray-500 transition-transform ${isLocationDropdownOpen ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
           </div>
+          <div className="sticky top-0 bg-white  rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
+            <div className="  flex flex-col md:flex-row items-center gap-4">
 
-            {isLocationDropdownOpen && (
-              
-  <div className="absolute left-0 right-0 top-full  bg-white border border-gray-200 rounded-lg shadow-lg z-10"
-   onMouseEnter={() => setIsLocationDropdownOpen(true)}
-              onMouseLeave={() => setIsLocationDropdownOpen(false)}>
-   
-    <div className="h-64 overflow-y-auto">
-      {locations.map((location, index) => (
-        <div 
-          key={index}
-          className="px-4 py-2 text-black hover:bg-gray-100 cursor-pointer text-sm"
-          onClick={() => {
-            setSelectedLocation(location);
-            setIsLocationDropdownOpen(false);
-          }}
-        >
-          {location}
-        </div>
-      ))}
-    </div>
-  </div>
-)}
-          
+              <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+                <Search className="text-gray-400 h-5 w-5 mr-2" />
+                <input
 
-        
+                  placeholder="Search for keywords"
+                  className="bg-transparent w-full outline-none text-gray-700 text-sm"
+                  value={searchTerm}
+                  onChange={(e) => handleSearchTermChange(e)}
+                />
+              </div>
 
-        </div>
+              <div className=" relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
+                onMouseEnter={() => setIsLocationDropdownOpen(true)}
+                onMouseLeave={() => setIsLocationDropdownOpen(false)}>
+                <MapPin className="text-gray-400 h-5 w-5 mr-2" />
+                <div
+                  className="flex justify-between items-center w-full cursor-pointer"
+                  onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
 
-        <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
-         onMouseEnter={() => setIsCategoryDropdownOpen(true)}
-            onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
-          <Briefcase className="text-gray-400 h-5 w-5 mr-2" />
-          <div 
-            className="flex justify-between items-center w-full cursor-pointer"
-            onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-           
-            
-          >
-            <span className="text-sm text-gray-700">{selectedCategory}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 text-gray-500 transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-
-
-          {isCategoryDropdownOpen && (
-            <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10"
-             onMouseEnter={() => setIsCategoryDropdownOpen(true)}
-            onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
-              {categories.map((category, index) => (
-                <div 
-                  key={index} 
-                  className="px-4 py-2 text-black hover:bg-gray-200 cursor-pointer text-sm"
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setIsCategoryDropdownOpen(false);
-                  }}
                 >
-                  {category}
+                  <span className="text-sm text-gray-700">{selectedLocation}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-4 w-4 text-gray-500 transition-transform ${isLocationDropdownOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
-              ))}
+
+                {isLocationDropdownOpen && (
+
+                  <div className="absolute left-0 right-0 top-full  bg-white border border-gray-200 rounded-lg shadow-lg z-10"
+                    onMouseEnter={() => setIsLocationDropdownOpen(true)}
+                    onMouseLeave={() => setIsLocationDropdownOpen(false)}>
+
+                    <div className="h-64 overflow-y-auto">
+                      {locations.map((location, index) => (
+                        <div
+                          key={index}
+                          className="px-4 py-2 text-black hover:bg-gray-100 cursor-pointer text-sm"
+                          onClick={() => {
+                            setSelectedLocation(location);
+                            setIsLocationDropdownOpen(false);
+                          }}
+                        >
+                          {location}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+
+
+
+              </div>
+
+              <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
+                onMouseEnter={() => setIsCategoryDropdownOpen(true)}
+                onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
+                <Briefcase className="text-gray-400 h-5 w-5 mr-2" />
+                <div
+                  className="flex justify-between items-center w-full cursor-pointer"
+                  onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+
+
+                >
+                  <span className="text-sm text-gray-700">{selectedCategory}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-4 w-4 text-gray-500 transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+
+
+                {isCategoryDropdownOpen && (
+                  <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10"
+                    onMouseEnter={() => setIsCategoryDropdownOpen(true)}
+                    onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
+                    {categories.map((category, index) => (
+                      <div
+                        key={index}
+                        className="px-4 py-2 text-black hover:bg-gray-200 cursor-pointer text-sm"
+                        onClick={() => {
+                          setSelectedCategory(category);
+                          setIsCategoryDropdownOpen(false);
+                        }}
+                      >
+                        {category}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Search Button */}
+              <button
+                className="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-medium text-sm"
+                onClick={handleSearch}
+              >
+                Search {filteredJobs.length} jobs
+              </button>
             </div>
-          )}
-        </div>
-        
-        {/* Search Button */}
-        <button 
-          className="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-medium text-sm"
-          onClick={handleSearch}
-        >
-          Search {filteredJobs.length} jobs
-        </button>
-      </div>
-    </div>
-         
+          </div>
+
         </div>
       </div>
 
@@ -852,33 +845,33 @@ const { ['Full-time']: fullTimeCount,
           <div className="w-full md:w-64 lg:w-72 pr-0 md:pr-8 mb-8 md:mb-0">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Filters</h2>
-              <button 
+              <button
                 onClick={clearFilters}
                 className="text-sm text-indigo-600 hover:text-indigo-800"
               >
                 Clear All
               </button>
             </div>
-            <FilterSection 
-              title="Type of Employment" 
-              items={filterConfigs.jobTypes} 
-              category="jobTypes" 
-              collapsible={false} 
+            <FilterSection
+              title="Type of Employment"
+              items={filterConfigs.jobTypes}
+              category="jobTypes"
+              collapsible={false}
             />
-            <FilterSection 
-              title="Categories" 
-              items={filterConfigs.categories} 
-              category="categories" 
+            <FilterSection
+              title="Categories"
+              items={filterConfigs.categories}
+              category="categories"
             />
             {/* <FilterSection 
               title="Experience Level" 
               items={filterConfigs.experience} 
               category="experience" 
             /> */}
-            <FilterSection 
-              title="Salary Range" 
-              items={filterConfigs.salaryRange} 
-              category="salaryRange" 
+            <FilterSection
+              title="Salary Range"
+              items={filterConfigs.salaryRange}
+              category="salaryRange"
             />
           </div>
 
@@ -907,12 +900,12 @@ const { ['Full-time']: fullTimeCount,
                   <>
                     {/* Job Cards */}
                     {currentJobs.length > 0 ? (
-                      <div className="space-y-6">
-                       {[...currentJobs]
-                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // newest first
-                        .map(job => (
-                          <JobCard key={job._id || job.id} job={job} />
-                      ))}
+                      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-3 mt-6">
+                        {[...currentJobs]
+                          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // newest first
+                          .map(job => (
+                            <JobCard key={job._id || job.id} job={job} />
+                          ))}
 
                       </div>
                     ) : (
@@ -920,7 +913,7 @@ const { ['Full-time']: fullTimeCount,
                         <p className="text-gray-500">No jobs found matching your criteria.</p>
                       </div>
                     )}
-                    
+
                     {/* Only show pagination if we have jobs */}
                     {filteredJobs.length > 0 && <Pagination />}
                   </>

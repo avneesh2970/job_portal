@@ -20,8 +20,8 @@ import './css/HeroSection.css';
 const HeroSection = () => {
   return (
     <>
-      <div className="bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]  px-6 md:px-10  h-screen" >
-        <div className="flex flex-col md:flex-row justify-between flex-wrap p-4 items-center">
+      <div className="flex w-full p-auto bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]  px-6 md:px-10 bg-amber-300  h-[90vh]" >
+        <div className="flex m-auto flex-col md:flex-row justify-between flex-wrap p-4 items-center">
           {/* Heading */}
           <div className="flex-1">
                       <h1 className="text-4xl md:text-6xl font-semibold  text-black z-1">

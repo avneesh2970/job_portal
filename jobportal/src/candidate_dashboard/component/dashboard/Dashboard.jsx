@@ -1,7 +1,7 @@
 import React,{useEffect} from "react";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import axios from "axios";
+import {useNavigate} from "react-router-dom";
 import PersnolProfile from "./PersonalProfile"
 import {
   FaUser,
@@ -120,6 +120,7 @@ function Dashboard() {
     console.log("userApplied", userApplied);
   const[job, setjob] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const [userinfo, setUserinfo] = useState("");
  
@@ -292,7 +293,7 @@ function Dashboard() {
   <div className="bg-white shadow-lg rounded-lg p-6 w-full mx-auto">
     <div className="flex justify-between items-center mb-4">
       <h2 className="text-xl font-semibold">Recent Applied Jobs</h2>
-      <a href="#" className="text-purple-600 font-medium hover:underline">Show all →</a>
+      <a onClick={()=>navigate('/candidate_dashboard/cand_myapplication')} className="text-purple-600 font-medium hover:underline">Show all →</a>
     </div>
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">

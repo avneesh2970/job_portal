@@ -53,9 +53,13 @@ const Savedjob = () => {
     <div className="flex justify-between items-start">
      <div className="flex space-x-2 ">
       
-      <div className='my-auto'>
-        <img src={job.companyLogo} className='w-10 h-10 my-auto' alt="" />
-      </div>
+       <div className="w-10 h-10  border rounded-full overflow-hidden">
+  <img
+    src={job.companyLogo || "ins"} // Fallback to default logo if companyLogo1 is not available
+    alt="Company Logo"
+    className="w-full h-full object-cover"
+  />
+</div>
        <div>
         <h3 className="text-lg font-semibold text-[#1D4ED8]">{job.jobTitle}</h3>
         <p className="text-sm text-gray-600 mt-1">{job.companyName}</p>
@@ -72,7 +76,8 @@ const Savedjob = () => {
       </button>
     </div>
 
-    <p className="text-sm text-gray-700 mt-3 line-clamp-3">{job.aboutCompany}</p>
+    {/* <p className="text-sm text-gray-700 mt-3 line-clamp-3">{job.aboutCompany}</p> */}
+    <div className='text-xs text-gray-600 mb-4 line-clamp-3 my-3'>{job.jobDescription}</div>
     <div className='my-4'>
         {job?.employmentType.map((type, index)=>{
           return (

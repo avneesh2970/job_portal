@@ -9,7 +9,7 @@ export default function PersnolProfile({ user }) {
   console.log("User Info:", userinfo.name);
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
-    const userId = userInfo.id;
+    const userId = userInfo?.id;
     const fetchUserData = async () => {
         try{
             const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${userId}`);
@@ -36,13 +36,19 @@ export default function PersnolProfile({ user }) {
 
         <div className="mt-4">
         <h3 className="text-gray-700 font-medium">Skill</h3>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {userinfo.skills.map((skill, index) => (
-            <span key={index} className="bg-blue-300 text-blue-600  px-3 py-1 rounded-full text-sm">
-              {skill}
-            </span>
-          ))}
-        </div>
+      <div className="line-clamp-2 overflow-hidden text-ellipsis mt-2 max-h-[3.5rem]">
+  <div className="flex flex-wrap gap-2">
+    {userinfo.skills?.map((skill, index) => (
+      <span
+        key={index}
+        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
+      >
+        {skill}
+      </span>
+    ))}
+  </div>
+</div>
+
       </div>
 
 

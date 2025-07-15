@@ -5,7 +5,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 function AllAplicant() {
     const [applicant, setapllicant] = useState([]);
     const [data, setData] = useState([]);
-    console.log('applicant status',applicant.status);
+    console.log('applicant status',applicant);
     const [status, setStatus] = useState(applicant.status); // State to manage status changes
     console.log('env', import.meta.env.VITE_BACKEND_URL);
 
@@ -55,10 +55,21 @@ function AllAplicant() {
 
 
       setapllicant(filteredData);
+      const fetchStatus = async () => {
+        try {
+          const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/status/${user.id}`);
+          console.log('Status fetched:', response.data);
+        } catch (error) {
+          console.error('Error fetching status:', error);
+        }
+        
+      } 
+      fetchStatus();
     }
   }, [data]);
 
     const handleStatusChange = async (userId, jobId, status) => {
+      console.log("handleStatusChange called with:", userId, jobId, status);
   try {
     await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/users/${userId}/applications/${jobId}/status`, {
       status,
@@ -68,6 +79,8 @@ function AllAplicant() {
     alert("Status updated");
     setStatus(status); 
     // Optionally refresh state
+
+   
   } catch (err) {
     alert("Failed to update status");
   }
@@ -115,7 +128,7 @@ function AllAplicant() {
 
       <div className='w-1/12'>
         <a
-          href={appl.linkedinUrl}
+          href={appl.linkedinUrl ? appl.linkedinUrl : ''}
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-800 inline-block "
@@ -126,7 +139,7 @@ function AllAplicant() {
 
       <div className='w-1/12'>
         <a
-          href={appl.portfolioUrl}
+          href={appl.portfolioUrl ? appl.portfolioUrl : ''}
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-800 inline-block "

@@ -67,6 +67,7 @@ router.post('/auth/reset-password', userController.resetPassword);
 
 // for updating the status of an application
 router.put('/users/:userId/applications/:jobId/status', userController.updateStatus)
+router.get('/users/:userId/applications/:jobId/status', userController.getStatus);
 
 //route for saved job
 router.post('/users/:userId/saved-jobs/:jobId', userController.toggleSavedJob);
