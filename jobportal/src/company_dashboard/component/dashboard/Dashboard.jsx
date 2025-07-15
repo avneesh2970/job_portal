@@ -393,8 +393,8 @@ function Dashboard() {
         </div> */}
 
         <div className="mt-6 mx-auto">
-          <h3 className="text-lg font-semibold">Job Uploaded ({userJobs.length})</h3>
-          <div className="grid lg:grid-cols-3 grid-cols-2  mt-4 mb-2">
+          <h3 className="text-lg font-semibold text-center">Job Uploaded ({userJobs.length})</h3>
+          <div className="grid lg:grid-cols-3 grid-cols-2  mt-4 mx-8 mb-2">
           {userJobs.map((job, index) => (
         <DashJobCard key={index} {...job} />
       ))}

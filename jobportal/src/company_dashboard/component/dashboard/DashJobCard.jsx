@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const DashJobCard = ({ companyLogo, jobTitle,jobDescription, companyName, location, employmentType }) => {
   return (
  <motion.div
-            className={`border-2 rounded-lg p-4 max-w-full w-full border-blue-300 hover:border-blue-600  shadow-sm cursor-pointer`}
+            className={`border-2 rounded-lg p-4 mx-6 max-w-full w-full border-blue-300 hover:border-blue-600  shadow-sm cursor-pointer`}
              
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
