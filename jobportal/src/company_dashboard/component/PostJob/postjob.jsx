@@ -35,6 +35,7 @@ const PostJob = () => {
   // Step 3 states
   const [companyLogo, setCompanyLogo] = useState("")
   const [companyName, setCompanyName] = useState("")
+  const [externalApplyUrl, setExternalApplyUrl] = useState("")
   const [websiteUrl, setWebsiteUrl] = useState("")
   const [location, setLocation] = useState("")
   const [employeeStrength, setEmployeeStrength] = useState("")
@@ -107,7 +108,8 @@ const PostJob = () => {
           day,
           month,
           year,
-          postedBy:user_id
+          postedBy:user_id,
+          externalApplyUrl
         })
         .then((result) => {
           console.log(result)
@@ -515,6 +517,24 @@ const PostJob = () => {
                         />
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* company external uri to apply */}
+                <div className="flex flex-col md:flex-row gap-6 mb-8">
+                  <div className="w-full md:w-1/3">
+                    <h2 className="text-xl font-semibold text-gray-700">External Apply URL</h2>
+                    <p className="text-gray-500 text-sm">Provide a link for candidates to apply externally.</p>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="url"
+                      className="w-full p-2 border border-gray-300 rounded-md"
+                      placeholder="Enter external apply URL"
+                      value={externalApplyUrl}
+                      onChange={(e) => setExternalApplyUrl(e.target.value)}
+                      aria-label="External Apply URL"
+                    />
                   </div>
                 </div>
 

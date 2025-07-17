@@ -96,8 +96,28 @@ const MyApplications = () => {
   month: "long",
   year: "numeric"
 })}</td>
-                 <td className="py-3">{app?.job?.jobTitle}</td>
-                 <td className='py-3'>{app?.status}</td>
+                 <td className="py-3 ">{app?.job?.jobTitle}</td>
+                <td className="font-medium text-sm   flex justify-start items-center my-auto m-auto">
+  <span
+   className={`px-3 -mt-14 py-2 flex justify-center items-center rounded-full text-sm font-semibold  transition-all duration-200
+    ${
+      app.status === "Submitted"
+        ? "border border-amber-300 bg-amber-50 text-amber-600"
+        : app.status === "Under Review"
+        ? "border border-blue-300 bg-blue-50 text-blue-600"
+        : app.status === "Interview"
+        ? "border border-green-300 bg-green-50 text-green-600"
+        : app.status === "Offered"
+        ? "border border-green-400 bg-green-100 text-green-700"
+        : app.status === "Rejected"
+        ? "border border-red-300 bg-red-50 text-red-600"
+        : "border border-gray-300 bg-gray-50 text-gray-600"
+    }`}
+  >
+    {app?.status}
+  </span>
+</td>
+
                  {/* <td className="py-3">
                    <button className={`text-sm w-[95px] h-[34px] rounded-full ${app.statusColor}`}>
                      {app.status}

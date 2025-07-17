@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {useNavigate} from "react-router-dom";
 import PersnolProfile from "./PersonalProfile"
+import axios from 'axios';
 import {
   FaUser,
   FaCalendarAlt,
@@ -56,32 +57,7 @@ const weeklyData = [
   { week: "Week 4", jobView: 8000, jobApplied: 6000, jobInterview: 5354 },
 ];
 
-const jobs = [
-  {
-    id: 1,
-    company: "Stripe",
-    type: "Hybrid | Full-time",
-    date: "12 March, 2025",
-    status: "Applied",
-    statusColor: "text-blue-500 bg-blue-100",
-  },
-  {
-    id: 2,
-    company: "Stripe",
-    type: "Hybrid | Full-time",
-    date: "12 March, 2025",
-    status: "Interview",
-    statusColor: "text-orange-500 bg-orange-100",
-  },
-  {
-    id: 3,
-    company: "Stripe",
-    type: "Hybrid | Full-time",
-    date: "12 March, 2025",
-    status: "Declined",
-    statusColor: "text-red-500 bg-red-100",
-  },
-];
+
 
 const userData = {
   image: "/profile-pic.png",
@@ -293,7 +269,7 @@ function Dashboard() {
   <div className="bg-white shadow-lg rounded-lg p-6 w-full mx-auto">
     <div className="flex justify-between items-center mb-4">
       <h2 className="text-xl font-semibold">Recent Applied Jobs</h2>
-      <a onClick={()=>navigate('/candidate_dashboard/cand_myapplication')} className="text-purple-600 font-medium hover:underline">Show all →</a>
+      <a onClick={()=>navigate('/candidate_dashboard/cand_myapplication')} className="text-purple-600 font-medium hover:underline cursor-pointer">Show all →</a>
     </div>
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">
@@ -339,7 +315,20 @@ function Dashboard() {
       </td>
       <td className="p-3 align-middle text-center">
         <span
-          className={`inline-block px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${job.statusColor || 'bg-yellow-100 text-yellow-800'}`}
+          className={`  py-2 flex justify-center items-center rounded-full text-sm font-semibold  transition-all duration-200
+    ${
+      job.status === "Submitted"
+        ? "border border-amber-300 bg-amber-50 text-amber-600"
+        : job.status === "Under Review"
+        ? "border border-blue-300 px-2.5 py-1 text-sm w-full h-10 bg-blue-50 text-blue-600"
+        : job.status === "Interview"
+        ? "border border-green-300 bg-green-50 text-green-600"
+        : job.status === "Offered"
+        ? "border border-green-400 bg-green-100 text-green-700"
+        : job.status === "Rejected"
+        ? "border border-red-300 bg-red-50 text-red-600"
+        : "border border-gray-300 bg-gray-50 text-gray-600"
+    }`}
         >
           {job.status}
         </span>

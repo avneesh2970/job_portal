@@ -46,19 +46,26 @@ function Sidebar({containerStyle, close}) {
           <Link to='/company_dashboard/viewjob' onClick={close} className=" cursor-pointer block p-2 rounded ">
            View all Job
           </Link>
-        </nav>
-        <hr className='border border-zinc-300 shadow-[0_0_8px_rgba(0,0,0,0.1)] ' />
-        <nav className=' pt-5 pb-6 text-lg pl-5.5 '>
-        <Link to="#" className=" cursor-pointer block p-2 rounded ">
-            Setting
-          </Link>
-          <Link to="#" onClick={close} className=" cursor-pointer block p-2 rounded ">
+            <Link to="#" onClick={close} className=" cursor-pointer block p-2 rounded ">
             Help Center
           </Link>
-          <Link onClick={handleLogout} className=" cursor-pointer block p-2 rounded ">
-            Logout
-          </Link>
         </nav>
+        <hr className='border border-zinc-300 shadow-[0_0_8px_rgba(0,0,0,0.1)] ' />
+        {/* Sticky Bottom Section */}
+         <div className="flex flex-col fixed top-[82vh]   h-full px-4">
+           <div className="hidden">
+             <p>Lorem, ipsum.</p>
+           </div>
+       
+           <nav className="text-lg pb-6 justify-end ">
+             <Link to="/company_dashboard/comp_settings" onClick={close} className="cursor-pointer block p-2 rounded">
+               Setting
+             </Link>
+             <Link onClick={handleLogout} className="cursor-pointer block p-2 rounded">
+               Logout
+             </Link>
+           </nav>
+         </div>
       </aside>
     </>
   )

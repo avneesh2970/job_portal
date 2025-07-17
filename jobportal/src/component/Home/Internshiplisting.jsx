@@ -5,7 +5,8 @@ import { MapPin, Clock } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { FileJsonIcon } from "lucide-react";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const jobs = [
   {
     id: 1,
@@ -108,6 +109,14 @@ const Intershiplisting = () => {
     fetchData();
   }, []);
 
+   useEffect(() => {
+    AOS.init({
+      duration: 800, // animation duration
+      once: true,    // animate only once
+      offset: 100,  // offset from the top of the viewport
+    });
+  }, []);
+
 
   const handleclick = () => {
     navigate('/job'); 
@@ -166,65 +175,79 @@ const Intershiplisting = () => {
             </div>
       ) : (
          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {jobdata.slice(0,6).map((job) => (
-          <div
-            key={job._id}
-            onClick={() => {
-              navigate(`/job/${job._id}`);
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }); // 2000 ms = 2 seconds
-            }}
-            
-            
-            className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-transform transform hover:-translate-y-2"
-          >
-            <div className="flex justify-between items-center">
+      {jobdata.slice(0, 6).map((job, index) => (
+        <div
+          key={job._id}
+          data-aos="fade-up"
+          data-aos-delay={index * 200}
+          onClick={() => {
+            navigate(`/job/${job._id}`);
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          }}
+          style={{ willChange: 'transform, box-shadow' }}
+          
+        >
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-300 p-6 hover:shadow-2xl transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer">
+            {/* Employment Types */}
+          <div className="flex justify-between items-start">
             <div className="flex flex-wrap gap-2">
-  {job.employmentType.map((type, index) => (
-    <span
-      key={index}
-      className="bg-blue-50 text-blue-600 px-3 py-1 text-sm rounded"
-    >
-      {type}
-    </span>
-  ))}
-</div>
-              <span className="text-gray-400 text-sm">{job.daysAgo}</span>
+              {job.employmentType.map((type, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-50 text-blue-600 px-3 py-1 text-sm rounded"
+                >
+                  {type}
+                </span>
+              ))}
             </div>
+            <span className="text-gray-400 text-sm">{job.daysAgo}</span>
+          </div>
 
-            <div className="flex items-center gap-4 mt-6">
-              <img src={job.companyLogo} alt={job.company} className="w-14 h-14 rounded-full" />
-              <div>
-                <h3 className="text-xl font-bold line-clamp-1">{job.jobTitle}</h3>
-
-                <p className="text-sm text-gray-500">{job.companyName}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center text-gray-600 mt-4">
-              <MapPin size={18} className="mr-2" />
-              <span className="text-sm">{job.location}</span>
-            </div>
-
-            <div className="flex items-center text-gray-600 mt-2">
-              <Clock size={18} className="mr-2" />
-              <span className="text-sm">{formatDate(job.createdAt)}</span>
-            </div>
-
-            <p className="text-sm text-gray-500 mt-4">{job.description}</p>
-
-            <div className="flex gap-4 mt-6">
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition w-full">
-                Apply Now
-              </button>
-              <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition w-full">
-                View Details
-              </button>
+          {/* Company Info */}
+          <div className="flex items-center gap-4 mt-6">
+            <img
+              src={job.companyLogo}
+              alt={job.company}
+              className="w-14 h-14 rounded-full object-cover"
+            />
+            <div>
+              <h3 className="text-xl font-bold line-clamp-1">{job.jobTitle}</h3>
+              <p className="text-sm text-gray-500">{job.companyName}</p>
             </div>
           </div>
-        ))}
-      </div>
+
+          {/* Location */}
+          <div className="flex items-center text-gray-600 mt-4">
+            <MapPin size={18} className="mr-2" />
+            <span className="text-sm">{job.location}</span>
+          </div>
+
+          {/* Posted Date */}
+          <div className="flex items-center text-gray-600 mt-2">
+            <Clock size={18} className="mr-2" />
+            <span className="text-sm">{formatDate(job.createdAt)}</span>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm text-gray-500 mt-4 line-clamp-3">
+            {job.description}
+          </p>
+
+          {/* Buttons */}
+          <div className="flex gap-4 mt-6">
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition w-full">
+              Apply Now
+            </button>
+            <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition w-full">
+              View Details
+            </button>
+          </div>
+          </div>
+        </div>
+      ))}
+    </div>
       )
       }
      

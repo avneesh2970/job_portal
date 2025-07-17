@@ -72,7 +72,7 @@ const sectionVariants = {
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.1, ease: "circOut" },
+    transition: { duration: 0.3, delay: i * 0.1, ease: "circOut" },
   }),
 }
 
@@ -128,7 +128,7 @@ export default function AboutPage() {
             className="text-5xl md:text-4xl lg:text-6xl font-bold tracking-tight !leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "circOut" }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "circOut" }}
           >
             Where Careers <span className="text-blue-400">Take Flight</span>.
           </motion.h1>
@@ -136,7 +136,7 @@ export default function AboutPage() {
             className="mt-8 max-w-3xl mx-auto text-lg md:text-2xl text-gray-400"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: "circOut" }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "circOut" }}
           >
             We're not just a job portal, we're your dedicated partner in navigating the dynamic world of careers and
             talent acquisition.

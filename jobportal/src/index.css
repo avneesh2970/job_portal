@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tailwindcss";
 
-@keyframes slide {
+/* @keyframes slide {
   0% {
     transform: translateX(0%);
   }
@@ -12,8 +12,67 @@
 
 .logo-slider-track {
   width: 200%; /* Because you have 2 sets of logos */
-}
+/* }
 
 .animate-slide {
   animation: slide 30s linear infinite;
+} */ */
+
+
+
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+ background-image: linear-gradient(to left, #4a90c3, #12998e);
+  padding: 20px 0;
+  position: relative;
 }
+
+/* Create two identical sliders for seamless looping */
+.slider {
+  display: flex;
+  gap: 10px;
+  animation: scroll 150s linear infinite; /* Increased from 30s to 60s for slower scrolling */
+  width: max-content; /* Allow the slider to size based on content */
+}
+
+/* Clone the first set of logos */
+.slider-content {
+  display: flex;
+  gap: 38px;
+}
+
+/* Make logos responsive */
+.slider img {
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slider img {
+    height: 60px;
+  }
+  .slider {
+    animation: scroll 45s linear infinite; /* Slower on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .slider img {
+    height: 40px;
+  }
+  .slider {
+    animation: scroll 35s linear infinite; /* Slower on small screens */
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%)); /* Move exactly half the width */
+  }
+}
+

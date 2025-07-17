@@ -22,13 +22,13 @@ const categories = [
 ];
 
 const JobCategories = () => {
-  useEffect(() => {
-  AOS.init({
-    duration: 800, // animation duration
-    once: true,    // animate only once
-    offset: 100,  // offset from the top of the viewport
-  });
-}, []);
+//   useEffect(() => {
+//   AOS.init({
+//     duration: 800, // animation duration
+//     once: true,    // animate only once
+//     offset: 100,  // offset from the top of the viewport
+//   });
+// }, []);
   return (
     
    <div className="py-20 text-center px-4 md:px-20 bg-[#F9FCFF]" >
@@ -43,11 +43,13 @@ const JobCategories = () => {
      {categories.map((category, index) => (
   <div
     key={index}
-    data-aos="flip-left"
+    data-aos="zoom-in"
     data-aos-duration="2000"
-    className="py-4 px-0 bg-blue-200 rounded-lg hover:shadow-xl transition transform hover:scale-105 cursor-pointer"
+    data-aos-delay={index * 400}
+    className=""
   >
-    <div className="flex justify-center items-center w-16 h-16 rounded-full mx-auto text-blue-400">
+   <div className="py-4 px-0 bg-blue-200 rounded-lg hover:shadow-xl transition duration-400 transform hover:scale-105 cursor-pointer">
+     <div className="flex justify-center items-center w-16 h-16 rounded-full mx-auto text-blue-400">
       <img src={category.icon} alt={category.title} />
     </div>
     <h3 className="text-xl font-semibold text-gray-800">{category.title}</h3>
@@ -55,6 +57,7 @@ const JobCategories = () => {
     <a href="#" className="text-blue-400 mt-1 inline-block font-medium hover:underline transition">
       {/* Explore Jobs → */}
     </a>
+   </div>
   </div>
 ))}
 

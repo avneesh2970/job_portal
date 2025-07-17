@@ -11,6 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import axios from 'axios'
+import { button } from 'framer-motion/client';
 const Jobdetail = () => {
   const [jobdata, setjobdata] = useState('');
 console.log((jobdata));
@@ -199,6 +200,12 @@ console.log((jobdata));
               >
                 Apply Now
               </button>
+              {jobdata.externalApplyUrl && (
+                <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                onClick={() => window.open(jobdata.externalApplyUrl, '_blank')}>
+                  Apply Externally
+                </button>
+              )}
             </div>
           </div>
         </div>

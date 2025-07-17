@@ -172,7 +172,9 @@ function Dashboard() {
       const userEmail = parsedUser.email;
       console.log('userId', userEmail);
       const filteredData = res.data.applications.filter((item) => item.job && item.job.postedBy === userEmail);
+      console.log('filteredData', filteredData);
       setApplicant(filteredData);
+      
     }
 
    useEffect(() => {
@@ -394,7 +396,7 @@ function Dashboard() {
 
         <div className="mt-6 mx-auto">
           <h3 className="text-lg font-semibold text-center">Job Uploaded ({userJobs.length})</h3>
-          <div className="grid lg:grid-cols-3 grid-cols-2  mt-4 mx-8 mb-2">
+          <div className="grid lg:grid-cols-3 grid-cols-2 gap-4  mt-4 mx-8 mb-2">
           {userJobs.map((job, index) => (
         <DashJobCard key={index} {...job} />
       ))}

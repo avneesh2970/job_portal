@@ -140,6 +140,9 @@ function App() {
         },{
           path:'interviewSchedule',
           element:<InterviewSchedule/>
+        },{
+          path:'comp_settings',
+          element:<CandSetting/>
         }
         // ,{
         //   path:'comp_about',

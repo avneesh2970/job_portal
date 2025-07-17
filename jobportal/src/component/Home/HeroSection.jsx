@@ -1,12 +1,28 @@
 
-import React from 'react';
-import vodafone from "../photos/vodafone.png";
-import intel from "../photos/intel-3.png";
-import tesla from "../photos/tesla-9.png";
-import amd from "../photos/amd-logo-1.png";
-import talkit from "../photos/talkit.png";
+import React,{useEffect} from 'react';
+import img1 from '.././photos/img1.png';
+import img2 from '.././photos/img2.png';
+import img3 from '.././photos/img3.jpg';
+import img4 from '.././photos/img4.jpg';
+import img5 from '.././photos/img5.png';
+import img6 from '.././photos/img6.png';
+import img7 from '.././photos/img7.png';
+import img8 from '.././photos/img8.png';
+import img9 from '.././photos/img9.jpg';
+import img10 from '.././photos/img10.png';
+import img11 from '.././photos/img11.png';
+import img12 from '.././photos/img12.png';
+import img13 from '.././photos/img13.png';
+import img14 from '.././photos/img14.png';
+import img15 from '.././photos/img15.png';
+import img16 from '.././photos/img16.png';
+import img17 from '.././photos/img17.png';
+import img18 from '.././photos/img18.png';
+import img19 from '.././photos/img19.jpg';
 import JobListings from "./JobListings";
 import hero from '../../assets/hero.svg'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -18,28 +34,42 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import './css/HeroSection.css';
 const HeroSection = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 800, // animation duration
+        once: true,    // animate only once
+        offset: 100,  // offset from the top of the viewport
+      });
+    }, []);
   return (
     <>
-      <div className="flex w-full p-auto bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]  px-6 md:px-10 bg-amber-300  h-[90vh]" >
+      <div className="flex w-full  bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]  px-6 md:px-10 bg-amber-300  h-[70vh]" >
         <div className="flex m-auto flex-col md:flex-row justify-between flex-wrap p-4 items-center">
           {/* Heading */}
-          <div className="flex-1">
-                      <h1 className="text-4xl md:text-6xl font-semibold  text-black z-1">
-            Join us & <span className="text-blue-400">Explore</span> <br />
-            <span className="text-blue-400">Thousands</span> of Jobs
-          </h1>
-          <p className="text-gray-500 mt-8 max-w-2xl">
-            Find Jobs, Employment & Career Opportunities. Some of the companies{" "}
-            <br />
-            we've helped recruit excellent applicants over the years.
-          </p>
+          <div className="flex-1"
+            data-aos="fade-right"
+            data-aos-duration="2000"
+            data-aos-delay="200"
+          >
+            
+            <h1 className="text-4xl md:text-6xl font-semibold  text-black z-1">
+              Join us & <span className="text-blue-400">Explore</span> <br />
+              <span className="text-blue-400">Thousands</span> of Jobs
+            </h1>
+            <p className="text-gray-500 mt-8 max-w-2xl">
+              Find Jobs, Employment & Career Opportunities. Some of the companies{" "}
+              <br />
+              we've helped recruit excellent applicants over the years.
+            </p>
           </div>
 
-          <div className="flex-1">
-            <img src={hero} alt="hero" className="h-[300px] md:h-full"/>
+          <div className="flex-1"   data-aos="fade-left"
+            data-aos-duration="2000"
+            data-aos-delay="200">
+            <img src={hero} alt="hero" className="h-[300px] md:h-full" />
           </div>
-    </div>
-         
+        </div>
+
       </div>
 
       {/* Partner Logos */}
@@ -86,19 +116,165 @@ const HeroSection = () => {
 
 
 
-      <div className="relative overflow-hidden w-full mt-20 bg-white">
-        <div className="logo-slider-track flex animate-slide">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="flex gap-10 items-center min-w-max">
-              <img src={vodafone} alt="vodafone" className="h-8 w-auto" />
-              <img src={intel} alt="intel" className="h-8 w-auto" />
-              <img src={tesla} alt="tesla" className="h-8 w-auto" />
-              <img src={amd} alt="amd" className="h-8 w-auto" />
-              <img src={talkit} alt="talkit" className="h-8 w-auto" />
+     {/* Infinite Scrolling Wrapper */}
+          <div className="slider-container w-full overflow-hidden mx-auto mt-10">
+            <div className="slider">
+              <div className="slider-content gap-10">
+                <img src={img1} alt="" className='' />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} className="w-24 h-24 "  alt="" />
+                <img src={img13} className="w-24 h-24 " alt="" />
+                <img src={img14} className="w-24 h-24 "  alt="" />
+                <img src={img15} className="w-24 h-24 "  alt="" />
+                <img src={img16} className="w-24 h-24 "  alt="" />
+                <img src={img17} className="w-24 h-24 "  alt="" />
+                <img src={img18} className="w-24 h-24 "  alt="" />
+                <img src={img19} className="w-24 h-24 "  alt="" />
+                
+              </div>
+              <div className="slider-content gap-10">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} alt="" />
+                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img14} alt="" />
+                <img src={img15} alt="" />
+                <img src={img16} alt="" />
+                <img src={img17} alt="" />
+                <img src={img18} alt="" />
+               
+               
+              </div>
+               <div className="slider-content gap-10">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} alt="" />
+                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img14} alt="" />
+                <img src={img15} alt="" />
+                <img src={img16} alt="" />
+                <img src={img17} alt="" />
+                <img src={img18} alt="" />
+               
+               
+              </div>
+               <div className="slider-content gap-10">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} alt="" />
+                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img14} alt="" />
+                <img src={img15} alt="" />
+                <img src={img16} alt="" />
+                <img src={img17} alt="" />
+                <img src={img18} alt="" />
+               
+               
+              </div>
+               <div className="slider-content gap-10">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} alt="" />
+                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img14} alt="" />
+                <img src={img15} alt="" />
+                <img src={img16} alt="" />
+                <img src={img17} alt="" />
+                <img src={img18} alt="" />
+               
+               
+              </div>
+               <div className="slider-content gap-10">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} alt="" />
+                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img14} alt="" />
+                <img src={img15} alt="" />
+                <img src={img16} alt="" />
+                <img src={img17} alt="" />
+                <img src={img18} alt="" />
+               
+               
+              </div>
+               <div className="slider-content gap-10">
+                <img src={img1} alt="" />
+                <img src={img2} alt="" />
+                <img src={img3} alt="" />
+                <img src={img4} alt="" />
+                <img src={img5} alt="" />
+                <img src={img6} alt="" />
+                <img src={img7} alt="" />
+                <img src={img8} alt="" />
+                <img src={img9} alt="" />
+                <img src={img10} alt="" />
+                <img src={img11} alt="" />
+                <img src={img12} alt="" />
+                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img14} alt="" />
+                <img src={img15} alt="" />
+                <img src={img16} alt="" />
+                <img src={img17} alt="" />
+                <img src={img18} alt="" />
+               
+               
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
     </>
   );

@@ -39,7 +39,7 @@ const Findjob = () => {
     'Sales': 0,
     'Design': 0,
     'Marketing': 0,
-    'Business': 0,
+    'Bussiness': 0,
     'HumanResources': 0,
     'Engineering': 0,
 
@@ -72,8 +72,8 @@ const Findjob = () => {
     Design: designCount,
     Sales: salesCount,
     Marketing: marketingCount,
-    Business: businessCount,
-    HumanResources: humanResourcesCount,
+    Bussiness: businessCount,
+    ['Human-Resources']: humanResourcesCount,
     Engineering: engineeringCount,
     Technology: technologyCount
   } = typeCounts;
@@ -128,7 +128,7 @@ const Findjob = () => {
       { id: "design", label: "Design", count: designCount || 0 },
       { id: "sales", label: "Sales", count: salesCount },
       { id: "marketing", label: "Marketing", count: marketingCount },
-      { id: "business", label: "Business", count: businessCount },
+      { id: "bussiness", label: "Bussiness", count: businessCount },
       { id: "humanResources", label: "Human Resources", count: humanResourcesCount },
       { id: "engineering", label: "Engineering", count: engineeringCount },
       { id: "technology", label: "Technology", count: technologyCount }
@@ -251,7 +251,7 @@ const Findjob = () => {
           "design": ["Design", "UI/UX", "Graphics"],
           "sales": ["Sales"],
           "marketing": ["Marketing"],
-          "business": ["Business", "Management"],
+          "bussiness": ["Bussiness", "Management"],
           "humanResources": ["Human Resources", "HR"],
           "engineering": ["Engineering"],
           "technology": ["Technology", "IT", "Software", "Development"]
@@ -419,7 +419,7 @@ const Findjob = () => {
 
   const locations = ["Dehradun", "Delhi", "Mumbai", "Pune", "Bangalore", "Noida", "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
 
-  const categories = ["Design", "Marketing", "Engineering", "Sales", "Business", "Human Resources", "IT"];
+  const categories = ["Design", "Marketing", "Engineering", "Sales", "Bussiness", "Human Resources", "IT"];
 
 
 
@@ -537,13 +537,13 @@ const Findjob = () => {
           </div>
         </div>
 
-        <p className="text-xs text-gray-600 mb-4 line-clamp-3">
+        <p className="text-xs text-gray-600 mb-4 line-clamp-3" onClick={()=> navigate(`/job/${job._id}`)}>
           {job.jobDescription}
-          <span className="text-[#4f46e5] underline cursor-pointer"> <br /> see more.</span>
+          <span className="text-[#4f46e5] underline cursor-pointer"> <br /> see more...</span>
         </p>
 
         {/* Responsive Badge Section */}
-        <div className="flex flex-wrap justify-start gap-2 text-xs mb-4">
+        <div className="flex flex-wrap justify-start gap-2 text-xs mb-4" onClick={()=> navigate(`/job/${job._id}`)}>
 
           {job.employmentType.map((type, index) => {
             return (

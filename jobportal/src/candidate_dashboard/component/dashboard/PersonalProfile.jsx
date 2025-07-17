@@ -1,10 +1,14 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
 export default function PersnolProfile({ user }) {
+  const navigate = useNavigate();
   const [userinfo, setUserinfo] = useState("");
   console.log("User:", userinfo);
   console.log('hey :..',`${import.meta.env.VITE_BACKEND_URL}${user.image}`);
+
 
   console.log("User Info:", userinfo.name);
   useEffect(() => {
@@ -26,36 +30,37 @@ export default function PersnolProfile({ user }) {
     <div>
       {userinfo   ? (
         
-           <div className="w-80 bg-white shadow-lg rounded-xl p-6">
+           <div className="w-80 flex flex-col bg-white shadow-lg rounded-xl p-6">
     
-      <div className="text-center">
+      <div className="text-center ">
         <img  src={`${import.meta.env.VITE_BACKEND_URL}${userinfo.image}`} alt="Profile" className="w-20 h-20 mx-auto rounded-full" />
         <h2 className="text-lg font-semibold mt-2">{userinfo.name}</h2>
         <p className="text-gray-500">{userinfo.profile}</p>
       </div>
 
-        <div className="mt-4">
-        <h3 className="text-gray-700 font-medium">Skill</h3>
-      <div className="line-clamp-2 overflow-hidden text-ellipsis mt-2 max-h-[3.5rem]">
-  <div className="flex flex-wrap gap-2">
-    {userinfo.skills?.map((skill, index) => (
-      <span
-        key={index}
-        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
-      >
-        {skill}
-      </span>
-    ))}
+        {/* Skills */}
+        <div className=" ">
+  <h3 className="text-gray-700 font-medium">Skill</h3>
+  <div className="overflow-hidden mt-2 mb-6" style={{ maxHeight: '4.5rem' }}>
+    <div className="flex flex-wrap gap-2">
+      {userinfo.skills?.map((skill, index) => (
+        <span
+          key={index}
+          className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm whitespace-nowrap"
+        >
+          {skill}
+        </span>
+      ))}
+    </div>
   </div>
 </div>
 
-      </div>
 
 
     
-
-      
-      <div className="mt-4">
+      <div className=''></div>
+      {/* work experience */}
+      <div className="relative  ">
         <h3 className="text-gray-700 font-medium">Work Experience</h3>
         <div className="mt-2 space-y-2">
          {userinfo.workExperience.map((exp, index) => (
@@ -91,7 +96,7 @@ export default function PersnolProfile({ user }) {
      
     
       
-      <button className="w-full  bg-blue-600 text-white py-2 rounded-lg font-medium">
+      <button className="w-full  bg-blue-600 text-white py-2 rounded-lg font-medium" onClick={()=>navigate('/candidate_dashboard/cand_settings')}>
         Edit Profile
       </button>
     </div>
