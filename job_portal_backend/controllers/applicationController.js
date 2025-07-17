@@ -549,7 +549,7 @@ const applicationController = {
 const userController = {
   signup: async (req, res) => {
     try {
-      const { email, password, userType } = req.body;
+      const { email, password, userType, firstname, lastname, phoneno } = req.body;
       
       // Check if user already exists
       const existingUser = await User.findOne({ email });
@@ -566,7 +566,10 @@ const userController = {
         email,
         password: hashedPassword,
         userType: userType || 'candidate', // Default to candidate if not specified
-        createdAt: new Date()
+        createdAt: new Date(),
+        firstname,
+        lastname,
+        phone:phoneno
       });
       
       // Save the user

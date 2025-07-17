@@ -62,7 +62,7 @@ const [animatedCounts, setAnimatedCounts] = useState(initialData.map(() => 0));
       {initialData.map((item, index) => (
         <div
           key={item.id}
-          className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-110 duration-300 bg-gradient-to-t from-blue-300 via-indigo-200 to-violet-200"
+          className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-110 duration-500 bg-gradient-to-t from-blue-300 via-indigo-200 to-violet-200"
         >
           <div className="absolute top-0 left-0 w-full h-2 rounded-t-lg bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
           <div className='flex justify-center'>{item.icon}</div>

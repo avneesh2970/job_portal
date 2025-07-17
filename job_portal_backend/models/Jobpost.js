@@ -20,6 +20,8 @@ const JobPostSchema = new mongoose.Schema({
     year : Number,
     technology: String,
     aboutCompany: String,
+    // ✅ New field for external application URL
+    externalApplyUrl: String, // URL for external job applications
 
       // ✅ New field for tracking student applications
   studentApplied: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],

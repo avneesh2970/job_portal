@@ -13,7 +13,10 @@ const UserSchema = new mongoose.Schema({
   resume : String,
 
   // ✅ Personal Information
-  name: { type: String, trim: true },
+  // name: { type: String, trim: true },
+  firstname: { type: String, trim: true },
+  lastname: { type: String, trim: true },
+  
   profile: { type: String, trim: true }, // Profile name or title
   phone: { type: String },
   dateOfBirth: { type: Date },
