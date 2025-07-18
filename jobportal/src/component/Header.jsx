@@ -101,7 +101,7 @@ const fetchData = async () => {
 
         
 
-        const parsedUser = JSON.parse(userInfo);
+        const parsedUser = JSON.parse(localStorage.getItem("user"));
         // setUserInfo(parsedUser);
 
       

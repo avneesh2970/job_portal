@@ -261,8 +261,9 @@ const Findjob = () => {
           const matchTerms = categoryMap[catId] || [];
           return matchTerms.some(term =>
             job.department?.toLowerCase().includes(term.toLowerCase()) ||
-            job.category?.toLowerCase().includes(term.toLowerCase()) ||
-            job.technology?.toLowerCase().includes(term.toLowerCase())
+            job.categories?.toLowerCase().includes(term.toLowerCase()) ||
+            job.technology?.toLowerCase().includes(term.toLowerCase()) ||
+            job.employmentType?.some(type => type.toLowerCase().includes(term.toLowerCase()))
           );
         });
       });
@@ -419,7 +420,7 @@ const Findjob = () => {
 
   const locations = ["Dehradun", "Delhi", "Mumbai", "Pune", "Bangalore", "Noida", "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
 
-  const categories = ["Design", "Marketing", "Engineering", "Sales", "Bussiness", "Human Resources", "IT"];
+  const categories = ["Design", "Marketing", "Engineering", "Sales", "Bussiness", "Human Resources", "Technology", "Internship", "Remote"];
 
 
 

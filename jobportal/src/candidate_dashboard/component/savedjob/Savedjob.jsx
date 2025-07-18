@@ -48,7 +48,7 @@ const Savedjob = () => {
          {savedJobs.map((job) => (
   <div
     key={job._id}
-    className="border border-blue-400 hover:border-blue-600 hover:border-2 bg-white p-5 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200 ease-in-out"
+    className="border border-blue-400 hover:border-blue-600 hover:border-2 bg-white p-5 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.04] transition-all duration-400 ease-in-out"
   >
     <div className="flex justify-between items-start">
      <div className="flex space-x-2 ">
