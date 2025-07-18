@@ -261,9 +261,8 @@ const Findjob = () => {
           const matchTerms = categoryMap[catId] || [];
           return matchTerms.some(term =>
             job.department?.toLowerCase().includes(term.toLowerCase()) ||
-            job.categories?.toLowerCase().includes(term.toLowerCase()) ||
-            job.technology?.toLowerCase().includes(term.toLowerCase()) ||
-            job.employmentType?.some(type => type.toLowerCase().includes(term.toLowerCase()))
+            job.category?.toLowerCase().includes(term.toLowerCase()) ||
+            job.technology?.toLowerCase().includes(term.toLowerCase())
           );
         });
       });
@@ -420,7 +419,7 @@ const Findjob = () => {
 
   const locations = ["Dehradun", "Delhi", "Mumbai", "Pune", "Bangalore", "Noida", "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
 
-  const categories = ["Design", "Marketing", "Engineering", "Sales", "Bussiness", "Human Resources", "Technology", "Internship", "Remote"];
+  const categories = ["Design", "Marketing", "Engineering", "Sales", "Bussiness", "Human Resources", "IT"];
 
 
 
@@ -558,7 +557,7 @@ const Findjob = () => {
         {/* Responsive Button Section */}
 
 
-        <div className="flex flex-row xs:justify-between gap-2">
+        <div className="flex flex-row xs:justify-between  space-x-2">
           <button
             onClick={() => {
               if (!hasApplied) {
@@ -568,12 +567,12 @@ const Findjob = () => {
 
             disabled={hasApplied}
             className={`${hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-blue-500 hover:bg-blue-600'
-              } md:w-[160px] sm:w-auto text-white text-[10px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-md`}
+              } md:w-[160px] sm:w-auto text-white px-2 py-1.5 rounded-md`}
           >
             {hasApplied ? 'Applied' : 'Apply Now'}
           </button>
 
-          <button onClick={() => navigate(`/job/${job._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-[10px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-md hover:bg-[#f1f5ff]">
+          <button onClick={() => navigate(`/job/${job._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5]  px-2 py-1.5 rounded-md hover:bg-[#f1f5ff]">
             View Details
           </button>
         </div>
@@ -901,7 +900,7 @@ const Findjob = () => {
                   <>
                     {/* Job Cards */}
                     {currentJobs.length > 0 ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-3 mt-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-3 mt-6">
                         {[...currentJobs]
                           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // newest first
                           .map(job => (

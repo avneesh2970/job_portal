@@ -11,7 +11,7 @@ const Header = () => {
   const { user } = useContext(AuthContext);
   console.log('u', user);
   const [users, setUserInfo] = useState(null);
-  const [user_email, setuser_name] = useState('')
+  const [user_name, setuser_name] = useState('')
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [pwd, setpwd] = useState('');
   const [userType, setuserType] = useState('')
@@ -50,7 +50,7 @@ const Header = () => {
 
   const handleOpenCompany = () => {
 
-    const userinfo = { user_email, pwd }; // could be JWT or any auth token
+    const userinfo = { user_name, pwd }; // could be JWT or any auth token
 
     // Step 1: Open new tab
     const newTab = window.open("http://localhost:5174/", "_blank");
@@ -62,7 +62,7 @@ const Header = () => {
   };
 
   const handleOpenCandidate = () => {
-    const userinfo = { user_email, pwd }; // could be JWT or any auth token
+    const userinfo = { user_name, pwd }; // could be JWT or any auth token
 
     // Step 1: Open new tab
     const newTab = window.open("http://localhost:5175/", "_blank");
@@ -88,6 +88,7 @@ const fetchData = async () => {
     );
     console.log('User data:', response.data);
     setuser_name(response.data.firstname)
+    console.log('User ', response.data);
     setUserInfo(response.data)
     // You can also set it in state if needed
     // setUserData(response.data);
