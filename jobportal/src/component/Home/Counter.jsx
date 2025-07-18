@@ -58,7 +58,7 @@ const [animatedCounts, setAnimatedCounts] = useState(initialData.map(() => 0));
     <section ref={ref} className="min-h-[300px] my-24">
   <div className='flex justify-center flex-col w-full'>
     <h3 className='text-center font-bold text-4xl py-8'>Our Achievements</h3>
-    <div className='grid grid-cols-1 mx-24 sm:grid-cols-2 md:grid-cols-4 gap-4'>
+    <div className='grid mx-5 sm:mx-8  md:mx-14 lg:mx-24 grid-cols-2 md:grid-cols-4 gap-4'>
       {initialData.map((item, index) => (
         <div
           key={item.id}

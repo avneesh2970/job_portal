@@ -567,12 +567,12 @@ const Findjob = () => {
 
             disabled={hasApplied}
             className={`${hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-blue-500 hover:bg-blue-600'
-              } md:w-[160px] sm:w-auto text-white text-xs px-4 py-2 rounded-md`}
+              } md:w-[160px] sm:w-auto text-white text-[10px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-md`}
           >
             {hasApplied ? 'Applied' : 'Apply Now'}
           </button>
 
-          <button onClick={() => navigate(`/job/${job._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
+          <button onClick={() => navigate(`/job/${job._id}`)} className="border text-[#4f46e5] md:w-[160px] sm:w-auto border-[#4f46e5] text-[10px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-md hover:bg-[#f1f5ff]">
             View Details
           </button>
         </div>

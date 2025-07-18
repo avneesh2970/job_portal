@@ -237,10 +237,10 @@ const Intershiplisting = () => {
 
           {/* Buttons */}
           <div className="flex gap-4 mt-6">
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition w-full">
+            <button className="bg-blue-600 text-white text-[12px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-lg hover:bg-blue-700 transition w-full">
               Apply Now
             </button>
-            <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition w-full">
+            <button className="border border-blue-600 text-blue-600 text-[12px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-lg hover:bg-blue-50 transition w-full">
               View Details
             </button>
           </div>

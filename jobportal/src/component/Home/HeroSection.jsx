@@ -154,7 +154,7 @@ const HeroSection = () => {
                 <img src={img10} alt="" />
                 <img src={img11} alt="" />
                 <img src={img12} alt="" />
-                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img13}  alt="" />
                 <img src={img14} alt="" />
                 <img src={img15} alt="" />
                 <img src={img16} alt="" />
@@ -176,7 +176,7 @@ const HeroSection = () => {
                 <img src={img10} alt="" />
                 <img src={img11} alt="" />
                 <img src={img12} alt="" />
-                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img13}  alt="" />
                 <img src={img14} alt="" />
                 <img src={img15} alt="" />
                 <img src={img16} alt="" />
@@ -198,7 +198,7 @@ const HeroSection = () => {
                 <img src={img10} alt="" />
                 <img src={img11} alt="" />
                 <img src={img12} alt="" />
-                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img13}  alt="" />
                 <img src={img14} alt="" />
                 <img src={img15} alt="" />
                 <img src={img16} alt="" />
@@ -220,7 +220,7 @@ const HeroSection = () => {
                 <img src={img10} alt="" />
                 <img src={img11} alt="" />
                 <img src={img12} alt="" />
-                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img13}  alt="" />
                 <img src={img14} alt="" />
                 <img src={img15} alt="" />
                 <img src={img16} alt="" />
@@ -242,7 +242,7 @@ const HeroSection = () => {
                 <img src={img10} alt="" />
                 <img src={img11} alt="" />
                 <img src={img12} alt="" />
-                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img13}  alt="" />
                 <img src={img14} alt="" />
                 <img src={img15} alt="" />
                 <img src={img16} alt="" />
@@ -264,7 +264,7 @@ const HeroSection = () => {
                 <img src={img10} alt="" />
                 <img src={img11} alt="" />
                 <img src={img12} alt="" />
-                <img src={img13} className='w-24 h-24' alt="" />
+                <img src={img13}  alt="" />
                 <img src={img14} alt="" />
                 <img src={img15} alt="" />
                 <img src={img16} alt="" />

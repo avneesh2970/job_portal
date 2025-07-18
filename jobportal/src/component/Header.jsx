@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState,useRef, useEffect, useContext } from "react";
 import { FaUser, FaLock, FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "./AuthContext";
 import logo from './photos/logo.png'
@@ -22,7 +22,28 @@ const Header = () => {
   const [isPageOpen, setIsPageOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const menuRef = useRef(null);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+         setTimeout(() => {
+      setIsOpen(false);
+    }, 50); // small delay allows navigation to proceed
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const isActive = (path) => location.pathname === path;
 
@@ -213,7 +234,7 @@ const fetchData = async () => {
         </div>
 
         {/* Hamburger Menu Icon */}
-        <div className="md:hidden">
+        <div  ref={menuRef}  className="md:hidden">
           <button  className="text-gray-700 cursor-pointer">
             {isOpen ? <FaTimes size={25} onClick={() => setIsOpen(false)} /> : <FaBars size={25} onClick={() => setIsOpen(true)}/> }
 

@@ -46,26 +46,26 @@
 .slider img {
   height: 80px;
   object-fit: contain;
+  animation: scroll 120s linear infinite;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .slider img {
-    height: 60px;
-  }
   .slider {
-    animation: scroll 45s linear infinite; /* Slower on mobile */
+    animation: scroll 50s linear infinite;
+  }
+}
+@media (max-width: 1024px) {
+  .slider {
+    animation: scroll 80s linear infinite;
   }
 }
 
 @media (max-width: 480px) {
-  .slider img {
-    height: 40px;
-  }
   .slider {
-    animation: scroll 35s linear infinite; /* Slower on small screens */
+    animation: scroll 100s linear infinite;
   }
 }
+
 
 @keyframes scroll {
   0% {

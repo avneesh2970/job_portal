@@ -167,17 +167,17 @@ const Homepage = () => {
                  transform transition-all duration-500 ease-in-out 
                  hover:scale-105 hover:shadow-xl will-change-transform cursor-pointer">
                     <div className="flex justify-between items-center">
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1 lg:gap-2">
                       {job.employmentType.map((type, index) => (
                         <span
                           key={index}
-                          className="bg-blue-50 text-blue-600 px-3 py-1 text-sm rounded"
+                          className="bg-blue-50 text-blue-600 px-1.5 md:px-3 py-1 text-sm rounded"
                         >
                           {type}
                         </span>
                       ))}
                     </div>
-                    <span className="text-gray-400 text-sm">{job.daysAgo}</span>
+                  
                   </div>
 
                   <div className="flex items-center gap-4 mt-6">
@@ -200,11 +200,11 @@ const Homepage = () => {
 
                   <p className="text-sm text-gray-500 mt-4 line-clamp-2">{job.jobDescription}</p>
 
-                  <div className="flex gap-4 mt-6">
-                    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition w-full">
+                  <div className="flex gap-2 lg:gap-4 mt-3 md:mt-6">
+                    <button className="bg-blue-600 text-white  text-[12px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2  rounded-lg hover:bg-blue-700 transition w-full">
                       Apply Now
                     </button>
-                    <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition w-full">
+                    <button className="border border-blue-600 text-blue-600  text-[12px]  sm:text-sm lg:text-base px-2 lg:px-4 py-1 lg:py-2 rounded-lg hover:bg-blue-50 transition w-full">
                       View Details
                     </button>
                   </div>
