@@ -9,6 +9,7 @@ import CompanyProfilePage from './pages/CompanyProfilePage'
 import Findjob from './component/Job/Findjob'
 import Applayout from './Applayout'
 import Jobdetail from './component/Job/Jobdetail'
+import ApplicantDetail from './company_dashboard/component/Allapplicants/ApplicantDetails.jsx'
 import Homepage from './pages/Homepage'
 import About from '../src/component/About'
 import CandidateDashboard from './candidate_dashboard/component/dashboard/Dashboard.jsx'
@@ -24,7 +25,7 @@ import CandSetting from './candidate_dashboard/component/candidateSetting/Candid
 import CandSavedJobs from './candidate_dashboard/component/savedjob/Savedjob.jsx'
 import CompApplayout from './company_dashboard/Applayout.jsx'
 import Comp_Dashboard from './company_dashboard/component/dashboard/Dashboard.jsx'
-import Company_Profile from './company_dashboard/component/company/CompanyProfile.jsx'
+import Company_Profile from './company_dashboard/component/company/CompanyPage.jsx'
 import MessagingUI from './company_dashboard/component/message/Message.jsx'
 import PostJob from './company_dashboard/component/PostJob/postjob.jsx'
 import Viewjob from './company_dashboard/component/PostJob/viewJob.jsx'
@@ -33,10 +34,11 @@ import CompSettingpage from './company_dashboard/component/setting/Setting.jsx'
 import AllAplicant from './company_dashboard/component/Allapplicants/AllAplicant.jsx'
 import Joblisting from './company_dashboard/component/joblist/Joblisting.jsx'
 import  InterviewSchedule from './company_dashboard/component/Allapplicants/InterviewSchedule.jsx'
-
+import CompanyProfile from './company_dashboard/component/setting/CompanyProfile.jsx'
 import { View } from 'lucide-react'
 import HelpCenter from './candidate_dashboard/component/HelpCenter.jsx'
-import CompanyProfile from './company_dashboard/component/setting/CompanyProfile.jsx'
+import CompanyPage from './company_dashboard/component/company/CompanyPage.jsx'
+
 function App() {
   const [count, setCount] = useState(0)
   const router = createBrowserRouter([
@@ -136,6 +138,9 @@ function App() {
           path:'allapplicants',
           element:<AllAplicant/>
         },{
+          path:'applicant-details',
+          element:<ApplicantDetail/>
+        },{
           path:'joblisting',
           element:<Joblisting/>
         },{
@@ -145,11 +150,10 @@ function App() {
           path:'comp_settings',
           element:<CompanyProfile/>
         }
-        // ,{
-        //   path:'comp_about',
-        //   element:<CompAboutUs/>
-      
-        // }
+        ,{
+          path:'companyprofile',
+          element:<CompanyPage/>
+        }
       ]
     }
   ])

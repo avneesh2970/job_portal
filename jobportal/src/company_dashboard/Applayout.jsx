@@ -18,7 +18,7 @@ function Applayout() {
     <div className='w-full flex'>
         <Sidebar containerStyle='bg-amber-200 w-64 fixed  shadow-md hidden lg:block'/>
         <div className='flex  flex-col w-full lg:ml-64'>
-          <Header/>
+          <Header className='fixed'/>
           <Outlet/>
         </div>
     </div>

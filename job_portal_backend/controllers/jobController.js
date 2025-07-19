@@ -123,6 +123,48 @@ const createCompanyProfile = async (req, res) => {
   }
 };
 
+getCompanyProfile = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const companyProfile = await CompanyProfile.findOne({ owner_email: email });
+    if (!companyProfile) {
+      return res.status(404).json({ message: "Company profile not found" });
+    }
+
+    res.status(200).json({ message: "Company profile retrieved successfully", companyProfile });
+  } catch (error) {
+    console.log('Error retrieving company profile:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const updateCompanyProfile = async (req, res) => {
+  try {
+    const { email } = req.params;
+    let companyProfileData = { ...req.body };
+
+    if (req.file) {
+      companyProfileData.companyLogo = `/uploads/${req.file.filename}`;
+    }
+
+    const updatedCompanyProfile = await CompanyProfile.findOneAndUpdate(
+      { owner_email: email },
+      companyProfileData,
+      { new: true }
+    );
+
+    if (!updatedCompanyProfile) {
+      return res.status(404).json({ message: "Company profile not found" });
+    }
+
+    res.status(200).json({ message: "Company profile updated successfully", companyProfile: updatedCompanyProfile });
+  } catch (error) {
+    console.log('Error updating company profile:', error);
+    res.status(500).json({ error: error.message });
+  }
+}
+
+
 
 module.exports = {
   createJobPost,
@@ -131,5 +173,9 @@ module.exports = {
   updateJobPost,
   deleteJobPost,
   getUserWithAppliedJobs,
-  createCompanyProfile
+  createCompanyProfile,
+  getCompanyProfile,
+  updateCompanyProfile,
+  getCompanyProfile
+  
 };

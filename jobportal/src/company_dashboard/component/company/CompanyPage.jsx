@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState , useEffect } from "react";
 import { Link } from "react-feather";
 import { CiEdit } from "react-icons/ci";
 import logo from "../../assets/image/Company_Logo.png"
+import axios from "axios";
+
 
 import view from "../../assets/image/view.png";
 import facebook from "../../assets/image/facebook.png";
@@ -47,28 +49,42 @@ const technologies = [
   { name: "Framer", icon: imageframe },
 ];
 
+
+
+
 function Company_profile() {
+  const [companyProfile, setCompanyProfile] = useState([]);
+  
+  console.log("Company Profile:", companyProfile);
+
+  const techArray = companyProfile?.technology?.split(',').map(tech => tech.trim());
+
+  const monthNames = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+  const monthIndex = companyProfile?.month - 1; // subtract 1 because array is 0-indexed
+  const monthName = monthNames[monthIndex];
+  useEffect(() => {
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const user_email = userInfo ? userInfo.email : null;
+  const fetchCompanyProfile = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`);
+    console.log(response.data);
+    setCompanyProfile(response.data.companyProfile);
+
+  }
+  fetchCompanyProfile();
+
+},[])
   return (
     <>
       <div class="flex">
-        <div class="w-64 bg-white h-screen p-6 hidden lg:block">
-        
-          <nav>
-            <ul>
-             
-              <li class="mb-4">
-                <a
-                  class="flex items-center text-blue-600 font-semibold"
-                  href="#"
-                >
-                  <i class="fas fa-user mr-3"></i>
-                  Company Profile
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="flex-1 p-6">
+       
+       { companyProfile && (
+        <div class="flex-1 p-6"> 
+         <div className="flex-1 p-6">
           <div>
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center">
@@ -76,13 +92,13 @@ function Company_profile() {
                   alt="Company Logo"
                   class="w-16 h-16 mr-4"
                   height="60"
-                  src={logo}
+                  src={`${companyProfile.companyLogo}`}
                   width="60"
                 />
                 <div>
-                  <h1 className="text-2xl font-bold">Nomad</h1>
+                  <h1 className="text-2xl font-bold">{companyProfile.companyName}</h1>
                   <a className="text-blue-600">
-                    <p> www.Nomad.com</p>
+                    <p> {companyProfile.websiteUrl}</p>
                   </a>
                 </div>
               </div>
@@ -98,28 +114,28 @@ function Company_profile() {
                    <img src={found} alt="" className="text-2xl mr-2"  />
                 <div>
                 <p class="text-gray-500">Founded</p>
-                <p class="font-semibold">March 2011</p>
+                <p class="font-semibold">{monthName} {companyProfile.year}</p>
             </div>
               </div>
               <div className=" p-4 rounded-lg flex items-center  ">
                    <img src={empoly} alt="" className="text-2xl mr-2"  />
                 <div>
                 <p class="text-gray-500">Employees</p>
-                <p class="font-semibold">50-100</p>
+                <p class="font-semibold">{companyProfile.employeeStrength}</p>
             </div>
               </div>
               <div className=" p-4 rounded-lg flex items-center">
                    <img src={loction} alt="" className="text-2xl mr-2"  />
                 <div>
                 <p class="text-gray-500">Location</p>
-                <p class="font-semibold">India</p>
+                <p class="font-semibold">{companyProfile.location}</p>
             </div>
               </div>
               <div className= " p-4 rounded-lg flex items-center  ">
                    <img src={industry} alt="" className="text-2xl mr-2"  />
                 <div>
                 <p class="text-gray-500">Industry</p>
-                <p class="font-semibold">IT Services and IT Consulting</p>
+                <p class="font-semibold">{companyProfile.industry}</p>
             </div>
               
               </div>
@@ -135,21 +151,10 @@ function Company_profile() {
                     <CiEdit className="text-2xl" />
                   </button>
                 </div>
-                <p className="text-gray-600">
-                  Nomad is a software platform for starting and running internet
-                  businesses. Millions of businesses rely on software tools to
-                  accept payments, expand globally, and manage their businesses
-                  online. Nomad has been at the forefront of expanding internet
-                  commerce, powering new business models, and supporting the
-                  latest platforms, from marketplaces to mobile commerce sites.
-                  We believe that growing the GDP of the internet is a problem
-                  rooted in code and design, not finance. Nomad is built for
-                  developers, makers, and creators. We work on solving the hard
-                  technical problems necessary to build global economic
-                  infrastructure—from designing highly reliable systems to
-                  developing advanced machine learning algorithms to
+                <p className="text-gray-600 line-clamp-6">
+                 {companyProfile?.companyDescription}
                   <a className="text-blue-600" href="#">
-                    see more.
+                    
                   </a>
                 </p>
               </div>
@@ -160,33 +165,41 @@ function Company_profile() {
                     <CiEdit className="text-2xl" />
                   </button>
                 </div>
-                <div className="md:flex md:space-x-4 mb-4   md:flex-wrap  gap-y-3  justify-center  ">
-                  <button className="text-blue-600 flex items-center md:gap-2 border-2 px-3 py-1 cursor-pointer  md:mb-0 mb-4 w-full md:w-auto ">
-                    <img src={facebook} alt="" />
-                    <p>facebook</p>
-                  </button>
-                  <button className="text-pink-600 flex items-center gap-2 border-2 px-3 py-1 cursor-pointer md:mb-0 mb-4 w-full md:w-auto ">
-                    <img src={instagram} alt="" />
-                    <p>instagram</p>
-                  </button>
-                  <button className="text-blue-700 flex items-center gap-2 border-2 px-5 py-1 cursor-pointer md:mb-0 mb-4 w-full md:w-auto  ">
-                    <img src={LinkedIn} alt="" />
-                    <p>linkedin</p>
-                  </button>
-                  <button className="text-red-600 flex items-center gap-2 border-2 px-7 py-1 cursor-pointer md:mb-0 mb-4 w-full md:w-auto ">
-                    <img src={gmail} alt="" />
-                    <p>gmail</p>
-                  </button>
-                </div>
+               <div className="flex flex-wrap justify-center gap-4 mb-4">
+  {/* Facebook */}
+  <button className="flex items-center justify-center gap-2 text-blue-600 border-2 px-4 py-2 w-36  h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
+    <img src={facebook} alt="facebook" className="w-8 h-8" />
+    <p className="text-sm font-semibold">Facebook</p>
+  </button>
+
+  {/* Instagram */}
+  <button className="flex items-center justify-center gap-2 text-pink-600 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-pink-50 transition-all duration-200">
+    <img src={instagram} alt="instagram" className="w-8 h-8" />
+    <p className="text-sm font-semibold">Instagram</p>
+  </button>
+
+  {/* LinkedIn */}
+  <button className="flex items-center justify-center gap-2 text-blue-700 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
+    <img src={LinkedIn} alt="linkedin" className="w-8 h-8" />
+    <p className="text-sm font-semibold">LinkedIn</p>
+  </button>
+
+  {/* Gmail */}
+  <button className="flex items-center justify-center gap-2 text-red-600 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-red-50 transition-all duration-200">
+    <img src={gmail} alt="gmail" className="w-8 h-8" />
+    <p className="text-sm font-semibold">Gmail</p>
+  </button>
+</div>
+
                 <div className="grid grid-cols-2  items-center  ">
-                  <div className="justify-self-center ">
+                  {/* <div className="justify-self-center ">
                     <img src={image1} alt="" className="h-[463px]" />
-                  </div>
-                  <div className=" justify-self-center ">
+                  </div> */}
+                  {/* <div className=" justify-self-center ">
                     <img src={image2} alt="" className="h-[154px]" />
                     <img src={image3} alt="" className="h-[154px]" />
                     <img src={image4} alt="" className="h-[154px]" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="bg-white p-6 rounded-lg shadow mb-6">
@@ -226,49 +239,7 @@ function Company_profile() {
                   View all team members →
                 </a>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold">Open Positions</h2>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <JobCard
-                    jobTitle="Senior Product Designer"
-                    company="Google"
-                    location="New York"
-                    description="It is a long established fact that a reader of a page when looking at its layout."
-                    logo="/google-logo.png"
-                    timeAgo="2 Days Ago"
-                    jobType="Full Time"
-                  />
-                  <JobCard
-                    jobTitle="Senior Product Designer"
-                    company="Google"
-                    location="New York"
-                    description="It is a long established fact that a reader of a page when looking at its layout."
-                    logo="/google-logo.png"
-                    timeAgo="2 Days Ago"
-                    jobType="Full Time"
-                  />
-                  <JobCard
-                    jobTitle="Senior Product Designer"
-                    company="Google"
-                    location="New York"
-                    description="It is a long established fact that a reader of a page when looking at its layout."
-                    logo="/google-logo.png"
-                    timeAgo="2 Days Ago"
-                    jobType="Full Time"
-                  />
-                  <JobCard
-                    jobTitle="Senior Product Designer"
-                    company="Google"
-                    location="New York"
-                    description="It is a long established fact that a reader of a page when looking at its layout."
-                    logo="/google-logo.png"
-                    timeAgo="2 Days Ago"
-                    jobType="Full Time"
-                  />
-                </div>
-              </div>
+            
             </div>
             <div>
               <div className="p-6 bg-white shadow-lg rounded-2xl mb-6 ">
@@ -281,17 +252,19 @@ function Company_profile() {
                     <CiEdit className="text-2xl  " />
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mt-4">
-                  {technologies.map((tech, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        className="w-12 h-12"
-                      />
-                      <p className="text-gray-700 text-sm mt-1">{tech.name}</p>
-                    </div>
-                  ))}
+                <div className=" gap-4 mt-4">
+               
+                    <div className="flex flex-wrap gap-2 w-full mt-2">
+                    {techArray?.map((tech, idx) => (
+                      <span key={idx} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+
+                 
+                 
                 </div>
                 <a
                   href="#"
@@ -339,6 +312,7 @@ function Company_profile() {
             </div>
           </div>
         </div>
+        </div>)}
       </div>
     </>
   );

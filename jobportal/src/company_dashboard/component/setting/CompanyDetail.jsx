@@ -18,10 +18,32 @@ const CompanyDetail = () => {
         const charCount = aboutCompany.length
 
         useEffect(() => {
-           
-            const companyprofile = async ()=>{
-                const data  = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/job//jobpost/${email}email/apply`);
+            const user = JSON.parse(localStorage.getItem('user'));
+           const user_email = user.email;
+           const fetchdata = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`);
+                console.log('response', response);
+                if (response.data && response.data.companyProfile) {
+                    const profile = response.data.companyProfile;
+                    setCompanyLogo(profile.companyLogo || "");
+                    setCompanyName(profile.companyName || "");
+                    setExternalApplyUrl(profile.externalApplyUrl || "");
+                    setWebsiteUrl(profile.websiteUrl || "");
+                    setLocation(profile.location || "");
+                    setEmployeeStrength(profile.employeeStrength || "");
+                    setIndustry(profile.industry || "");
+                    setTechnology(profile.technology || "");
+                    setDay(profile.day || "");
+                    setMonth(profile.month || "");
+                    setYear(profile.year || "");
+                    setAboutCompany(profile.aboutCompany || "");
+                }
+            } catch (error) {
+                console.error("Error fetching company profile:", error);
             }
+           }
+           fetchdata();
         },[])
 
 
@@ -32,6 +54,8 @@ const CompanyDetail = () => {
              const data  = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${email}/apply`,{
                 owner_email: email,
                 companyName,
+                companyLogo,
+                companyDescription: aboutCompany,
                 externalApplyUrl,
                 websiteUrl,
                 location,
@@ -43,6 +67,8 @@ const CompanyDetail = () => {
                 year,
                 aboutCompany
             });
+            alert('Company details submitted successfully');
+            console.log('data', data);
 
         }
   return (
@@ -264,11 +290,20 @@ const CompanyDetail = () => {
                     ></textarea>
                     <p className="text-gray-500 text-xs mt-1">Maximum 250 characters {charCount}/250</p>
                   </div>
+                  
                 </div>
+                  <div className="flex flex-col md:flex-row gap-6 mb-8">
+                     <div className="w-full md:w-1/3">
+                     </div>
+                     <div className='w-full md:w-2/3'>
+                        <button className='px-2.5 w-full py-1.5 bg-blue-400 font-semibold text-gray-700 rounded-md' onClick={handleSubmit}>Submit </button>
+                     </div>
+                  </div>
+              
               
               </div>
 
-              <button className='px-2.5 py-1.5 bg-amber-300 font-semibold text-gray-700 rounded-md' onClick={handleSubmit}>Submit </button>
+             
     </div>
   );
 };

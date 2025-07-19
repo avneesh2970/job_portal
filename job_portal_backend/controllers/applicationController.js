@@ -403,7 +403,8 @@ const applicationController = {
     try {
       // Extract form data
       const {
-        fullName,
+        firstname,
+        lastname,
         email,
         phone,
         jobTitle,
@@ -442,7 +443,8 @@ const applicationController = {
       const application = new Application({
         user: userId, // Reference to the user
         job: jobId, // Reference to the job
-        fullName,
+        firstname,
+        lastname,
         email,
         phone,
         jobTitle,
@@ -949,15 +951,17 @@ removeSavedJob : async (req, res) => {
 },
 updateProfile : async (req, res) => {
   const userId = req.params.id;
-  const {name,profile, phone,pinCode, state, addressLine1, addressLine2, city, country, dateOfBirth, email, gender} = req.body;
-  console.log(name,profile, phone, pinCode, state, addressLine1, addressLine2, city, country, dateOfBirth, email  ,gender);
+  const {firstname,lastname,profile, phone,pinCode, state, addressLine1, addressLine2, city, country, dateOfBirth, email, gender, linkedProfile, portfolio} = req.body;
+  console.log(firstname,lastname,profile, phone, pinCode, state, addressLine1, addressLine2, city, country, dateOfBirth, email  ,gender, linkedProfile, portfolio);
   try{
     const user = await User.findById(userId);
     if(!user){
       return res.status(404).json({ message: 'User not found' });
     }
      // ✅ Update fields manually
-    user.name = name || user.name;
+    user.firstname = firstname || user.firstname;
+    user.lastname = lastname || user.lastname;
+    user.lastname = lastname || user.lastname;
     user.profile = profile || user.profile;
     user.phone = phone || user.phone;
     user.address.country = country || user.address.country;
@@ -969,6 +973,8 @@ updateProfile : async (req, res) => {
     user.dateOfBirth = dateOfBirth || user.dateOfBirth;
     user.email = email || user.email;
     user.gender = gender || user.gender;
+    user.linkedProfile = linkedProfile || user.linkedProfile;
+    user.portfolio = portfolio || user.portfolio;
 
      if (req.file) {
       user.image = `/uploads/users/${req.file.filename}`;

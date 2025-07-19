@@ -145,7 +145,7 @@ function Dashboard() {
   return (
     <>
        <h2 className="text-xl mx-8  pt-5 font-semibold">
-          hey , {userinfo ? userinfo.name : "User"} 👋
+          hey , {userinfo ? userinfo.firstname : "User"} 👋
         </h2>
         <p className="text-gray-500 mx-8">
           Here is your job listings statistic report.

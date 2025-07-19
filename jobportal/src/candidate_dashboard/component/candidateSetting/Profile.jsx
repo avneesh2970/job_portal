@@ -9,7 +9,8 @@ function Profile({data}) {
   console.log('Profile data:', data);
   
   const [formData, setFormData] = useState({
-    name:"",
+    firstname:"",
+    lastname: "",
     profile:'',
     email: data.email || "",
     phone: "",  
@@ -20,7 +21,10 @@ function Profile({data}) {
     state: "",
     pinCode: "",
     addressLine1: "",
-    addressLine2: ""
+    addressLine2: "",
+    linkedProfile: "",
+    portfolio: ""
+
   });
   
 
@@ -30,9 +34,10 @@ function Profile({data}) {
 
   useEffect(() => {
   if (data?.email) {
-    setFormData((prev) => ({ ...prev, email: data.email, name: data.name || '', profile: data.profile || '', phone: data.phone || '', dateOfBirth: data.dateOfBirth || "", gender: data.gender || '', country: data.address?.country || '', city: data.address?.city || '', state: data.address?.state || '', pinCode: data.address?.pincode || '', addressLine1: data.address?.address1 || '', addressLine2: data.address?.address2 || '' }));
+    setFormData((prev) => ({ ...prev, email: data.email, firstname: data.firstname || '', lastname: data.lastname || '', profile: data.profile || '', phone: data.phone || '', dateOfBirth: data.dateOfBirth || "", gender: data.gender || '', country: data.address?.country || '', city: data.address?.city || '', state: data.address?.state || '', pinCode: data.address?.pincode || '', addressLine1: data.address?.address1 || '', addressLine2: data.address?.address2 || '', linkedProfile: data.linkedProfile || '', portfolio: data.portfolio || '' }));
   }
 }, [data]);
+
 
  const handleImageChange = (e) => {
   const file = e.target.files[0];
@@ -140,17 +145,31 @@ function Profile({data}) {
         <div className='flex-1 text-xl text-zinc-700 font-semibold'>Personal Details</div>
         <div className='flex-1'>
           <div action="" className=' grid gap-6'>
-            <div className='flex flex-col'>
-              <label htmlFor="">Full Name</label>
+            <div className='flex gap-3    w-full'>
+              <div className='flex flex-col w-6/12 '>
+                <label htmlFor="">First Name</label>
               <input
                 type="text"
                 className='border border-[#DEE0E4] p-3 placeholder:font-normal placeholder:text-[14px] placeholder:text-[#A0A0A0]'
-                name='name' // Add name attribute for form handling
-                placeholder='Enter full name'
-                value={formData.name || ''} // Use data.name if available
+                name='firstname' // Add name attribute for form handling
+                placeholder='Enter first name'
+                value={formData.firstname || ''} // Use data.first if available
                 onChange={(e) => handlechange(e)
                   }
               />
+              </div>
+              <div className='flex flex-col w-6/12 '>
+                <label htmlFor="">Last Name</label>
+              <input
+                type="text"
+                className='border border-[#DEE0E4] py-3 placeholder:font-normal placeholder:text-[14px] placeholder:text-[#A0A0A0]'
+                name='lastname' // Add name attribute for form handling
+                placeholder='Enter last name'
+                value={formData.lastname || ''} // Use data.first if available
+                onChange={(e) => handlechange(e)
+                  }
+              />
+              </div>
             </div>
              <div className='flex flex-col'>
               <label htmlFor="">Profile</label>
@@ -160,6 +179,30 @@ function Profile({data}) {
                 name='profile' // Add name attribute for form handling
                 placeholder='Enter Profile  Name'
                 value={formData.profile || ''} // Use data.name if available
+                onChange={(e) => handlechange(e)
+                  }
+              />
+            </div>
+             <div className='flex flex-col'>
+              <label htmlFor="">Linked Profile URL</label>
+              <input
+                type="text"
+                className='border border-[#DEE0E4] p-3 placeholder:font-normal placeholder:text-[14px] placeholder:text-[#A0A0A0]'
+                name='linkedProfile' // Add name attribute for form handling
+                placeholder='Enter Linked Profile URL'
+                value={formData.linkedProfile || ''} // Use data.name if available
+                onChange={(e) => handlechange(e)
+                  }
+              />
+            </div>
+             <div className='flex flex-col'>
+              <label htmlFor="">Portfolio URL</label>
+              <input
+                type="text"
+                className='border border-[#DEE0E4] p-3 placeholder:font-normal placeholder:text-[14px] placeholder:text-[#A0A0A0]'
+                name='portfolio' // Add name attribute for form handling
+                placeholder='Enter Portfolio URL'
+                value={formData.portfolio || ''} // Use data.name if available
                 onChange={(e) => handlechange(e)
                   }
               />

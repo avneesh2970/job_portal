@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import { FaExternalLinkAlt } from "react-icons/fa";
-
+import { MdRemoveRedEye } from "react-icons/md";
+import {useNavigate} from 'react-router-dom';
 function AllAplicant() {
+  const navigate = useNavigate();
     const [applicant, setapllicant] = useState([]);
     const [data, setData] = useState([]);
     console.log('applicant status',applicant);
@@ -21,7 +23,11 @@ function AllAplicant() {
         transition: { staggerChildren: 0.1 }
       }
     };
-    
+
+    const handleViewApplicant = (appl) => {
+    console.log('View applicant details:', appl);
+    navigate('/company_dashboard/applicant-details', { state: { appl } });
+    }
   const rowVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } }
@@ -118,9 +124,9 @@ function AllAplicant() {
            className="w-full flex flex-row  items-center bg-blue-50 border border-blue-200 rounded-md p-4 shadow hover:shadow-md transition"
     >
       <div className='w-2/12 '>
-        <p className="font-medium text-blue-900 ">{appl.fullName}</p>
-        <p className="text-xs text-gray-500">{appl.email}</p>
-        <p className="text-xs text-gray-400">Applied: {new Date(appl.appliedAt).toLocaleDateString()}</p>
+        <p className="font-medium text-blue-900 ">{appl.firstname} {appl.lastname}</p>
+        {/* <p className="text-xs text-gray-500">{appl.email}</p> */}
+        <p className="text-xs font-medium text-gray-600">Applied: {new Date(appl.appliedAt).toLocaleDateString()}</p>
       </div>
 
       <div className="text-blue-800 text-base w-2/12 ">{appl.jobTitle}</div>
@@ -158,7 +164,7 @@ function AllAplicant() {
           <FaExternalLinkAlt />
         </a>
       </div>
-      <div className='w-3/12 flex justify-center items-center  mx-auto '>
+      <div className='w-3/12 flex justify-center items-center  mx-auto gap-2.5 '>
         
       <select
         value={appl.status}
@@ -168,6 +174,9 @@ function AllAplicant() {
           <option value={status} key={status}>{status}</option>
         ))}
       </select>
+      <div onClick={() => handleViewApplicant(appl)} className='px-2.5 py-1.5 font-semibold text-blue-500 rounded-md cursor-pointer hover:text-blue-700 hover:underline transition'>
+        <MdRemoveRedEye/>
+      </div>
     
       </div>
     </div>

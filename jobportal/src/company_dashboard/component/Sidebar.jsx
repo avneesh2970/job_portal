@@ -24,9 +24,9 @@ function Sidebar({containerStyle, close}) {
           <Link to="/company_dashboard" onClick={close} className=" cursor-pointer block p-2 rounded ">
             Dashboard
           </Link>
-          {/* <Link to="/companyprofile" onClick={close} className=" cursor-pointer block p-2 rounded ">
+          <Link to="/company_dashboard/companyprofile" onClick={close} className=" cursor-pointer block p-2 rounded ">
            Company Profile
-          </Link> */}
+          </Link>
           {/* <Link to="/message" onClick={close} className=" cursor-pointer block p-2 rounded ">
            Messages
           </Link> */}

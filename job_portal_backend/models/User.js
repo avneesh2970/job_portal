@@ -20,6 +20,8 @@ const UserSchema = new mongoose.Schema({
   // name: { type: String, trim: true },
   firstname: { type: String, trim: true },
   lastname: { type: String, trim: true },
+  linkedProfile: { type: String, trim: true }, // LinkedIn profile URL
+  portfolio: { type: String, trim: true }, // Portfolio URL
   
   profile: { type: String, trim: true }, // Profile name or title
   phone: { type: String },

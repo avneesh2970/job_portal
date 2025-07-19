@@ -33,8 +33,17 @@ export default function PersnolProfile({ user }) {
            <div className="w-80 flex flex-col bg-white shadow-lg rounded-xl p-6">
     
       <div className="text-center ">
-        <img  src={`${import.meta.env.VITE_BACKEND_URL}${userinfo.image}`} alt="Profile" className="w-20 h-20 mx-auto rounded-full" />
-        <h2 className="text-lg font-semibold mt-2">{userinfo.name}</h2>
+        <img
+  src={`${import.meta.env.VITE_BACKEND_URL}${userinfo.image}`}
+  alt="Profile"
+  className="w-20 h-20 mx-auto rounded-full object-cover bg-zinc-200"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "https://imgs.search.brave.com/n24eamZZyFy2YdTSYarsWPVTDFMgxdJj-gUWTIGoYqg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1Lzg5LzkzLzI3/LzM2MF9GXzU4OTkz/Mjc4Ml92UUFFQVpo/SG5xMVFDR3U1aWt3/cllhUUQwTW11cm0w/Ti5qcGc";
+  }}
+/>
+
+        <h2 className="text-lg font-semibold mt-2">{userinfo.firstname} {userinfo.lastname}</h2>
         <p className="text-gray-500">{userinfo.profile}</p>
       </div>
 

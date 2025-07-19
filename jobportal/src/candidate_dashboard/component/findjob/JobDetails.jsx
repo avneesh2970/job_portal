@@ -134,7 +134,8 @@ function JobDetails() {
 
 
     const [formData, setFormData] = useState({
-        fullName: "",
+        firstname: "",
+        lastname: "",
         email: user.email,
         phone: "",
         jobTitle: job?.jobTitle ,
@@ -155,11 +156,12 @@ function JobDetails() {
   if (userInfo) {
     setFormData((prev) => ({
       ...prev,
-      fullName: userInfo.name || "",
+      firstname: userInfo.firstname || "",
+      lastname: userInfo.lastname || "",
       email: userInfo.email || "",
       phone: userInfo.phone || "",
-      linkedInUrl: userInfo.linkedInUrl || "",
-      portfolioUrl: userInfo.portfolioUrl || "",
+      linkedInUrl: userInfo.linkedProfile || "",
+      portfolioUrl: userInfo.portfolio || "",
       resume : userInfo.resume || "",
     }));
   }
@@ -377,7 +379,7 @@ if (videoIntroduction) {
                                     ✖
                                 </button>
                                 <div className="flex items-center space-x-3">
-                                    <div className="bg-zinc-200 text-white font-bold text-lg p-2 rounded w-[88px] h-[68px] my-auto flex items-center justify-center">
+                                    <div className="bg-zinc-200 text-white font-bold text-lg p-2 rounded w-[68px] h-[68px] my-auto flex items-center justify-center">
                                         <img src={job.companyLogo} alt="" />
                                     </div>
                                     <div className="">
@@ -394,20 +396,37 @@ if (videoIntroduction) {
                                     {/* Personal Information Section */}
                                     <div className="space-y-6">
                                         {/* Full Name */}
-                                        <div>
-                                            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
-                                                Full Name*
+                                        <div className="flex  gap-2 w-full justify-between">
+                                        <div className="w-6/12">
+                                            <label htmlFor="firstname" className="block text-sm font-medium text-gray-700 mb-1">
+                                                First Name*
                                             </label>
                                             <input
                                                 type="text"
-                                                id="fullName"
-                                                name="fullName"
-                                                value={formData.fullName}
+                                                id="firstname"
+                                                name="firstname"
+                                                value={formData.firstname}
                                                 onChange={handleChange}
                                                 required
                                                 className="w-full p-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                                 placeholder="Enter your full name"
                                             />
+                                        </div>
+                                        <div className="w-6/12">
+                                            <label htmlFor="lastname" className="block text-sm font-medium text-gray-700 mb-1">
+                                                Last Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="lastname"
+                                                name="lastname"
+                                                value={formData.lastname}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full p-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                                placeholder="Enter your last name"
+                                            />
+                                        </div>
                                         </div>
 
                                         {/* Email */}

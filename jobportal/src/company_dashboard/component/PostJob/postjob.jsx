@@ -213,6 +213,37 @@ const PostJob = () => {
   }
  },[])
 
+
+
+  useEffect(() => {
+             const user = JSON.parse(localStorage.getItem('user'));
+            const user_email = user.email;
+            const fetchdata = async () => {
+             try {
+                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`);
+                 console.log('response', response);
+                 if (response.data && response.data.companyProfile) {
+                     const profile = response.data.companyProfile;
+                     setCompanyLogo(profile.companyLogo || "");
+                     setCompanyName(profile.companyName || "");
+                     setExternalApplyUrl(profile.externalApplyUrl || "");
+                     setWebsiteUrl(profile.websiteUrl || "");
+                     setLocation(profile.location || "");
+                     setEmployeeStrength(profile.employeeStrength || "");
+                     setIndustry(profile.industry || "");
+                     setTechnology(profile.technology || "");
+                     setDay(profile.day || "");
+                     setMonth(profile.month || "");
+                     setYear(profile.year || "");
+                     setAboutCompany(profile.aboutCompany || "");
+                 }
+             } catch (error) {
+                 console.error("Error fetching company profile:", error);
+             }
+            }
+            fetchdata();
+         },[])
+
   return (
     <div className="p-6 bg-white shadow rounded-lg">
       <form onSubmit={(e) => e.preventDefault()}>
