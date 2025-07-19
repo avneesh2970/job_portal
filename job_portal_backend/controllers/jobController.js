@@ -1,5 +1,5 @@
 const JobPost = require("../models/Jobpost");
-
+const CompanyProfile = require("../models/CompanyProfile");
 // ✅ Create Job Post
 const createJobPost = async (req, res) => {
   try {
@@ -107,6 +107,22 @@ const getUserWithAppliedJobs = async (req, res) => {
   }
 };
 
+const createCompanyProfile = async (req, res) => {
+  try {
+    const { email } = req.params;
+    console.log('email', email);
+    const companyProfileData = { ...req.body, owner_email: email };
+    const newCompanyProfile = new CompanyProfile(companyProfileData);
+    await newCompanyProfile.save();
+    console.log('Company profile created:', newCompanyProfile);
+    res.status(201).json({ message: "Company profile created successfully", companyProfile: newCompanyProfile });
+  } catch (error) {
+     console.log('Error creating company profile:', error);
+    res.status(500).json({ error: error.message });
+   
+  }
+};
+
 
 module.exports = {
   createJobPost,
@@ -114,5 +130,6 @@ module.exports = {
   getJobPostById,
   updateJobPost,
   deleteJobPost,
-  getUserWithAppliedJobs
+  getUserWithAppliedJobs,
+  createCompanyProfile
 };

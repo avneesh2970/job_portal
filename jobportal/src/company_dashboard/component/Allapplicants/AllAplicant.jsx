@@ -57,8 +57,8 @@ function AllAplicant() {
       setapllicant(filteredData);
       const fetchStatus = async () => {
         try {
-          const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/status/${user.id}`);
-          console.log('Status fetched:', response.data);
+          // const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/status/${user.id}`);
+          // console.log('Status fetched:', response.data);
         } catch (error) {
           console.error('Error fetching status:', error);
         }
@@ -195,7 +195,7 @@ function AllAplicant() {
                     <select
                     className='bg-white border border-blue-400 rounded-md p-2 text-sm'
                     value={appl.status}
-                    onChange={(e) => handleStatusChange(appl?.user, appl?.job, e.target.value)}
+                    onChange={(e) => handleStatusChange(appl?.user, appl?.job._id, e.target.value)}
                   >
                     {['Submitted', 'Under Review', 'Interview', 'Offered', 'Rejected'].map(status => (
                       <option value={status} key={status}>{status}</option>

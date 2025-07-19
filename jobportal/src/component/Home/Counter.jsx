@@ -13,19 +13,19 @@ const initialData = [
     id: 2,
     title: 'Internship',
     count: 500,
-    icon: <FaUserCheck className="text-violet-600 text-4xl mb-2" />,
+    icon: <FaUserCheck className="text-blue-600 text-4xl mb-2" />,
   },
   {
     id: 3,
     title: 'Companies',
     count: 200,
-    icon: <FaBuilding className="text-indigo-600 text-4xl mb-2" />,
+    icon: <FaBuilding className="text-blue-600 text-4xl mb-2" />,
   },
   {
     id: 4,
-    title: 'Students Placed',
+    title: 'Total Candidates',
     count: 800,
-    icon: <FaGraduationCap className="text-green-600 text-4xl mb-2" />,
+    icon: <FaGraduationCap className="text-blue-600 text-4xl mb-2" />,
   },
 ];
 
@@ -62,7 +62,7 @@ const [animatedCounts, setAnimatedCounts] = useState(initialData.map(() => 0));
       {initialData.map((item, index) => (
         <div
           key={item.id}
-          className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-[0_10px_20px_-5px_rgba(0,0,0,0.3)] transition-all transform hover:scale-110 duration-500 bg-gradient-to-t from-blue-300 via-indigo-200 to-violet-200"
+          className="relative  p-6 rounded-lg shadow-md hover:shadow-[0_10px_20px_-5px_rgba(0,0,0,0.3)] transition-all transform hover:scale-105 duration-500 bg-zinc-200 "
         >
           <div className="absolute top-0 left-0 w-full h-2 rounded-t-lg bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
           <div className='flex justify-center'>{item.icon}</div>

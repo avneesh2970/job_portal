@@ -883,7 +883,7 @@ const userController = {
 
     if (!application) return res.status(404).json({ message: 'Application not found' });
 
-    res.status(200).json({ status: application.status });
+    res.status(200).json({ status: application });
   } catch (error) {
     console.error('Error fetching status:', error);
     res.status(500).json({ message: 'Server error' });

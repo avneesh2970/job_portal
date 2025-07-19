@@ -5,7 +5,9 @@ const {
     getJobPostById, 
     updateJobPost, 
     deleteJobPost,
-    getUserWithAppliedJobs 
+    getUserWithAppliedJobs,
+    createCompanyProfile 
+
 } = require('../controllers/jobController');
 const upload = require('../middleware/upload');
 
@@ -28,4 +30,8 @@ router.put('/jobpost/:id', upload.single('companyLogo'), updateJobPost);
 // Delete a job post by ID
 router.delete('/jobpost/:id', deleteJobPost);
 
+
+router.post('/jobpost/:email/apply',upload.single('companyLogo'), createCompanyProfile);
+
 module.exports = router;
+

@@ -389,10 +389,7 @@ if (videoIntroduction) {
                                 <h2 className="text-2xl font-bold text-gray-700 mt-3">
                                     Submit your application
                                 </h2>
-                                <p className="text-sm text-gray-500 mb-6">
-                                    The following is required and will only be shared with Zend.
-                                </p>
-
+                               
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     {/* Personal Information Section */}
                                     <div className="space-y-6">
@@ -457,8 +454,8 @@ if (videoIntroduction) {
                                                 type="text"
                                                 id="jobTitle"
                                                 name="jobTitle"
-                                                value={formData.jobTitle}
-                                                onChange={handleChange}
+                                                value={job?.jobTitle}
+                                                
                                                 required
                                                 className="w-full p-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                                 placeholder="Enter your job title"

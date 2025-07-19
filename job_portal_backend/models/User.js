@@ -11,6 +11,10 @@ const UserSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   image: { type: String },  //for image uplaod
   resume : String,
+  companyprofile: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "CompanyProfile"
+  },
 
   // ✅ Personal Information
   // name: { type: String, trim: true },

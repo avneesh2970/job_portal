@@ -36,6 +36,7 @@ import  InterviewSchedule from './company_dashboard/component/Allapplicants/Inte
 
 import { View } from 'lucide-react'
 import HelpCenter from './candidate_dashboard/component/HelpCenter.jsx'
+import CompanyProfile from './company_dashboard/component/setting/CompanyProfile.jsx'
 function App() {
   const [count, setCount] = useState(0)
   const router = createBrowserRouter([
@@ -142,7 +143,7 @@ function App() {
           element:<InterviewSchedule/>
         },{
           path:'comp_settings',
-          element:<CandSetting/>
+          element:<CompanyProfile/>
         }
         // ,{
         //   path:'comp_about',

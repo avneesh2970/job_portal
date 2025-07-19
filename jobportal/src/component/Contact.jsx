@@ -77,7 +77,7 @@ export default function ContactPage() {
           
         <div className="h-64 bg-gray-200 rounded-xl shadow-inner overflow-hidden">
   <iframe
-    src="https://maps.google.com/maps?q=GMS%20Road%2C%20Dehradun&t=&z=13&ie=UTF8&iwloc=&output=embed"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.5105195261544!2d78.00362147458128!3d30.307993406037497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39092be94375e729%3A0xc160311fe8cb82d6!2sNovaNectar%20Services%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1748350315124!5m2!1sen!2sin"
     width="100%"
     height="100%"
     style={{ border: 0 }}
