@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"; // ✅ Required for Link to work
 import { useLocation } from 'react-router-dom';
 const ApplicantDetails = () => {
   const [user, setUser] = useState({});
+  console.log('Applicant Details:', user.applied);
   const [activeTab, setActiveTab] = useState('hiring');
   const tabs = [
     { id: 'hiring', label: 'Hiring Process' },
@@ -137,12 +138,26 @@ const ApplicantDetails = () => {
         {activeTab === 'hiring' && (
           <div className="mt-6">
             <h3 className="text-lg font-semibold mb-4">Current Stage</h3>
-            {applicationStatuses.map((status, index) => (
-              <div key={index} className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-gray-700">{status.status}</span>
-                <span className="text-base text-gray-600"> {status.date}</span>
-              </div>
-            ))}
+          {user.applied?.map((application, appIndex) => (
+  <div key={appIndex} className="mb-6 border-b pb-4">
+    <h3 className="text-md font-semibold text-indigo-600 mb-2">
+      {/* Application {appIndex + 1} */}
+    </h3>
+
+    {application.statusHistory?.map((statusItem, index) => (
+      <div key={index} className="flex items-center justify-between mb-2 pl-4">
+        <span className="text-base font-semibold text-gray-700">{statusItem.value}</span>
+        <span className="text-sm text-gray-500">
+          {new Date(statusItem.updatedAt).toLocaleString('en-IN', {
+            dateStyle: 'medium',
+            timeStyle: 'short',
+          })}
+        </span>
+      </div>
+    ))}
+  </div>
+))}
+
 
             <div className="text-sm text-gray-700 space-y-3">
             

@@ -153,6 +153,10 @@ const closeModal = () => {
           <h3 className="font-semibold">About Company</h3>
           <p>{selectedJob.aboutCompany}</p>
         </div>
+        <div className="mt-auto flex justify-between gap-2 pt-3">
+    <Link to={`/company_dashboard/updatejob/${selectedJob._id}`} className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold py-2.5 px-8 rounded-md">Update</Link>
+    <button onClick={(e) => { e.stopPropagation(); handleDelete(selectedJob._id); }} className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-2.5 px-8 rounded-md">Delete</button>
+  </div>
       </div>
     </div>
   </div>

@@ -14,7 +14,8 @@ const JobApplicationModal = ({ isOpen, onClose, jobDetails }) => {
   
   
   const [formData, setFormData] = useState({
-    fullName: "",
+    firstname: "",
+    lastname: "",
     email: info,
     phone: "",
     jobTitle: jobDetails.jobTitle,
@@ -140,7 +141,7 @@ const handleSubmit = async (e) => {
       <div className="fixed inset-0 backdrop-blur-sm  mt-2/12 bg-opacity-30" onClick={onClose}></div>
       
       {/* The modal itself - centered with fixed width */}
-      <div className="relative bg-white rounded-lg w-full max-w-md mx-4 overflow-y-auto max-h-[90vh]">
+      <div className="relative bg-white rounded-lg w-full max-w-xl mx-4 overflow-y-auto max-h-[90vh]">
         {/* Modal header */}
         <div className="flex items-center p-4 border-b">
           <div className="flex items-center space-x-3">
@@ -172,20 +173,40 @@ const handleSubmit = async (e) => {
           )}
           
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Full Name */}
+           <div className="flex justify-between">
+             {/* First Name */}
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
+              <label htmlFor="firstname" className="block text-sm font-medium text-gray-700 mb-1">First Name*</label>
               <input
                 type="text"
-                id="fullName"
-                name="fullName"
+                id="firstname"
+                name="firstname"
                 required
-                placeholder="Enter your full name"
+                placeholder="first name"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                value={formData.fullName}
+                value={formData.firstname}
                 onChange={handleChange}
               />
             </div>
+
+            <div>
+              <label htmlFor="lastname" className="block text-sm font-medium text-gray-700 mb-1">Last Name*</label>
+              <input
+                type="text"
+                id="lastname"
+                name="lastname"
+                required
+                placeholder="last name"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                value={formData.lastname}
+                onChange={handleChange}
+              />
+            </div>
+
+           </div>
+               
+              
+          
             
             {/* Email */}
             <div>

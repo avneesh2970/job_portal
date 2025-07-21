@@ -815,6 +815,41 @@ const userController = {
         message: 'Error retrieving users'
       });
     }},
+   sendEmail: async (req, res) => {
+  const { name, email, phone, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: `"${name}" <${process.env.GMAIL_USER}>`,
+    to: 'developer.novanetar@gmail.com',
+    replyTo: email,
+    subject: `New Message from ${name}`,
+    html: `
+      <h3>New Contact Form Submission</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Email error:', error);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+},
+
   
   getProfile: async (req, res) => {
     try {
@@ -846,7 +881,7 @@ const userController = {
 },
 
   // for updating the status of an application
-  updateStatus : async (req, res) => {
+ updateStatus: async (req, res) => {
   const { userId, jobId } = req.params;
   const { status } = req.body;
   console.log('status', status);
@@ -863,15 +898,25 @@ const userController = {
 
     if (jobIndex === -1) return res.status(404).json({ message: 'Application not found for this user' });
 
-    user.applied[jobIndex].status = status;
+    const newStatus = {
+      value: status,
+      updatedAt: new Date()
+    };
+
+    if (!user.applied[jobIndex].statusHistory) {
+      user.applied[jobIndex].statusHistory = []; // initialize if not present
+    }
+
+    user.applied[jobIndex].statusHistory.push(newStatus);
     await user.save();
 
-    res.status(200).json({ success: true, message: 'Status updated' });
+    res.status(200).json({ success: true, message: 'Status updated', newStatus });
   } catch (error) {
     console.error('Error updating status:', error);
     res.status(500).json({ message: 'Server error' });
   }
 },
+
   getStatus: async (req, res) => {
   const { userId, jobId } = req.params;
 

@@ -101,7 +101,7 @@ function JobDetails() {
     if (jobId) {
       fetchJob();
     }
-  }, [jobId]);
+  }, [jobId, user.id]); // Fetch job details when jobId or user.id changes
 
     console.log('hry',job?.jobTitle)
     console.log('allJobs', allJobs)
@@ -130,7 +130,7 @@ function JobDetails() {
   };
 
   fetchUserInfo();
-}, []);
+}, [jobId, user.id]); // Fetch user info when jobId or user.id changes
 
 
     const [formData, setFormData] = useState({
@@ -165,7 +165,7 @@ function JobDetails() {
       resume : userInfo.resume || "",
     }));
   }
-}, [job]);
+}, );
 
     
 
@@ -370,7 +370,7 @@ if (videoIntroduction) {
                         </div>
                     </div> */}
                     {isModalOpen && (
-                        <div className="absolute inset-0 flex-col overflow-scroll z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
+                        <div className="fixed inset-0 flex-col overflow-scroll z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
                             <div className="relative max-w-2xl w-full mx-auto p-6 bg-white rounded-lg shadow-md overflow-y-auto ">
                                 <button
                                     onClick={() => setIsModalOpen(false)}

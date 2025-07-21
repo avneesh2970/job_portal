@@ -2,9 +2,15 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Linkedin, Twitter, Github } from 'lucide-react';
 import React from 'react';
+import axios from 'axios';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '', 
+    message: '' 
+  });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -12,14 +18,28 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log('Form submitted:', formData);
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
-      setIsSubmitted(true);
+    try {
+      const res = await axios.post('http://localhost:5000/api/send-email', formData);
+      if (res.status === 200) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        alert(res.data.error || 'Something went wrong.');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Server error.');
+    } finally {
       setIsLoading(false);
-    }, 2000);
-  };
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
+  } 
 
   return (
     <div className="min-h-screen bg-white px-4 py-12 md:px-20 text-gray-800 relative">

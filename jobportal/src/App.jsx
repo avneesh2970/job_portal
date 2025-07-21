@@ -39,8 +39,9 @@ import { View } from 'lucide-react'
 import HelpCenter from './candidate_dashboard/component/HelpCenter.jsx'
 import CompanyPage from './company_dashboard/component/company/CompanyPage.jsx'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+
   const router = createBrowserRouter([
     {
       path:'/',
@@ -81,7 +82,7 @@ function App() {
           element:<CandFindjob/>
         },{
           path:'cand_job/:jobId',
-          element:<CandJobdetail/>
+          element:<CandJobdetail />
         },{
           path:'cand_myapplication',
           element:<CandApplication/>

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { Users, Briefcase, Linkedin, Twitter, ArrowRight, Sparkles, Lightbulb } from "lucide-react"
 import { useRef } from "react"
 import React from "react"
+import { Zap } from "lucide-react"
 
 const teamMembers = [
   {
@@ -49,21 +50,23 @@ const teamMembers = [
 
 const values = [
   {
-    icon: <Lightbulb className="w-10 h-10 text-amber-400" />,
-    title: "Igniting Potential",
+    icon: <Lightbulb className="w-10 h-10 text-blue-600" />,
+    title: "How We Help Job Seekers",
     description:
-      "We believe everyone holds unique talents. Our mission is to provide the spark that turns potential into achievement.",
+      "Finding a job should not be a whole time job. At NN Hire we make it easy for candidates to save time and effort through personalized job suggestions, instant alerts and a seamless application process. Your resume gets exposure and your profile reaches targeted recruiters. We are committed to providing you with control, clarity and confidence during your job search.",
   },
   {
     icon: <Sparkles className="w-10 h-10 text-teal-400" />,
-    title: "Crafting Connections",
+    title: "Why Employers Trust Us",
     description:
-      "Beyond algorithms, we foster genuine connections that lead to meaningful career paths and thriving teams.",
+      "Firms don't need more applicants, they need the right applicants. That's where NN Hire comes in. With our clear dashboard, validated seeker profiles and intelligent job-matching algorithm, recruitment is streamlined and effective. Employers spend less time, less money and gain improved outcomes  all in one location.",
   },
   {
     icon: <Users className="w-10 h-10 text-sky-500" />,
-    title: "Empathetic Innovation",
-    description: "We innovate with a human-centric approach, ensuring technology serves and uplifts every user.",
+    title: " Backed by NovaNectar",
+
+    description:
+      "NN Hire is a proud product of NovaNectar, a company dedicated to building innovative solutions that empower individuals and businesses. Our platform is designed with the same commitment to excellence and user-centric design that defines all our products. We leverage cutting-edge technology to create a hiring experience that is efficient, transparent, and effective.",
   },
 ]
 
@@ -123,88 +126,146 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-white"></div>
         </motion.div>
 
-        <motion.div className="flex justify-center m-auto h-screen w-full items-center flex-col z-10 -top-50 -mt-10" style={{ opacity: heroTextOpacity, y: heroTextY }}>
-          <motion.h1
-            className="text-5xl md:text-4xl lg:text-6xl font-bold tracking-tight !leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "circOut" }}
-          >
-            Where Careers <span className="text-blue-400">Take Flight</span>.
-          </motion.h1>
-          <motion.p
-            className="mt-8 max-w-3xl mx-auto text-lg md:text-2xl text-gray-400"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "circOut" }}
-          >
-            We're not just a job portal, we're your dedicated partner in navigating the dynamic world of careers and
-            talent acquisition.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "circOut" }}
-            className="mt-12"
-          >
-            <a
-              href="#our-story"
-              className="inline-flex items-center px-10 py-4 border-2 border-[#4640DE] bg-white text-lg font-semibold rounded-full hover:bg-[#4640DE] hover:text-white transition-all duration-300 group"
-            >
-              Discover Our Story
-              <ArrowRight className="ml-3 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
-            </a>
-          </motion.div>
-        </motion.div>
+      <motion.div
+  className="relative flex justify-center items-center flex-col w-full h-screen overflow-hidden"
+  style={{ opacity: heroTextOpacity, y: heroTextY }}
+>
+  {/* Background image and gradient overlay */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="https://cdn.pixabay.com/photo/2019/04/16/11/15/job-4131482_1280.jpg" // Replace with your image path
+      alt="Background"
+      className="w-full h-full object-cover "
+    />
+    <div className="absolute inset-0 bg-radial from-zinc-100  opacity-90"></div>
+  </div>
+
+  {/* Foreground content */}
+  <div className="z-10 px-4 text-center">
+    <motion.p
+      className="mt-10 max-w-4xl mx-auto text-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-medium tracking-wide"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.5, ease: "circOut" }}
+    >
+      <span className="text-indigo-600 font-semibold">NN Hire</span> is not simply another job board — it's a robust hiring platform designed to simplify job searches and team hiring.
+      <br className="hidden md:block" />
+      We bridge the gap between skilled professionals and emerging businesses by providing an effortless, intelligent, and reliable recruitment experience.
+      <br className="hidden md:block" />
+      From <span className="font-semibold text-green-600">freshers</span> to <span className="font-semibold text-blue-600">seasoned professionals</span>, we’re here to build meaningful connections that move careers and businesses forward.
+    </motion.p>
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2, ease: "circOut" }}
+      className="mt-12"
+    >
+      <a
+        href="#our-story"
+        className="inline-flex items-center px-10 py-4 border-2 border-[#4640DE] bg-white text-lg font-semibold rounded-full hover:bg-[#4640DE] hover:text-white transition-all duration-300 group"
+      >
+        Discover Our Story
+        <ArrowRight className="ml-3 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+      </a>
+    </motion.div>
+  </div>
+</motion.div>
+
       </motion.section>
 
       {/* Our Story Section */}
-      <motion.section
-        id="our-story"
-        className="py-14 md:py-32 bg-white dark:bg-white"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, ease: "circOut" }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900  mb-6">
-                Our <span className="text-[#4640DE]">Genesis</span>.
-              </h2>
-              <p className="text-lg text-gray-600  mb-4 leading-relaxed">
-                Born from a desire to simplify complexity and humanize the job search, our platform was envisioned as a
-                beacon for professionals and a strategic asset for businesses. We saw the need for a space where
-                aspirations meet opportunities seamlessly.
-              </p>
-              <p className="text-lg text-gray-600  leading-relaxed">
-                Every feature, every interaction is designed with purpose: to empower, to connect, and to foster growth.
-                We are more than code; we are a community dedicated to shaping the future of work.
-              </p>
-            </motion.div>
-            <motion.div
-              className="relative h-96 md:h-[500px] rounded-xl overflow-hidden shadow-2xl"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "circOut" }}
-              viewport={{ once: true }}
-            >
-              <img
-                src="https://images.pexels.com/photos/7552373/pexels-photo-7552373.jpeg"
-                alt="Diverse team collaborating"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
+    <motion.section
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true }}
+>
+  <div className="w-full px-6 md:px-12 lg:px-24 py-20 bg-gray-200">
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-7xl mx-auto">
+
+      {/* LEFT CONTENT */}
+      <div className="w-full lg:w-6/12">
+        {/* Badge */}
+        <p className="text-base flex items-center justify-center md:justify-start font-semibold px-4 py-2 bg-blue-100 text-blue-700 rounded-full w-max mx-auto lg:mx-0">
+          <Zap className="w-4 h-4 mr-2" />
+          Our <span className="ml-1 text-[#4640DE]">Mission</span>
+        </p>
+
+        {/* Mission Text */}
+        <p className="text-gray-800 mt-6 text-lg leading-relaxed">
+          Our purpose is simple: to make hiring quicker, job searching smarter, and the experience more human.
+          We believe an opportunity can change a life — and a hire can change a business.
+          That's why we focus on creating an efficient, intelligent, and transparent hiring platform for everyone.
+        </p>
+
+        {/* Divider */}
+        <div className="h-1 w-16 bg-blue-400 rounded-full my-10 mx-auto lg:mx-0"></div>
+
+        {/* Why Exists Badge */}
+        <p className="text-base flex items-center justify-center md:justify-start font-semibold px-4 py-2 bg-blue-100 text-blue-700 rounded-full w-max mx-auto lg:mx-0">
+          <Zap className="w-4 h-4 mr-2" />
+          Why <span className="ml-1 text-[#4640DE]">NNHire</span> Exists
+        </p>
+
+        {/* Why Text */}
+        <p className="text-gray-800 mt-6 text-lg leading-relaxed">
+          The job market is noisy, cluttered, and slow. Job seekers rarely know if their resume is even seen. Employers face a flood of irrelevant applications.
+          NN Hire was created to solve this — with verified listings, smart filters, and real-time updates for a hiring process that is easy, transparent, and fast.
+        </p>
+      </div>
+
+      {/* RIGHT IMAGE */}
+      <div className="w-full lg:w-6/12 flex justify-center">
+        <img
+          src="https://cdn.pixabay.com/photo/2024/07/15/12/27/ai-generated-8896730_1280.jpg" // Update path as needed
+          alt="Mission Illustration"
+          className="w-full max-w-md rounded-2xl shadow-lg object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</motion.section>
+
+
+<motion.section
+  className="w-full py-24 md:py-32 bg-gray-200"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true, amount: 0.3 }}
+>
+  <div className="container mx-auto px-6 lg:px-20 flex flex-col-reverse lg:flex-row items-center gap-12">
+    {/* Left Text Content */}
+    <div className="lg:w-1/2 text-center lg:text-left">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        Join the <span className="text-[#4640DE]">NNHire</span> Network
+      </h2>
+      <p className="text-gray-600 text-lg leading-relaxed mb-6">
+        We invite you to be part of a platform that puts people first. Whether you’re a <span className="text-green-600 font-semibold">fresher</span> looking for your first job, a <span className="text-blue-600 font-semibold">professional</span> seeking career growth, or an employer on the hunt for talent — NNHire welcomes you. Create your profile, explore opportunities, and start building your future with us.
+      </p>
+
+      <h3 className="text-2xl font-semibold text-gray-800 mb-4 mt-10">
+        Built for a Smarter Future of Work
+      </h3>
+      <p className="text-gray-600 text-lg leading-relaxed">
+        The world of work is changing. Remote roles, AI-based recruitment, and skill-based hiring are the new normal. NNHire is designed to keep up with this change. With automation, user-focused design, and a growth mindset — we’re not just following trends, we’re setting them.
+      </p>
+    </div>
+
+    {/* Right Image Content */}
+    <div className="lg:w-1/2">
+      <img
+        src="https://cdn.pixabay.com/photo/2017/01/13/17/29/hiring-1977803_1280.jpg" // Replace with your actual image
+        alt="Future of work"
+        className="w-full h-auto rounded-xl shadow-md"
+      />
+    </div>
+  </div>
+</motion.section>
+
+
+
 
       {/* Our Values Section */}
       <motion.section
@@ -222,7 +283,7 @@ export default function AboutPage() {
             These are the compass points that direct our journey and shape our culture.
           </p>
           <motion.div
-            className="mt-20 grid sm:grid-cols-1 md:grid-cols-3 gap-12"
+            className="mt-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -231,20 +292,130 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className=" bg-blue-700 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center"
+                className=" bg-gradient-to-b from-violet-500 to-blue-500 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center"
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="p-5 rounded-full bg-gradient-to-br from-sky-100 to-sky-200 dark:from-sky-700 dark:to-sky-800 mb-6 inline-block">
+                <div className="p-5 rounded-full  bg-blue-200 mb-6 inline-block">
                   {value.icon}
                 </div>
                 <h3 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed">{value.description}</p>
+                <p className="text-black  text-center leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.section>
+
+
+      <section className="py-20 bg-white px-6 md:px-12 lg:px-24">
+  <div className="max-w-7xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+      What <span className="text-indigo-600">Makes Us Different</span>
+    </h2>
+    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+      While most job boards only list jobs, <strong>NNHire</strong> empowers hiring with intelligent features that matter — real-time tracking, verified employers, clean UI, and more.
+    </p>
+
+    {/* Features Grid */}
+    <div className="mt-12 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {/* Feature Card */}
+      <div className="hover:scale-105 bg-gray-200 p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4 mx-auto">
+          <span className="text-4xl">
+            📈
+          </span>
+        </div>
+        <h4 className="text-xl font-semibold text-gray-800 mb-2">Resume Visibility Boost</h4>
+        <p className="text-gray-600">Increase your resume reach with features designed to get you noticed by real employers.</p>
+      </div>
+
+      <div className="hover:scale-105 bg-gray-200 p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4 mx-auto">
+           <span className="text-4xl">🔔</span>
+        </div>
+        <h4 className="text-xl font-semibold text-gray-800 mb-2">Real-Time Application Tracking</h4>
+        <p className="text-gray-600">Track application status updates instantly, removing the guesswork from the process.</p>
+      </div>
+
+       <div className="hover:scale-105 bg-gray-200 p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4 mx-auto">
+          <span className="text-4xl">✅</span>
+        </div>
+        <h4 className="text-xl font-semibold text-gray-800 mb-2">Verified Employers</h4>
+        <p className="text-gray-600">No more spam. We list only verified and credible businesses to ensure safe hiring.</p>
+      </div>
+
+       <div className="hover:scale-105 bg-gray-200 p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4 mx-auto">
+          <span className="text-4xl">🎯</span>
+        </div>
+        <h4 className="text-xl font-semibold text-gray-800 mb-2">Maximum Relevance</h4>
+        <p className="text-gray-600">Our smart filters and AI-match tech show you only the most relevant opportunities or applicants.</p>
+      </div>
+ <div className="hover:scale-105 bg-gray-200 p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4 mx-auto">
+          <span className="text-4xl">🧑‍💻</span>
+        </div>
+        <h4 className="text-xl font-semibold text-gray-800 mb-2">Clean & Simple UI</h4>
+        <p className="text-gray-600">A modern interface that’s built for speed, clarity, and ease — even on mobile.</p>
+      </div>
+
+      <div className="hover:scale-105 bg-gray-200 p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4 mx-auto">
+          <span className="text-4xl">💼</span>
+        </div>
+        <h4 className="text-xl font-semibold text-gray-800 mb-2">Focused on Outcomes</h4>
+        <p className="text-gray-600">Whether you’re hiring or job-hunting, we help you focus on what truly matters — results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <motion.section
+  className="w-full bg-gradient-to-b from-blue-50 to-white py-24 px-6"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+  variants={{
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }}
+>
+  <div className="max-w-5xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+      The <span className="text-[#4640DE]">NNHire</span> Advantage
+    </h2>
+
+    <div className="flex flex-col h-96 overflow-auto   gap-2 items-center text-lg text-gray-700 font-medium">
+      {[
+        "Smart Matching Algorithm for job recommendations",
+        "Verified job listings and employers",
+        "Easy, one-click application process",
+        "Resume and profile enhancement tools",
+        "Real-time notifications and application status",
+        "Clean employer dashboard for easy management",
+        "Dedicated support to assist users",
+      ].map((point, index) => (
+        <motion.div
+          key={index}
+          className="w-full max-w-3xl px-6 py-4 bg-white shadow-md rounded-xl border "
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <span className="text-[#4640DE] font-semibold mr-2">✓</span> {point}
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</motion.section>
+
+
 
       {/* Meet the Team Section */}
       {/* <motion.section
@@ -307,48 +478,8 @@ export default function AboutPage() {
       </motion.section> */}
 
       {/* CTA Section */}
-      <motion.section
-        className="relative py-24 md:py-36 overflow-hidden"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/placeholder.svg?width=1920&height=600"
-            alt="Dynamic abstract background"
-            className="w-full h-full object-cover opacity-30 dark:opacity-20"
-          />
-          <div className="absolute text-blue-600"></div>
-        </div>
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 ">
-            Ready to <span className="text-[#4640DE]">Elevate</span> Your Journey?
-          </h2>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 ">
-            Whether you're seeking your dream role or the perfect talent, your next chapter starts here.
-          </p>
-          <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
-            <motion.button
-              className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold rounded-full text-white bg-[#4640DE] hover:bg-rose-700 shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Briefcase className="mr-3 h-6 w-6" />
-              Explore Opportunities
-            </motion.button>
-            <motion.button
-              className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold rounded-full text-white bg-[#4640DE] hover:bg-rose-200 dark:hover:bg-rose-700/50 shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Users className="mr-3 h-6 w-6" />
-              Find Top Talent
-            </motion.button>
-          </div>
-        </div>
-      </motion.section>
+     
+
     </div>
   )
 }

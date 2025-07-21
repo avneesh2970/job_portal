@@ -5,41 +5,41 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaTwitter } from "re
 const Footer = () => {
   return (
     <footer className="bg-gray-900 w-f text-gray-300 py-16 px-10 md:px-8">
-      <div className="grid md:grid-cols-4 ">
+      <div className="grid sm:grid-cols-2  md:grid-cols-3  lg:grid-cols-4 ">
         
         {/* Brand Section */}
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center ">
             <div className=" p-2">
               <img src={logo} alt=""className="w-10"  />
             </div>
             <h2 className="text-2xl font-semibold text-white">NN<span className="text-blue-500">Hire</span></h2>
           </div>
-          <p className="mt-4 text-sm">
+          <p className="mt-4 text-sm pr-3.5 sm:pr-9">
           Great platform for the job seeker that passionate about startups. Find your <br/> dream job easier.
           </p>
 
-          <div className="flex gap-8 mt-6  ">
-            <a href="https://www.facebook.com/people/Novanectar-Services-Pvt-Ltd/61565824312345/?mibextid=qi2Omg&rdid=h2LF1ptM2dRhys9q&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fa6ob9vX4d6uEAd3B%2F%3Fmibextid%3Dqi2Omg"target="_blank" className="text-gray-400 hover:text-white transition">
-              <FaFacebookF />
+          <div className="flex gap-4 mt-6">
+            <a href="https://www.facebook.com/share/1Cc8gFvQXm/" target="_blank" className=" text-white transition">
+              <FaFacebookF className="w-6 h-6" />
             </a>
-            <a href="https://www.instagram.com/novanectar_services_pvt.ltd/?igsh=MXRoaHN3MGM5czYxZw%3D%3D#" target="_blank" className="text-gray-400 hover:text-white transition">
-              <FaInstagram />
+            <a href="https://www.instagram.com/_nnhire?igsh=MW5xbW9nMG16MW94NQ==" target="_blank" className="text-white transition">
+              <FaInstagram className="w-6 h-6" />
             </a>
-            <a href="https://www.youtube.com/@novanectarservicespvt.ltd." target="_blank" className="text-gray-400 hover:text-white transition">
-              <FaYoutube />
+            <a href="https://www.youtube.com/@novanectarservicespvt.ltd." target="_blank" className="text-white transition">
+              <FaYoutube  className="w-6 h-6" />
             </a>
-            <a href="https://www.linkedin.com/company/novanectar/"target="_blank" className="text-gray-400 hover:text-white transition">
-              <FaLinkedinIn />
+            <a href="https://www.linkedin.com/company/nnhire/"target="_blank" className="text-white transition">
+              <FaLinkedinIn className="w-6 h-6" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition">
-              <FaTwitter />
+            <a href="#" className="text-white transition">
+              <FaTwitter  className="w-6 h-6" />
             </a>
           </div>
         </div>
 
         {/* About Section */}
-        <div>
+        <div className="sm:mt-0 mt-10 ml-0 md:ml-16">
           <h3 className="text-lg font-semibold text-white">About</h3>
           <ul className="mt-4 space-y-2">
             <li><a href="#" className="hover:text-white transition">Companies</a></li>
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         {/* Resources Section */}
-        <div className="">
+        <div className="md:mt-0 mt-10">
           <h3 className="text-lg font-semibold text-white">Resources</h3>
           <ul className="mt-4 space-y-2">
             <li><a href="#" className="hover:text-white transition">Help Docs</a></li>
@@ -62,21 +62,24 @@ const Footer = () => {
         </div>
 
         {/* Subscribe Section */}
-        <div   className="">
+        <div   className="md:mt-0 mt-10">
           <h3 className="text-lg font-semibold text-white">Get job notifications</h3>
           <p className="mt-4 text-sm">
             The latest job news, articles, sent to your <br/> inbox weekly.
           </p>
-          <div className="flex mt-4 gap-1 md:flex-row flex-col space-y-1.5">
+          <form className="mt-4">
             <input
               type="email"
               placeholder="Enter your email"
-              className=" px-2 md:px-4  py-1 md:py-3  rounded-md mx-auto w-8/12 md:w-8/12 border border-gray-300  focus:outline-none focus:border-blue-500"
+              className="w-full p-2 rounded bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="bg-blue-500 text-white flex justify-center mx-auto w-8/12 md:w-4/12 px-2 md:px-4 items-center py-1 md:py-3  rounded-md hover:bg-blue-600 transition">
+            <button
+              type="submit"
+              className="mt-2 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+            >
               Subscribe
             </button>
-          </div>
+          </form>
         </div>
 
       </div>

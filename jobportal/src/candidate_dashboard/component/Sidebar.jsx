@@ -13,9 +13,9 @@ function Sidebar({close, containerStyle}) {
   }
   return (
     <>
-      <div className={`${containerStyle} h-screen justify-between bg-white border-2 border-r-2 border-zinc-300 shadow-[0_0_8px_rgba(0,0,0,0.1)] flex flex-col`}>
+      <div className={`${containerStyle} h-screen bg-white border-2 border-r-2 border-zinc-300 shadow-[0_0_8px_rgba(0,0,0,0.1)] flex flex-col`}>
   {/* Header */}
-  <div className='flex justify-between items-center'>
+  <div className='flex justify-between mt-2 items-center'>
     <h1 className="text-2xl flex items-center gap-2 font-bold text-blue-400 pl-6 pt-2">
       <div className='flex items-center gap-2'> 
         <img src="/logo.png" className='h-10 w-10' alt="Logo" />
@@ -26,7 +26,7 @@ function Sidebar({close, containerStyle}) {
   </div>
 
   {/* Navigation Links */}
-  <nav className="mt-6 text-lg pl-5.5">
+  <nav className=" text-lg pl-5.5">
     <Link to="/candidate_dashboard" onClick={close} className="cursor-pointer block p-2 rounded">
       Dashboard
     </Link>

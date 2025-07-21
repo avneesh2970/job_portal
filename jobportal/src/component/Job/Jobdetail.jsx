@@ -159,53 +159,55 @@ console.log((jobdata));
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header with back button */}
-      <div className="bg-white shadow-sm py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button 
-            onClick={handleGoBack}
-            className="flex items-center text-gray-600 hover:text-indigo-600"
-          >
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            <span className="text-sm font-medium">Back to jobs</span>
-          </button>
-        </div>
-      </div>
+      
 
       {/* Hero Section with Job Banner */}
-      <div className="relative h-60 bg-gray-800">
+      <div className="relative h-80 bg-gray-800">
         <img 
           src={`${SearchImage}`} 
           alt="Office space" 
           className="w-full h-full object- opacity-50"
         />
-        <div className="absolute bottom-10 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-t-lg shadow-md p-6 flex items-start">
-            <div className={`h-16 w-16 rounded-md flex items-center justify-center ${jobDetails.color} text-white text-xl font-bold mr-4`}>
+        <div className="absolute top-0 bg-transparent text-white  py-4">
+        <div className="cursor-pointer max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <button 
+            onClick={handleGoBack}
+            className="flex items-center cursor-pointer hover:text-gray-300 transition duration-200"
+          >
+            <ArrowLeft className="h-4 items-center my-auto w-4 mr-1" />
+            <span className="text-sm font-medium">Back to jobs</span>
+          </button>
+        </div>
+      </div>
+        <div className="absolute bottom-24 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-4 lg:px-6">
+          <div className="bg-white rounded-lg shadow-md p-3 flex items-start">
+            <div className={`md:h-16 md:w-16 h-10 w-10 rounded-md flex items-center justify-center ${jobDetails.color} text-white text-xl font-bold mr-4`}>
             <img src={jobdata.companyLogo} alt={`${jobdata.company} logo`} className="w-full h-full object-cover bg-zinc-200 border border-zinc-200 rounded-sm" />
             </div>
             <div className="flex-1">
-              <h1 className="text-xl font-bold text-gray-900">{jobdata.jobTitle || "Job Title"}</h1>
+              <h1 className=" sm:text-base md:text-xl font-bold text-gray-900">{jobdata.jobTitle || "Job Title"}</h1>
               <p className="text-sm text-gray-500">{jobdata.companyName || "Company"} • {jobdata.location || "Location"} </p>
             </div>
             <div className="flex space-x-2 items-center my-auto">
-              <button className="p-2 rounded-full hover:bg-gray-100">
-                <Share2 className="h-5 w-5 text-gray-500" />
+              <button className="p-2 hidden md:flex rounded-full hover:bg-gray-100">
+                <Share2 className="h-5 w-5 hidden md:flex text-gray-500" />
               </button>
-              <button className="p-2 rounded-full hover:bg-gray-100">
+              <button className="p-2  hidden md:flex rounded-full hover:bg-gray-100">
                 <Heart className="h-5 w-5 text-gray-500" />
               </button>
-              <button 
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium"
-                onClick={handleApplyNow}
-              >
-                Apply Now
-              </button>
-              {jobdata.externalApplyUrl && (
-                <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium"
-                onClick={() => window.open(jobdata.externalApplyUrl, '_blank')}>
-                  Apply Externally
-                </button>
-              )}
+              <button
+  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+  onClick={() => {
+    if (jobdata.externalApplyUrl) {
+      window.open(jobdata.externalApplyUrl, '_blank');
+    } else {
+      handleApplyNow();
+    }
+  }}
+>
+  Apply Now
+</button>
+
             </div>
           </div>
         </div>
@@ -396,7 +398,7 @@ console.log((jobdata));
             job offers  available at the moment.
           </div>
       ): (
-          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 mb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {[...alljobdata].slice(0,6).map((job) => (
                 <div
                 

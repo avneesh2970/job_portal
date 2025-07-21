@@ -31,7 +31,7 @@
 /* Create two identical sliders for seamless looping */
 .slider {
   display: flex;
-  gap: 10px;
+
   animation: scroll 150s linear infinite; /* Increased from 30s to 60s for slower scrolling */
   width: max-content; /* Allow the slider to size based on content */
 }
@@ -39,32 +39,37 @@
 /* Clone the first set of logos */
 .slider-content {
   display: flex;
-  gap: 38px;
+ 
 }
 
-/* Make logos responsive */
-.slider img {
+/* Default - Desktop */
+.slider {
   height: 80px;
   object-fit: contain;
-  animation: scroll 120s linear infinite;
+  animation: scroll 50s linear infinite;
 }
 
-@media (max-width: 768px) {
+/* Tablet (medium devices) */
+@media (max-width: 1024px) {
   .slider {
-    animation: scroll 50s linear infinite;
+    animation: scroll 40s linear infinite;
   }
 }
-@media (max-width: 1024px) {
+
+/* Mobile (small devices) */
+@media (max-width: 768px) {
+  .slider {
+    animation: scroll 60s linear infinite;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
   .slider {
     animation: scroll 80s linear infinite;
   }
 }
 
-@media (max-width: 480px) {
-  .slider {
-    animation: scroll 100s linear infinite;
-  }
-}
 
 
 @keyframes scroll {

@@ -74,33 +74,34 @@ const FAQSection = () => {
   const faqsData = [
   {
     id: 1,
-    question: "What services do you offer?",
+    question: "I keep applying for jobs but never get responses. What should I do?",
     answer:
-      "We offer a wide range of IT solutions including website development, app creation, SEO, graphic design, UI/UX, and digital marketing. Our goal is to provide tailored strategies to meet your specific needs.",
+      "Ensure that your resume is current, job title is the role you're applying for, and you're applying for appropriate jobs. Sites such as NNHire inform you of when the application has been seen, so you won't be left guessing.",
   },
   {
     id: 2,
-    question: "How long does it take to build a website?",
+    question: " How can I trust if a job posting is real or fake?",
     answer:
-      "The timeline for building a website depends on the complexity and features required. A simple brochure website can take a few weeks, while a more complex e-commerce site or web application can take several months. We provide a detailed timeline after our initial consultation.",
+      "Several users are trapped by spurious listings. On websites like NNHire, firms are verified first before they can publish, cutting the prospects of fraud.",
   },
   {
     id: 3,
-    question: "Do you provide support after the project is completed?",
+    question: " I don’t have experience — will I still get hired?",
+
     answer:
-      "Yes, we offer ongoing support and maintenance packages to ensure your website or application continues to run smoothly. We can discuss the different levels of support we offer to find one that fits your needs.",
+      "Definitely. Search for positions categorized as intern or fresher friendly. On NNHire, you can easily sift through such jobs to save time.",
   },
   {
     id: 4,
-    question: "How do you approach SEO for a new website?",
+    question: "Why am I not getting interview calls even after applying everywhere?",
     answer:
-      "Our SEO strategy starts with a comprehensive audit and keyword research. We then focus on on-page optimization, technical SEO, quality content creation, and building high-quality backlinks to improve your search engine rankings.",
+      "It might be because your profile is not visible or there is a mismatch with the requirements. NNHire practices intelligent job matching and thus your profile is only suggested for the best fit jobs.",
   },
   {
     id: 5,
-    question: "What is your process for UI/UX design?",
+    question: "Do I really need to create a full profile to apply?",
     answer:
-      "Our UI/UX design process is user-centric. We start with research and user personas, create wireframes and prototypes, and conduct user testing to refine the design. We collaborate closely with you throughout the process to ensure the final product is both beautiful and easy to use.",
+      "Yes. Incomplete profiles tend to go unnoticed. A 100% complete profile on a job website like NNHire is more likely to be shortlisted.",
   },
 ]
 

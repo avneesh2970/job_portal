@@ -59,6 +59,9 @@ router.post('/profileUpdate/:id', upload.fields([{ name: 'videoIntroduction', ma
 // get all the users
 router.get('/users', userController.getAllUsers);
 
+// send mail
+router.post('/send-email', userController.sendEmail);
+
 // Password reset routes
 router.post('/auth/forgot-password', userController.requestPasswordReset);
 router.get('/auth/reset-password/:token', userController.verifyResetToken);

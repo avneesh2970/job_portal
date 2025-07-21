@@ -99,6 +99,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   const [userinfo, setUserinfo] = useState("");
+
  
   const formatDate = (dateStr) => {
   const date = new Date(dateStr);
@@ -130,6 +131,7 @@ function Dashboard() {
       const apply = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/user/${user_id}/applied-jobs`);
       setUserApplied( apply.data.user.applied);
       setApplied(apply.data.user.applied.length);
+      // console.log("Applied jobs:", apply.data.user);
       const userinfo = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
       setUserinfo(userinfo.data);
       setLoading(false);
@@ -163,7 +165,13 @@ function Dashboard() {
           <div className="bg-green-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaCalendarAlt className="text-2xl mr-2" />
             <div>
-              <h3 className="text-lg font-bold">0</h3>
+             <h3 className="text-lg font-bold">
+  {
+    userApplied.filter((appl) =>
+      appl.statusHistory?.some((status) => status.value === "Interview")
+    ).length || 0
+  }
+</h3>
               <p>Interview schedule</p>
             </div>
           </div>
@@ -330,7 +338,13 @@ function Dashboard() {
         : "border border-gray-300 bg-gray-50 text-gray-600"
     }`}
         >
-          {job.status}
+          {job.statusHistory?.length > 0 ? (
+            <span>
+              {job.statusHistory[job.statusHistory.length - 1].value}
+            </span>
+          ) : (
+            "N/A"
+          )}
         </span>
       </td>
       <td className="p-3 text-gray-700 whitespace-nowrap">
