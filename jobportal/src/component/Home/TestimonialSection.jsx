@@ -34,7 +34,7 @@ const useTestimonials = () => {
   {
     id: 4,
     name: "Deepika Rai",
-    role: "Excel Developer @ Green Valley HR Services",
+    role: "Developer @ Green Valley HR Services",
     image: "https://randomuser.me/api/portraits/women/29.jpg",
     text: "When I applied to NN Hire I didn’t expect such a quick response. But within days, I got interview calls and finally got placed at Green Valley HR Services. NovaNectar’s platform and Smart IT driven system made the whole process seamless!",
   },

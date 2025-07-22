@@ -23,7 +23,7 @@ export default function ContactPage() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/send-email', formData);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/send-email`, formData);
       if (res.status === 200) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', phone: '', message: '' });
