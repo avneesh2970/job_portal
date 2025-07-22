@@ -167,28 +167,24 @@ function Company_profile() {
                 </div>
                <div className="flex flex-wrap justify-center gap-4 mb-4">
   {/* Facebook */}
-  <button className="flex items-center justify-center gap-2 text-blue-600 border-2 px-4 py-2 w-36  h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
+  <button onClick={()=>window.open(companyProfile?.facebookUrl, "_blank")} className="flex items-center justify-center gap-2 text-blue-600 border-2 px-4 py-2 w-36  h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
     <img src={facebook} alt="facebook" className="w-8 h-8" />
     <p className="text-sm font-semibold">Facebook</p>
   </button>
 
   {/* Instagram */}
-  <button className="flex items-center justify-center gap-2 text-pink-600 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-pink-50 transition-all duration-200">
+  <button onClick={()=>window.open(companyProfile?.instagramUrl, "_blank")} className="flex items-center justify-center gap-2 text-pink-600 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-pink-50 transition-all duration-200">
     <img src={instagram} alt="instagram" className="w-8 h-8" />
     <p className="text-sm font-semibold">Instagram</p>
   </button>
 
   {/* LinkedIn */}
-  <button className="flex items-center justify-center gap-2 text-blue-700 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
+  <button onClick={()=>window.open(companyProfile?.linkedInUrl, "_blank")} className="flex items-center justify-center gap-2 text-blue-700 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
     <img src={LinkedIn} alt="linkedin" className="w-8 h-8" />
     <p className="text-sm font-semibold">LinkedIn</p>
   </button>
 
-  {/* Gmail */}
-  <button className="flex items-center justify-center gap-2 text-red-600 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-red-50 transition-all duration-200">
-    <img src={gmail} alt="gmail" className="w-8 h-8" />
-    <p className="text-sm font-semibold">Gmail</p>
-  </button>
+ 
 </div>
 
                 <div className="grid grid-cols-2  items-center  ">
@@ -202,7 +198,7 @@ function Company_profile() {
                   </div> */}
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow mb-6">
+              {/* <div className="bg-white p-6 rounded-lg shadow mb-6">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-semibold">Our Team</h2>
                   <button className="text-blue-600">
@@ -238,7 +234,7 @@ function Company_profile() {
                 <a className="text-blue-600 mt-4 inline-block">
                   View all team members →
                 </a>
-              </div>
+              </div> */}
             
             </div>
             <div>
@@ -249,7 +245,7 @@ function Company_profile() {
                     Learn about the technology and tools that Nomad uses.
                   </p>
                   <div className="">
-                    <CiEdit className="text-2xl  " />
+                    {/* <CiEdit className="text-2xl  " /> */}
                   </div>
                 </div>
                 <div className=" gap-4 mt-4">
@@ -266,48 +262,25 @@ function Company_profile() {
                  
                  
                 </div>
-                <a
+                {/* <a
                   href="#"
                   className="text-blue-600 text-sm font-medium mt-4 block hover:underline"
                 >
                   View all tech stack →
-                </a>
+                </a> */}
               </div>
               <div className="p-6 bg-white shadow-lg rounded-2xl mb-6 ">
                 <h2 className="text-xl font-semibold">Office Location</h2>
                 <div className="flex justify-between">
                   <p className="text-gray-500 text-sm mt-1">
-                    Zend offices spread across 20 countries
+                    {/* Zend offices spread across 20 countries */}
                   </p>
-                  <CiEdit className="text-2xl" />
+                  {/* <CiEdit className="text-2xl" /> */}
                 </div>
 
-                <div className="mt-4 space-y-3">
-                  {locations.map((location, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <img
-                        src={location.flag}
-                        alt={location.name}
-                        className="w-6 h-4 rounded-sm"
-                      />
-                      <p className="text-gray-700 text-sm">
-                        {location.name}
-                        {location.isHeadquarter && (
-                          <span className="text-blue-600 font-medium ml-1">
-                            (Headquarter)
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                {companyProfile.location}
 
-                <a
-                  href="#"
-                  className="text-blue-600 text-sm font-medium mt-4 block hover:underline"
-                >
-                  View all Countries →
-                </a>
+               
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 
-import React, { useState,useRef, useEffect, useContext } from "react";
+import React, { useState,useRef, useEffect, useContext, use } from "react";
 import { FaUser, FaLock, FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "./AuthContext";
 import logo from './photos/logo.png'
@@ -11,14 +11,15 @@ const Header = () => {
   const { user } = useContext(AuthContext);
   console.log('u', user);
   const [users, setUserInfo] = useState(null);
+ const [companyName, setCompanyName] = useState('')
+
   const [user_name, setuser_name] = useState('')
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [pwd, setpwd] = useState('');
   const [userType, setuserType] = useState('')
   // console.log('user deatil',users.userType)
   const [isOpen, setIsOpen] = useState(false);
-  const [isCandidateOpen, setIsCandidateOpen] = useState(false);
-  const [isEmployeeOpen, setIsEmployeeOpen] = useState(false);
+
   const [isPageOpen, setIsPageOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,33 +49,7 @@ const Header = () => {
   const isActive = (path) => location.pathname === path;
 
 
-  const handleOpenCompany = () => {
-
-    const userinfo = { user_name, pwd }; // could be JWT or any auth token
-
-    // Step 1: Open new tab
-    const newTab = window.open("http://localhost:5174/", "_blank");
-
-    // Step 2: Wait a little bit and then send the token
-    setTimeout(() => {
-      newTab.postMessage({ userinfo }, "http://localhost:5174");
-    }, 500); // wait half a second so the new tab can load
-  };
-
-  const handleOpenCandidate = () => {
-    const userinfo = { user_name, pwd }; // could be JWT or any auth token
-
-    // Step 1: Open new tab
-    const newTab = window.open("http://localhost:5175/", "_blank");
-
-    // Step 2: Wait a little bit and then send the token
-    setTimeout(() => {
-      newTab.postMessage({ userinfo }, "http://localhost:5175");
-    }, 500); // wait half a second so the new tab can load
-  }
-
-
-  useEffect(() => {
+useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('user'));;
     const userId = userInfo?.id
     console.log(',,,,,,,,,',userInfo, userId)
@@ -119,6 +94,24 @@ const fetchData = async () => {
 
   }, [user]);
 
+  useEffect(() => {
+    if (userType != 'Candidate') {
+      const fetch = async ()=>{
+        const users = JSON.parse(localStorage.getItem('user'));
+        const user_email = users?.email;
+        console.log('user email...', user_email);
+
+        const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`)
+        console.log('company data', data.data);
+        setCompanyName(data.data.companyProfile.companyName)
+       
+        
+   
+      }
+      fetch();
+      
+    }
+  },[user])
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -179,7 +172,7 @@ const fetchData = async () => {
                 className="flex items-center gap-2 cursor-pointer border-2 border-[#4640DE] border-solid rounded-lg px-2.5 py-1.5 text-[#4640DE]"
               >
                 <FaUserCircle size={28} className="text-[#4640DE]" />
-                <span className="text-[#4640DE] font-semibold">{users.firstname}</span>
+                <span className="text-[#4640DE] font-semibold">{companyName || users?.firstname ||  ''}</span>
                 <FaChevronDown
                   className={`text-[#4640DE] transition-transform duration-300  ${dropdownOpen ? "rotate-180" : "rotate-0"
                     }`}

@@ -38,7 +38,7 @@ import CompanyProfile from './company_dashboard/component/setting/CompanyProfile
 import { View } from 'lucide-react'
 import HelpCenter from './candidate_dashboard/component/HelpCenter.jsx'
 import CompanyPage from './company_dashboard/component/company/CompanyPage.jsx'
-
+import HelpCenterComp from './company_dashboard/component/HelpCenterComp.jsx'
 
 function App() {
 
@@ -154,6 +154,9 @@ function App() {
         ,{
           path:'companyprofile',
           element:<CompanyPage/>
+        },{
+          path:'helpcenter',
+          element:<HelpCenterComp/>
         }
       ]
     }

@@ -24,7 +24,7 @@ function Sidebar({close, containerStyle}) {
     </h1>
     <IoClose onClick={close} className='mr-6 mt-2 cursor-pointer lg:hidden w-6 h-6' />
   </div>
-
+ 
   {/* Navigation Links */}
   <nav className=" text-lg pl-5.5">
     <Link to="/candidate_dashboard" onClick={close} className="cursor-pointer block p-2 rounded">

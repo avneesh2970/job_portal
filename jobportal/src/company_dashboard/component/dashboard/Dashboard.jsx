@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import logo from '../../assets/image/Company_Logo.png';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineCardTravel } from "react-icons/md";
 import PersnolProfile from "./PersonalProfile"
 import {
@@ -23,48 +24,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import DashJobCard from "./DashJobCard";
-const jobData = [
-  {
-    logo: logo,
-    jobTitle: "Sales Analyst",
-    company: "Nomad",
-    location: "Paris, France",
-    jobType: "Full-Time",
-    tags: ["Marketing", "Design"],
-    applied: 15,
-    capacity: 50,
-  },
-  {
-    logo: logo,
-    jobTitle: "Product Manager",
-    company: "Google",
-    location: "New York, USA",
-    jobType: "Part-Time",
-    tags: ["Management", "Tech"],
-    applied: 20,
-    capacity: 60,
-  },
-  {
-    logo: logo,
-    jobTitle: "UX Designer",
-    company: "Facebook",
-    location: "London, UK",
-    jobType: "Full-Time",
-    tags: ["UI/UX", "Design"],
-    applied: 10,
-    capacity: 40,
-  },
-  {
-    logo: logo,
-    jobTitle: "UX Designer",
-    company: "Facebook",
-    location: "London, UK",
-    jobType: "Full-Time",
-    tags: ["UI/UX", "Design"],
-    applied: 10,
-    capacity: 40,
-  },
-];
+
 const yearlyData = [
   { year: "2013", jobView: 200000, jobApplied: 150000, jobInterview: 25400 },
   { year: "2014", jobView: 220000, jobApplied: 140000, jobInterview: 52540 },
@@ -157,20 +117,26 @@ const applicantSummary = {
 };
 
 function Dashboard() {
+  const navigate = useNavigate();
   const [chartData, setChartData] = useState(yearlyData);
     const [timeframe, setTimeframe] = useState("Yearly");
     const [applicant, setApplicant] = useState([]);
+    const [companyName, setCompanyName] = useState('');
+    // console.log('Comapany Name...', companyName  );
      const [userJobs, setUserJobs] = useState([]);
-     console.log('userJobs', userJobs);
+    //  console.log('userJobs', userJobs);
     const [job, setJob] = useState([]);
-     const [user, setUser] = useState(null);
+     const [user_email, setUserEmail] = useState('');
+     const [user, setUser] = useState("");
+
+     
     const fetchdata = async () => {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/applications`)
       console.log('...  ',res.data.applications);
       const userdata = localStorage.getItem("user");
       const parsedUser = JSON.parse(userdata);
       const userEmail = parsedUser.email;
-      console.log('userId', userEmail);
+      // console.log('userId', userEmail);
       const filteredData = res.data.applications.filter((item) => item.job && item.job.postedBy === userEmail);
       console.log('filteredData', filteredData);
       setApplicant(filteredData);
@@ -209,9 +175,25 @@ function Dashboard() {
       fetchdata();
       data();
     },[])
+
+
+
+     useEffect(() => {
+ 
+      const fetch = async ()=>{
+        const users = JSON.parse(localStorage.getItem('user'));
+        const user_email = users?.email;
+        console.log('user email...', user_email);
+
+        const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`)
+        console.log('company data !!!!', data.data);
+        setCompanyName(data.data.companyProfile.companyName)
+      }
+      fetch();
+  },[])
   return (
     <>
-        <h2 className="text-xl  pt-5 font-semibold mx-auto">Good morning,</h2>
+        <h2 className="text-xl  pt-5 font-semibold mx-auto">👋 {companyName || user.email} </h2>
         <p className="text-gray-500 mx-auto">
           Here is your job listings statistic report.
         </p>
@@ -395,7 +377,12 @@ function Dashboard() {
         </div> */}
 
         <div className="mt-6 mx-auto">
-          <h3 className="text-lg font-semibold text-center">Job Uploaded ({userJobs.length})</h3>
+         <div className="flex mx-9 justify-between items-center mb-4">
+           <h3 className="text-lg font-semibold ">Job Uploaded ({userJobs.length})</h3>
+           <div onClick={()=> navigate('/company_dashboard/viewjob')}>
+              <a className="text-blue-600 hover:underline cursor-pointer ">View All</a>
+           </div>
+         </div>
           <div className="grid grid-cols-1 justify-center  lg:grid-cols-3  md:grid-cols-2 gap-4  mt-4 mx-8 mb-2">
           {userJobs.map((job, index) => (
         <DashJobCard key={index} {...job} />

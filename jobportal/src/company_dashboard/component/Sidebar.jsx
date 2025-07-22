@@ -46,7 +46,7 @@ function Sidebar({containerStyle, close}) {
           <Link to='/company_dashboard/viewjob' onClick={close} className=" cursor-pointer block p-2 rounded ">
            View all Job
           </Link>
-            <Link to="#" onClick={close} className=" cursor-pointer block p-2 rounded ">
+            <Link to="/company_dashboard/helpcenter" onClick={close} className=" cursor-pointer block p-2 rounded ">
             Help Center
           </Link>
         </nav>

@@ -90,8 +90,8 @@ const closeModal = () => {
   </div>
 
   <div className="mt-auto flex justify-between gap-2 pt-3">
-    <Link to={`/company_dashboard/updatejob/${job._id}`} className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold py-1 px-3 rounded-md">Update</Link>
-    <button onClick={(e) => { e.stopPropagation(); handleDelete(job._id); }} className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-1 px-3 rounded-md">Delete</button>
+    <Link to={`/company_dashboard/updatejob/${job._id}`} className="bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold py-1 px-6 rounded-md">Update</Link>
+    <button onClick={(e) => { e.stopPropagation(); handleDelete(job._id); }} className="bg-red-500 hover:bg-red-600 text-white text-lg font-semibold py-1 px-6 rounded-md">Delete</button>
   </div>
 </div>
   ))}

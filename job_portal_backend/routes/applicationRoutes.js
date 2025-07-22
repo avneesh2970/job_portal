@@ -60,7 +60,8 @@ router.post('/profileUpdate/:id', upload.fields([{ name: 'videoIntroduction', ma
 router.get('/users', userController.getAllUsers);
 
 // send mail
-router.post('/send-email', userController.sendEmail);
+router.post('/send-email', userController.sendEmail); //for userwebsite
+router.post('/send-email-dashboard', userController.sendEmailAdmin); //for admin website
 
 // Password reset routes
 router.post('/auth/forgot-password', userController.requestPasswordReset);

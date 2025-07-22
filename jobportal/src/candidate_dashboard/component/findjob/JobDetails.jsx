@@ -165,7 +165,7 @@ function JobDetails() {
       resume : userInfo.resume || "",
     }));
   }
-}, );
+},[] );
 
     
 

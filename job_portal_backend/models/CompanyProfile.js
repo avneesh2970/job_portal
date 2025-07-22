@@ -17,12 +17,11 @@ const CompanyProfileSchema = new mongoose.Schema({
     industry: { type: String,  },
     technology: { type: String,  },
     aboutCompany: { type: String,  trim: true },
-    Sociallinks: {
-        facebook: { type: String, trim: true },
-        twitter: { type: String, trim: true },
-        linkedin: { type: String, trim: true },
-        instagram: { type: String, trim: true }
-    },
+    
+    facebookUrl: { type: String, trim: true },
+    linkedInUrl: { type: String, trim: true },
+    instagramUrl: { type: String, trim: true },
+
     externalApplyUrl: { type: String, trim: true },
 })
 

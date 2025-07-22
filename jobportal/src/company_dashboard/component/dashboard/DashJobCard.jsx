@@ -66,9 +66,9 @@ const DashJobCard = ({ companyLogo, jobTitle,jobDescription, companyName, locati
   {hasApplied ? 'Applied' : 'Apply Now'}
 </button> */}
 
-                <button onClick={()=>navigate(`/candidate_dashboard/cand_job/${jobs._id}`)} className="border text-[#4f46e5] md:w-[140px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
+                {/* <button onClick={()=>navigate(`/candidate_dashboard/cand_job/${jobs._id}`)} className="border text-[#4f46e5] md:w-[140px] sm:w-auto border-[#4f46e5] text-xs px-4 py-2 rounded-md hover:bg-[#f1f5ff]">
                     View Details
-                </button>
+                </button> */}
             </div>
         </motion.div>
   );

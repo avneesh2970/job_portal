@@ -7,6 +7,7 @@ import CompanyDetail from './CompanyDetail';
 
 
 const TeamMembers = () => {
+    const [selectedImage, setSelectedImage] = useState(null);
   const [addMemberModal, setAddMemberModal] = useState(false);
   const [isNewMemberOpen, setIsNewMemberOpen] = useState(false);
   const [members, setMembers] = useState([]);
@@ -24,12 +25,10 @@ const TeamMembers = () => {
     role: "",
     department: "",
     joinDate: "",
-    instagram: "",
-    linkedin: "",
-    portfolio: ""
+    image:""
   });
 
-  const { fullName, email, role, department, joinDate, instagram, linkedin, portfolio } = formData
+  const { fullName, email, role, department, joinDate, image } = formData
 
 
   const handleOnChange = (e) => {
@@ -38,6 +37,16 @@ const TeamMembers = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    setFormData((prevData) => ({
+      ...prevData,
+      image: file,
+      imagePreview: URL.createObjectURL(file),
+    }));
+  }
+};
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -202,9 +211,37 @@ const TeamMembers = () => {
     <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-2xl">
       <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
       <form className="space-y-4" onSubmit={handleOnSubmit}>
-        <div className='flex w-full gap-3'>
-          <input className="w-6/12 border p-2 rounded" type="text" placeholder="Full Name*" name="fullName" value={fullName} onChange={handleOnChange} />
+        <div className='flex flex-col w-full gap-3'>
+          <div className='w-full'>
+             {/* Image Preview */}
+      {selectedImage ? (
+        <img
+          src={selectedImage}
+          alt="Preview"
+          className="w-40 h-40 object-cover rounded-full border-2 border-indigo-400 mb-4"
+        />
+      ) : (
+        <div className="w-40 h-40 flex items-center justify-center text-gray-400 bg-gray-100 rounded-full border border-dashed border-indigo-300 mb-4">
+          No Image
+        </div>
+      )}
+
+      {/* File Input */}
+      <label className="cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">
+        Upload Image
+        <input
+          type="file"
+          accept="image/*"
+          name='image'
+          onChange={handleImageChange}
+          className="hidden"
+        />
+      </label>
+          </div>
+         <div className='flex w-full gap-3'>
+           <input className="w-6/12 border p-2 rounded" type="text" placeholder="Full Name*" name="fullName" value={fullName} onChange={handleOnChange} />
           <input className="w-6/12 border p-2 rounded" type="email" placeholder="Email Address" name="email" value={email} onChange={handleOnChange} />
+         </div>
         </div>
        <div className='flex w-full gap-3'>
          <input className="w-6/12 border p-2 rounded" type="text" placeholder="Role*" name="role" value={role} onChange={handleOnChange} />
@@ -294,7 +331,7 @@ function CompanyProfile() {
             }`}
           >
             {tab === 'Company_profile' && ' Company_profile'}
-            {tab === 'team_members' && 'team_members'}
+            {tab === 'team_members' && ""}
             {/* {tab === 'login' && 'Login Details'} */}
             {/* {tab === 'Company Profile' && 'Profile Details'} */}
           </p>

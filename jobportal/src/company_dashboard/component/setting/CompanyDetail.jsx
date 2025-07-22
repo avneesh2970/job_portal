@@ -11,10 +11,13 @@ const CompanyDetail = () => {
         const [technology, setTechnology] = useState("")
         const [day, setDay] = useState("")
         const [month, setMonth] = useState("")
+        const [instagramUrl, setInstagramUrl] = useState("")
+        const [linkedInUrl, setLinkedInUrl] = useState("")
         const [year, setYear] = useState("")
         const [aboutCompany, setAboutCompany] = useState("")
+        const [facebookUrl, setFacebookUrl] = useState("")
         const [user_id, setuser_id] = useState('');
-        console.log('companyLogo', companyLogo, 'companyName', companyName, 'externalApplyUrl', externalApplyUrl, 'websiteUrl', websiteUrl, 'location', location, 'employeeStrength', employeeStrength, 'industry', industry, 'technology', technology, 'day', day, 'month', month, 'year', year, 'aboutCompany', aboutCompany);
+        console.log('companyLogo', companyLogo, 'companyName', companyName, 'externalApplyUrl', externalApplyUrl, 'websiteUrl', websiteUrl, 'location', location, 'employeeStrength', employeeStrength, 'industry', industry, 'technology', technology, 'day', day, 'month', month, 'year', year, 'aboutCompany', aboutCompany, 'instagramUrl', instagramUrl, 'linkedInUrl', linkedInUrl, 'facebookUrl', facebookUrl);
         const charCount = aboutCompany.length
 
         useEffect(() => {
@@ -38,6 +41,9 @@ const CompanyDetail = () => {
                     setMonth(profile.month || "");
                     setYear(profile.year || "");
                     setAboutCompany(profile.aboutCompany || "");
+                    setInstagramUrl(profile.instagramUrl || "");
+                    setLinkedInUrl(profile.linkedInUrl || "");
+                    setFacebookUrl(profile.facebookUrl || "");
                 }
             } catch (error) {
                 console.error("Error fetching company profile:", error);
@@ -51,7 +57,7 @@ const CompanyDetail = () => {
              const user = JSON.parse(localStorage.getItem('user'));
             const email = user.email;
             console.log('user email', email);
-             const data  = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${email}/apply`,{
+             const data  = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${email}/updatecompanyprofile`,{
                 owner_email: email,
                 companyName,
                 companyLogo,
@@ -65,7 +71,10 @@ const CompanyDetail = () => {
                 day,
                 month,
                 year,
-                aboutCompany
+                aboutCompany,
+                instagramUrl,
+                linkedInUrl,
+                facebookUrl
             });
             alert('Company details submitted successfully');
             console.log('data', data);
@@ -131,6 +140,51 @@ const CompanyDetail = () => {
                       aria-label="External Apply URL"
                     />
                   </div>
+                </div>
+                 {/* Social Links */}
+                <div className="flex flex-col md:flex-row gap-6 mb-8">
+                  <div className="w-full md:w-1/3">
+                    <h2 className="text-xl font-semibold text-gray-700">Social Links</h2>
+                    <p className="text-gray-500 text-sm">Provide links to your company's social media profiles.</p>
+                  </div>
+                 <div className='flex flex-col md:flex-row gap-6 w-full md:w-2/3 space-y-4'>
+                   <div className="w-full md:w-2/3">
+                    <input
+                      id='instagramUrl'
+                      type="url"
+                      className="w-full p-2 border border-gray-300 rounded-md"
+                      placeholder="Enter Instagram URL"
+                      value={instagramUrl}
+                      name='instagramUrl'
+                      onChange={(e) => setInstagramUrl(e.target.value)}
+                      aria-label="Instagram URL"
+                    />
+                  </div>
+                   <div className="w-full md:w-2/3">
+                    <input
+                    id='linkedInUrl'
+                      type="url"
+                      className="w-full p-2 border border-gray-300 rounded-md"
+                      placeholder="Enter LinkedIn URL"
+                      value={linkedInUrl}
+                      name='linkedInUrl'
+                      onChange={(e) => setLinkedInUrl(e.target.value)}
+                      aria-label="LinkedIn URL"
+                    />
+                  </div>
+                   <div className="w-full md:w-2/3">
+                    <input
+                    id='facebookUrl'
+                      type="url"
+                      className="w-full p-2 border border-gray-300 rounded-md"
+                      placeholder="Enter Facebook URL"
+                      value={facebookUrl}
+                      name='facebookUrl'
+                      onChange={(e) => setFacebookUrl(e.target.value)}
+                      aria-label="Facebook URL"
+                    />
+                  </div>
+                 </div>
                 </div>
 
                 {/* Company Details Section */}

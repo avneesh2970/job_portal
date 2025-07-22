@@ -21,8 +21,8 @@ function FindJob() {
     const user = JSON.parse(localStorage.getItem('user'));
     const user_id = user?.id;
     // console.log('User ID:', user_id);
-    const [userInfo, setUserInfo] = useState("");
-    console.log('userInfo', userInfo);
+ 
+    // console.log('userInfo', userInfo);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [filteredJobs, setFilteredJobs] = useState([]);
 
@@ -33,8 +33,7 @@ function FindJob() {
         setJobs(response.data); // Adjust based on your API response shape
         setFilteredJobs(response.data); // set initially
 
-        const user = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
-        setUserInfo(user.data);
+      
       } catch (error) {
         console.error('Error fetching jobs:', error);
       }
@@ -80,14 +79,7 @@ function FindJob() {
                     </button>
                        
                     </div>
-                    <div className="flex items-center space-x-4">
-                        <Bell className="text-gray-500 w-6 h-6 cursor-pointer" />
-                        <img src={userInfo.image ? `${import.meta.env.VITE_BACKEND_URL}${userInfo.image}` :`/person.webp`} alt="User" className="w-10 h-10 object-cover rounded-full" />
-                        <div className="hidden sm:block">
-                            <p className="text-sm font-medium">{userInfo ? userInfo.name : ""}</p>
-                            <p className="text-xs text-gray-500">{userInfo ? userInfo.profile : ""}</p>
-                        </div>
-                    </div>
+                   
                 </div>
 
                 {/* Job Listings */}

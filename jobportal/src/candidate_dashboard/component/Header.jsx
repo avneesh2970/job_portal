@@ -2,6 +2,9 @@ import { MdMenu } from "react-icons/md";
 import { useState } from "react";
 import Sidebar from './Sidebar'
 import React, { useEffect } from "react";
+import { Bell } from "lucide-react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";   
 import { ChevronDown } from "lucide-react";
 // import PersnolProfile from "./PersnolProfile";
 import {
@@ -22,6 +25,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 function Header() {
+   const [userInfo, setUserInfo] = useState("");
+      console.log('userInfo FROM HEADER', userInfo);
   // const [chartData, setChartData] = useState(yearlyData);
   const [timeframe, setTimeframe] = useState("Yearly");
   const [user, setUser] = useState(null);
@@ -33,6 +38,26 @@ function Header() {
       setUser(parsedUser);
     }
   }, [])
+
+
+   useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
+       // Adjust based on your API response shape
+        // set initially
+        const users = JSON.parse(localStorage.getItem('user'));
+        const user_id = users?.id;
+        const user = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
+        setUserInfo(user.data);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
 
   return (
     <>
@@ -53,7 +78,14 @@ function Header() {
           <MdMenu onClick={() => setOpenSidebar(true)} className="w-6 h-6" />
         </div>
         {user ? (
-          <p className="bg-amber-300 text-white flex justify-end px-4 py-2  items-center text-xl transition">{user.email}</p>
+          <p className="  flex justify-end px-4 py-2  items-center text-xl transition">  <div className="flex items-center space-x-4">
+                        <Bell className="text-gray-500 w-6 h-6 cursor-pointer" />
+                        <img src={userInfo.image ? `${import.meta.env.VITE_BACKEND_URL}${userInfo.image}` :`/person.webp`} alt="User" className="w-10 h-10 object-cover rounded-full" />
+                        <div className="hidden sm:block">
+                            <p className="text-lg font-medium">{userInfo ? userInfo?.firstname : ""} {userInfo ? userInfo?.lastname : ""}</p>
+                            <p className="text-sm text-gray-500 justify-end">{userInfo ? userInfo.profile : ""}</p>
+                        </div>
+                    </div></p>
         ) : (
           <button className="bg-indigo-600 text-white flex justify-end px-4 py-2  items-center text-xl transition" onClick={() => navigate("/login")}>Login</button>
         )}

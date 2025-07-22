@@ -828,26 +828,123 @@ const userController = {
 
   const mailOptions = {
     from: `"${name}" <${process.env.GMAIL_USER}>`,
-    to: 'developer.novanetar@gmail.com',
+    to: 'avneesh@novanectar.co.in',
+    // avneesh@novanectar.co.in
     replyTo: email,
-    subject: `New Message from ${name}`,
-    html: `
-      <h3>New Contact Form Submission</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
-    `,
+    subject: `NNHire Get in Touch Message from ${name}`,
+ html: `
+  <div style="font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 16px; color: #2c3e50; line-height: 1.6; padding: 20px; background-color: #f4f7fb;">
+    <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);">
+      
+      <h2 style="color: #3B47F2; margin-bottom: 20px; text-align: center;">📩 Contact Form Submission</h2>
+
+      <table style="width: 100%; border-collapse: collapse; border: 1px solid #e0e6f1; background-color: #fafbff;">
+        <tr style="border-bottom: 1px solid #e0e6f1;">
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e;">Name:</td>
+          <td style="padding: 12px; color: #2d3436;">${name}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e0e6f1;">
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e;">Email:</td>
+          <td style="padding: 12px; color: #2d3436;">${email}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e0e6f1;">
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e;">Phone:</td>
+          <td style="padding: 12px; color: #2d3436;">${phone}</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e; vertical-align: top;">Message:</td>
+          <td style="padding: 12px;">
+            <div style="background-color: #eef2fb; padding: 15px; border-radius: 6px; white-space: pre-wrap; color: #2c3e50;">
+              ${message}
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <p style="margin-top: 25px; font-size: 13px; color: #95a5a6; text-align: center;">
+        This email was automatically generated from the contact form on your website.
+      </p>
+    </div>
+  </div>
+`
+
+
   };
 
   try {
     await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully', mailOptions);
     res.status(200).json({ success: true });
   } catch (error) {
     console.error('Email error:', error);
     res.status(500).json({ error: 'Failed to send email' });
   }
+},
+
+sendEmailAdmin: async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: `"${name}" <${process.env.GMAIL_USER}>`,
+    to: 'avneesh@novanectar.co.in',
+    replyTo: email,
+    subject: `NNHire Get in Touch Message from ${name}`,
+    html: `
+  <div style="font-family: 'Segoe UI', Tahoma, sans-serif; font
+-size: 16px; color: #2c3e50; line-height: 1.6; padding: 20px; background-color: #f4f7fb;">
+    <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);">
+      
+      <h2 style="color: #3B47F2; margin-bottom: 20px; text-align: center;">📩 Contact Form Submission</h2>
+
+      <table style="width: 100%; border-collapse: collapse; border: 1px solid #e0e6f1; background-color: #fafbff;">
+        <tr style="border-bottom: 1px solid #e0e6f1;">
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e;">Name:</td>
+          <td style="padding: 12px; color: #2d3436;">${name}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e0e6f1;">
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e;">Email:</td>
+          <td style="padding: 12px; color: #2d3436;">${email}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #e0e6f1;">
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e;">Phone:</td>
+          <td style="padding: 12px; color: #2d3436;">${subject}</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px; border-right: 1px solid #e0e6f1; font-weight: 600; color: #34495e; vertical-align: top;">Message:</td>
+          <td style="padding: 12px;">
+            <div style="background-color: #eef2fb; padding: 15px; border-radius: 6px; white-space: pre-wrap; color: #2c3e50;">
+              ${message}
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p style="margin-top: 25px; font-size: 13px; color: #95a5a6; text-align: center;">
+        This email was automatically generated from the contact form on your website.
+      </p>
+    </div>
+
+
+  </div>
+`
+  };
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Admin email sent successfully', mailOptions);
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Admin email error:', error);
+    res.status(500).json({ error: 'Failed to send admin email' });
+  }
+
+
 },
 
   
