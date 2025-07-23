@@ -29,7 +29,7 @@ import img26 from '.././photos/KSOLVE.png';
 import img27 from '.././photos/L&T Technology.png';
 import img28 from '.././photos/L&T.png';
 import img29 from '.././photos/Microsoft.png';
-import img30 from '.././photos/Mindtree.png';
+import img30 from '.././photos/MindTree.png';
 import img31 from '.././photos/Magnasoft.png';
 
 
