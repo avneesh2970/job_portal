@@ -22,7 +22,15 @@ import img19 from '.././photos/HSBC.png';
 import img20 from '.././photos/IBM.png';
 import img21 from '.././photos/Infosys.png';
 import img22 from '.././photos/ITSS.png';
-
+import img23 from '.././photos/Jamdagni School.png';
+import img24 from '.././photos/JS.png';
+import img25 from '.././photos/Klick Stock.png';
+import img26 from '.././photos/KSOLVE.png';
+import img27 from '.././photos/L&T Technology.png';
+import img28 from '.././photos/L&T.png';
+import img29 from '.././photos/Microsoft.png';
+import img30 from '.././photos/Mindtree.png';
+import img31 from '.././photos/Magnasoft.png';
 
 
 
@@ -50,7 +58,7 @@ const HeroSection = () => {
     }, []);
   return (
     <>
-      <div className="flex w-full  bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]  px-6 md:px-10 bg-amber-300  h-[75vh]" >
+      <div className="flex w-full  bg-[linear-gradient(130.9deg,_#C4D5FA_-6.66%,_#F7FAFC_55.55%)]  px-6 md:px-10 bg-amber-300  h-[80vh]" >
         <div className="flex m-auto flex-col md:flex-row justify-between flex-wrap p-4 items-center">
           {/* Heading */}
           <div className="flex-1"
@@ -117,16 +125,16 @@ const HeroSection = () => {
         <div className="flex justify-center items-center  lg:bg-gray-300 rounded-full hover:bg-gray-400 transition duration-300 absolute lg:top-20 lg:right-110 md:top-50 md:right-30 top-22 right-25 sm:right-40">
           <FaFigma size={20} color="#0ACF83" className="m-2" />
         </div> */}
-      <JobListings />
+     
 
 
 
 
 
      {/* Infinite Scrolling Wrapper */}
-          <div className="slider-container w-full overflow-hidden bg-blue mx-auto mb-10">
+          <div className="slider-container relative w-full overflow-hidden bg-blue mx-auto mb-10">
             <div className="slider  w-full h-20  px-10  rounded-lg shadow-lg  overflow-hidden  md:overflow-visible  lg:overflow-visible xl:overflow-visible 2xl:overflow-visible  md:flex-row lg:flex-row xl:flex-row 2xl:flex-row  md:justify-start lg:justify-start xl:justify-start 2xl:justify-start  md:items-center lg:items-center xl:items-center 2xl:items-center
-               flex items-center justify-start gap-3 animate-scroll">
+               flex items-center justify-start gap-3 ">
             
              
               
@@ -148,22 +156,31 @@ const HeroSection = () => {
                 <img src={img14} alt="" className='w-auto h-14' />
                 <img src={img15} alt="" className='w-auto h-14' />
                 <img src={img16} alt="" className='w-auto h-14' />
-                <img src={img17} alt="" className='w-72  px-14 h-14' />
-                <img src={img18} alt="" className='w-72 px-14 h-14' />
+                {/* <img src={img17} alt="" className='w-72  px-14 h-14' />
+                <img src={img18} alt="" className='w-72 px-14 h-14' /> */}
                 <img src={img19} alt="" className='w-auto h-14' />
                 <img src={img20} alt="" className='w-auto h-14' />
                 <img src={img21} alt="" className='w-auto h-14' />
                 <img src={img22} alt="" className='w-auto h-14' />
+                <img src={img23} alt="" className='w-auto h-14' />
+                <img src={img24} alt="" className='w-auto h-14' />
+                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
+                <img src={img26} alt="" className='w-auto h-14 ' />
+                <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img28} alt="" className='w-auto h-14 ' />
+                <img src={img29} alt="" className='w-auto h-14 ' />
+                <img src={img30} alt="" className='w-auto h-14 ' />
                </div>
+
                <div className="slider-content gap-10 space-x-10">
-                <img src={img1} alt="" className='w-auto h-14' />
+                <img src={img1} alt="" className='ml-8 w-auto h-14' />
                 <img src={img2} alt="" className='w-auto h-14' />
                 <img src={img3} alt="" className='w-auto h-14' />
                 <img src={img4} alt="" className='w-auto h-14' />
                 <img src={img5} alt="" className='w-auto h-14' />
                 <img src={img6} alt="" className='w-auto h-14' />
                 <img src={img7} alt="" className='w-auto h-14' />
-                {/* <img src={img8} alt="" className='w-auto h-14' /> */}
+               
                 <img src={img9} alt="" className='w-auto h-14' />
                 <img src={img10} alt="" className='w-auto h-14' />
                  <img src={img11} alt="" className='w-auto h-14' />
@@ -172,12 +189,83 @@ const HeroSection = () => {
                 <img src={img14} alt="" className='w-auto h-14' />
                 <img src={img15} alt="" className='w-auto h-14' />
                  <img src={img16} alt="" className='w-auto h-14' />
-                <img src={img17} alt="" className='px-14 w-72 h-14' />
-                <img src={img18} alt="" className='w-72 px-14 h-14' />
+             
                 <img src={img19} alt="" className='w-auto h-14' />
                 <img src={img20} alt="" className='w-auto h-14' />
                 <img src={img21} alt="" className='w-auto h-14' />
                 <img src={img22} alt="" className='w-auto h-14' />
+                <img src={img23} alt="" className='w-auto h-14' />
+                <img src={img24} alt="" className='w-auto h-14' />
+                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
+                <img src={img26} alt="" className='w-auto h-14 ' />
+                 <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img28} alt="" className='w-auto h-14 ' />
+                <img src={img29} alt="" className='w-auto h-14 ' />
+                <img src={img30} alt="" className='w-auto h-14 ' />
+               </div>
+
+                 <div className="slider-content gap-10 space-x-10">
+                <img src={img1} alt="" className='ml-8 w-auto h-14' />
+                <img src={img2} alt="" className='w-auto h-14' />
+                <img src={img3} alt="" className='w-auto h-14' />
+                <img src={img4} alt="" className='w-auto h-14' />
+                <img src={img5} alt="" className='w-auto h-14' />
+                <img src={img6} alt="" className='w-auto h-14' />
+                <img src={img7} alt="" className='w-auto h-14' />
+               
+                <img src={img9} alt="" className='w-auto h-14' />
+                <img src={img10} alt="" className='w-auto h-14' />
+                 <img src={img11} alt="" className='w-auto h-14' />
+                <img src={img12} alt="" className='w-auto h-14' />
+                <img src={img13} alt="" className='w-auto h-14' />
+                <img src={img14} alt="" className='w-auto h-14' />
+                <img src={img15} alt="" className='w-auto h-14' />
+                 <img src={img16} alt="" className='w-auto h-14' />
+             
+                <img src={img19} alt="" className='w-auto h-14' />
+                <img src={img20} alt="" className='w-auto h-14' />
+                <img src={img21} alt="" className='w-auto h-14' />
+                <img src={img22} alt="" className='w-auto h-14' />
+                <img src={img23} alt="" className='w-auto h-14' />
+                <img src={img24} alt="" className='w-auto h-14' />
+                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
+                <img src={img26} alt="" className='w-auto h-14 ' />
+                 <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img28} alt="" className='w-auto h-14 ' />
+                <img src={img29} alt="" className='w-auto h-14 ' />
+                <img src={img30} alt="" className='w-auto h-14 ' />
+               </div>
+
+                 <div className="slider-content gap-10 space-x-10">
+                <img src={img1} alt="" className='ml-8 w-auto h-14' />
+                <img src={img2} alt="" className='w-auto h-14' />
+                <img src={img3} alt="" className='w-auto h-14' />
+                <img src={img4} alt="" className='w-auto h-14' />
+                <img src={img5} alt="" className='w-auto h-14' />
+                <img src={img6} alt="" className='w-auto h-14' />
+                <img src={img7} alt="" className='w-auto h-14' />
+               
+                <img src={img9} alt="" className='w-auto h-14' />
+                <img src={img10} alt="" className='w-auto h-14' />
+                 <img src={img11} alt="" className='w-auto h-14' />
+                <img src={img12} alt="" className='w-auto h-14' />
+                <img src={img13} alt="" className='w-auto h-14' />
+                <img src={img14} alt="" className='w-auto h-14' />
+                <img src={img15} alt="" className='w-auto h-14' />
+                 <img src={img16} alt="" className='w-auto h-14' />
+             
+                <img src={img19} alt="" className='w-auto h-14' />
+                <img src={img20} alt="" className='w-auto h-14' />
+                <img src={img21} alt="" className='w-auto h-14' />
+                <img src={img22} alt="" className='w-auto h-14' />
+                <img src={img23} alt="" className='w-auto h-14' />
+                <img src={img24} alt="" className='w-auto h-14' />
+                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
+                <img src={img26} alt="" className='w-auto h-14 ' />
+                 <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img28} alt="" className='w-auto h-14 ' />
+                <img src={img29} alt="" className='w-auto h-14 ' />
+                <img src={img30} alt="" className='w-auto h-14 ' />
                </div>
               
               

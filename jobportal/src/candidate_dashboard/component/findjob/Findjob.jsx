@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 // import Sidebar from "./Sidebar";
 import JobCard from "./Jobcard";
 import Pagination from "./Pagination";
-// import Arrow from "./assets/ProfileImages/arrow-down-01-sharp.png";
+import { RiArrowDropDownLine } from 'react-icons/ri'; 
 import { Bell } from "lucide-react";
 import axios from "axios";
+
 
 function FindJob() {
     const jobsPerPage = 9;
@@ -25,7 +26,7 @@ function FindJob() {
     // console.log('userInfo', userInfo);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [filteredJobs, setFilteredJobs] = useState([]);
-
+    
     useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -61,19 +62,25 @@ function FindJob() {
         <div className="flex min-h-screen font-sans text-[#333] bg-[#fafbfc] overflow-hidden">
             {/* Sidebar */}
             <main className="flex-1 p-4 w-full max-w-7xl mx-auto">
+                <div className="flex justify-between items-center mb-6">
+                     <div>
+                        <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#1e1e1e]">All Jobs</h1>
+                        <p className="text-sm text-gray-500">Showing {filteredJobs.length} results</p>
+                    </div>
                 {/* Top Bar */}
                 <div className="flex justify-between items-center bg-white p-4 shadow-md rounded-md">
-                    <div className="hidden sm:flex relative bg-  w-8/12 ml-20%]">
+                    <div className="hidden sm:flex relative  w-[700px] ml-20%]">
                         <input 
                         type="text" 
                         placeholder="Search keyword ..."
                          value={searchKeyword}
                          onChange={(e) => setSearchKeyword(e.target.value)} 
-                        className="w-full pl-4 pr-4 py-2 rounded-lg outline-none border border-gray-300 focus:ring-2 focus:ring-blue-400" 
+                      className="w-full pl-4 pr-4 py-2 rounded-lg outline-none border-2 border-gray-300 focus:outline-none"
+
                        />
                         <button
                         // optional search handler
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-1.5 rounded-md text-sm hover:bg-blue-600 transition"
+                        className="absolute right-0 px-3.5 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white py-3 rounded-md text-sm hover:bg-blue-600 transition"
                     >
                         Search out of {jobs.length} jobs
                     </button>
@@ -81,13 +88,9 @@ function FindJob() {
                     </div>
                    
                 </div>
-
-                {/* Job Listings */}
-                <div className="flex justify-between items-center flex-wrap mb-6 gap-4">
-                    <div>
-                        <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#1e1e1e]">All Jobs</h1>
-                        <p className="text-sm text-gray-500">Showing {filteredJobs.length} results</p>
-                    </div>
+                  {/* Job Listings */}
+                <div className="flex justify-between items-center flex-wrap  gap-4">
+                   
                     <div className="flex gap-2 sm:gap-3">
                         <button
                             className="text-sm px-3 sm:px-4 py-2 border rounded-md text-gray-600 hover:bg-gray-100"
@@ -104,15 +107,18 @@ function FindJob() {
                     </div>
                 </div>
 
-                {isFilterOpen && (
+              
+                </div>
+                <div>
+                      {isFilterOpen && (
                     <div className="flex flex-wrap justify-between p-4 bg-white rounded-md mb-6">
-                        {['Job Type', 'Categories', 'Salary', 'Experience', 'Location', 'Location Range'].map((filter, index) => (
+                        {['Job Type', 'Categories', 'Salary', 'Experience', 'Location',].map((filter, index) => (
                             <button
                                 key={index}
                                 className="w-[14%] h-[5%] px-4 py-2 border rounded-full text-[#685bc7] border-[#c8bdf9] hover:bg-[#f0ebff] flex items-center justify-between"
                             >
                                 <span>{filter}</span>
-                                {/* <img src={Arrow} alt="" className="ml-1 w-4 h-4" /> */}
+                                <RiArrowDropDownLine className="w-7 h-7 text-xl" />
                             </button>
                         ))}
                         <button className="px-4 py-2 border rounded-full text-gray-400 border-gray-300 cursor-not-allowed w-[13%] h-[8%]">
@@ -120,6 +126,11 @@ function FindJob() {
                         </button>
                     </div>
                 )}
+                </div>
+
+                
+
+              
                 {/* Job Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 mt-6">
                     {filteredJobs.map((items , index) => (

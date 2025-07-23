@@ -256,7 +256,7 @@ export default function CompanyJobListing() {
     </div>
 
       {/* Pagination */}
-      <div className="flex justify-end items-center mt-8 space-x-1">
+      {/* <div className="flex justify-end items-center mt-8 space-x-1">
         <button className="p-1 rounded-md hover:bg-gray-100">
           <ChevronLeft size={20} />
         </button>
@@ -282,7 +282,7 @@ export default function CompanyJobListing() {
         <button className="p-1 rounded-md hover:bg-gray-100">
           <ChevronRight size={20} />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

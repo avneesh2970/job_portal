@@ -23,7 +23,7 @@
 .slider-container {
   overflow: hidden;
   width: 100%;
- background-image: linear-gradient(to left, #4a90c3, #12998e);
+   background-image: linear-gradient(to left, #4a90c3, #12998e);
   padding: 20px 0;
   position: relative;
 }
@@ -46,27 +46,27 @@
 .slider {
   height: 80px;
   object-fit: contain;
-  animation: scroll 50s linear infinite;
+  animation: scroll 70s linear infinite;
 }
 
 /* Tablet (medium devices) */
 @media (max-width: 1024px) {
   .slider {
-    animation: scroll 40s linear infinite;
+    animation: scroll 80s linear infinite;
   }
 }
 
 /* Mobile (small devices) */
 @media (max-width: 768px) {
   .slider {
-    animation: scroll 60s linear infinite;
+    animation: scroll 70s linear infinite;
   }
 }
 
 /* Very small devices */
 @media (max-width: 480px) {
   .slider {
-    animation: scroll 80s linear infinite;
+    animation: scroll 90s linear infinite;
   }
 }
 

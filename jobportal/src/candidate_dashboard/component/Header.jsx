@@ -41,13 +41,14 @@ function Header() {
 
 
    useEffect(() => {
+    const users = JSON.parse(localStorage.getItem('user'));
+    const user_id = users?.id;
     const fetchJobs = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`);
        // Adjust based on your API response shape
         // set initially
-        const users = JSON.parse(localStorage.getItem('user'));
-        const user_id = users?.id;
+        
         const user = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
         setUserInfo(user.data);
       } catch (error) {
