@@ -46,27 +46,27 @@
 .slider {
   height: 80px;
   object-fit: contain;
-  animation: scroll 70s linear infinite;
+  animation: scroll 150s linear infinite;
 }
 
 /* Tablet (medium devices) */
 @media (max-width: 1024px) {
   .slider {
-    animation: scroll 80s linear infinite;
+    animation: scroll 140s linear infinite;
   }
 }
 
 /* Mobile (small devices) */
 @media (max-width: 768px) {
   .slider {
-    animation: scroll 70s linear infinite;
+    animation: scroll 130s linear infinite;
   }
 }
 
 /* Very small devices */
 @media (max-width: 480px) {
   .slider {
-    animation: scroll 90s linear infinite;
+    animation: scroll 120s linear infinite;
   }
 }
 

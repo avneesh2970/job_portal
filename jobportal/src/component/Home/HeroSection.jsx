@@ -31,6 +31,7 @@ import img28 from '.././photos/L&T.png';
 import img29 from '.././photos/Microsoft.png';
 import img30 from '.././photos/MindTree.png';
 import img31 from '.././photos/Magnasoft.png';
+import img32 from '.././photos/Mphasis.png'
 
 
 
@@ -266,6 +267,7 @@ const HeroSection = () => {
                 <img src={img28} alt="" className='w-auto h-14 ' />
                 <img src={img29} alt="" className='w-auto h-14 ' />
                 <img src={img30} alt="" className='w-auto h-14 ' />
+                <img src={img32} alt="" className='w-auto h-14 ' />
                </div>
               
               
