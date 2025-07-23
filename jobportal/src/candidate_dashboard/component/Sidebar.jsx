@@ -20,7 +20,7 @@ function Sidebar({close, containerStyle}) {
       <div className='flex items-center gap-2'> 
         <img src="/logo.png" className='h-10 w-10' alt="Logo" />
       </div>
-      <p>NextHire</p>
+      <p>NNHire</p>
     </h1>
     <IoClose onClick={close} className='mr-6 mt-2 cursor-pointer lg:hidden w-6 h-6' />
   </div>

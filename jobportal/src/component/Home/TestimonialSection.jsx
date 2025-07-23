@@ -159,7 +159,7 @@ const TestimonialSection = () => {
 const chunkSize = Math.ceil(testimonials.length / totalDots);
 
 const settings = {
-  dots: true,
+
   infinite: true,
   speed: 500,
   slidesToShow: 4,

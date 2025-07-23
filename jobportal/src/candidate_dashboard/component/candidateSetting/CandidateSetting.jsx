@@ -7,7 +7,7 @@ import axios from 'axios';
 import ProfileDetail from './ProfileDetail';
 function CandidateSetting() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const tabFromUrl = searchParams.get('tab') || 'profile';
+  const tabFromUrl = searchParams.get('tab') || 'profile Detail';
   const [activeTab, setActiveTab] = useState(tabFromUrl);
   const [userData, setUserData] = useState([]);
 

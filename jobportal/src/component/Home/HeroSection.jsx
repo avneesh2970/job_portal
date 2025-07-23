@@ -31,9 +31,33 @@ import img28 from '.././photos/L&T.png';
 import img29 from '.././photos/Microsoft.png';
 import img30 from '.././photos/MindTree.png';
 import img31 from '.././photos/Magnasoft.png';
-import img32 from '.././photos/Mphasis.png'
-
-
+import img32 from '.././photos/Mphasis.png';
+import img33 from '.././photos/NIIT.png';
+import img34 from '.././photos/Omneelab.png';
+import img35 from '.././photos/Persistent.png';
+// import img36 from '.././photos/Red Hat-01.png';
+import img37 from '.././photos/Rekruters.png';
+import img38 from '.././photos/ScareCrow.png';
+// import img39 from '.././photos/Talentica.png';
+import img40 from '.././photos/Tavant.png';
+import img41 from '.././photos/TCS.png';
+import img42 from '.././photos/Tech Mahindra.png';
+import img43 from '.././photos/Techahead.png';
+// import img44 from '.././photos/Technoarch.png';
+// import img45 from '.././photos/tesla-9.png';
+import img46 from '.././photos/TIBCO.png';
+import img47 from '.././photos/Tietoevry-01.png';
+import img48 from '.././photos/Trellix-02.png';
+import img49 from '.././photos/Tricon.png';
+import img50 from '.././photos/Untitled-1-07.png';
+import img51 from '.././photos/Velosity Software.png';
+import img52 from '.././photos/vodafone.png';
+import img53 from '.././photos/Wild Net.png';
+import img54 from '.././photos/Wipro.png';
+import img55 from '.././photos/Wolken-02.png';
+import img56 from '.././photos/Zaprev.png';
+import img57 from '.././photos/Zend.png';
+import img58 from '.././photos/ZOHO.png';
 
 import JobListings from "./JobListings";
 import hero from '../../assets/hero.svg'
@@ -148,7 +172,6 @@ const HeroSection = () => {
                 <img src={img5} alt="" className='w-auto h-14' />
                 <img src={img6} alt="" className='w-auto h-14' />
                 <img src={img7} alt="" className='w-auto h-14' />
-                {/* <img src={img8} alt="" className='w-auto h-14' /> */}
                 <img src={img9} alt="" className='w-auto h-14' />
                 <img src={img10} alt="" className='w-auto h-14' />
                 <img src={img11} alt="" className='w-auto h-14' />
@@ -157,8 +180,6 @@ const HeroSection = () => {
                 <img src={img14} alt="" className='w-auto h-14' />
                 <img src={img15} alt="" className='w-auto h-14' />
                 <img src={img16} alt="" className='w-auto h-14' />
-                {/* <img src={img17} alt="" className='w-72  px-14 h-14' />
-                <img src={img18} alt="" className='w-72 px-14 h-14' /> */}
                 <img src={img19} alt="" className='w-auto h-14' />
                 <img src={img20} alt="" className='w-auto h-14' />
                 <img src={img21} alt="" className='w-auto h-14' />
@@ -171,9 +192,27 @@ const HeroSection = () => {
                 <img src={img28} alt="" className='w-auto h-14 ' />
                 <img src={img29} alt="" className='w-auto h-14 ' />
                 <img src={img30} alt="" className='w-auto h-14 ' />
+                <img src={img32} alt="" className='w-auto h-14 ' />
+                <img src={img33} alt="" className='w-auto h-14 ' />
+                <img src={img34} alt="" className='w-auto h-14 ' />
+                <img src={img35} alt="" className='w-auto h-14 ' />
+                <img src={img37} alt="" className='w-auto h-14 ' />
+                <img src={img38} alt="" className='w-auto h-14 ' />
+                <img src={img40} alt="" className='w-auto h-14 ' />
+                <img src={img41} alt="" className='w-auto h-14 ' />
+                <img src={img42} alt="" className='w-auto h-14 ' />
+                <img src={img43} alt="" className='w-auto h-14 '/>
+                <img src={img51} alt="" className='w-auto h-14 ' />
+                <img src={img52} alt="" className='w-auto h-14 ' />
+                <img src={img53} alt="" className='w-auto h-14 bg-black ' />
+                <img src={img54} alt="" className='w-auto h-14 ' />
+                <img src={img55} alt="" className='w-auto h-14 ' />
+                <img src={img56} alt="" className='w-auto h-14 ' />
+                <img src={img57} alt="" className='w-auto h-14 ' />
+                <img src={img58} alt="" className='w-auto h-14 ' />
                </div>
 
-               <div className="slider-content gap-10 space-x-10">
+                 <div className="slider-content space-x-8">
                 <img src={img1} alt="" className='ml-8 w-auto h-14' />
                 <img src={img2} alt="" className='w-auto h-14' />
                 <img src={img3} alt="" className='w-auto h-14' />
@@ -181,16 +220,14 @@ const HeroSection = () => {
                 <img src={img5} alt="" className='w-auto h-14' />
                 <img src={img6} alt="" className='w-auto h-14' />
                 <img src={img7} alt="" className='w-auto h-14' />
-               
                 <img src={img9} alt="" className='w-auto h-14' />
                 <img src={img10} alt="" className='w-auto h-14' />
-                 <img src={img11} alt="" className='w-auto h-14' />
+                <img src={img11} alt="" className='w-auto h-14' />
                 <img src={img12} alt="" className='w-auto h-14' />
                 <img src={img13} alt="" className='w-auto h-14' />
                 <img src={img14} alt="" className='w-auto h-14' />
                 <img src={img15} alt="" className='w-auto h-14' />
-                 <img src={img16} alt="" className='w-auto h-14' />
-             
+                <img src={img16} alt="" className='w-auto h-14' />
                 <img src={img19} alt="" className='w-auto h-14' />
                 <img src={img20} alt="" className='w-auto h-14' />
                 <img src={img21} alt="" className='w-auto h-14' />
@@ -199,75 +236,124 @@ const HeroSection = () => {
                 <img src={img24} alt="" className='w-auto h-14' />
                 <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
                 <img src={img26} alt="" className='w-auto h-14 ' />
-                 <img src={img27} alt="" className='w-auto h-14 ' />
-                <img src={img28} alt="" className='w-auto h-14 ' />
-                <img src={img29} alt="" className='w-auto h-14 ' />
-                <img src={img30} alt="" className='w-auto h-14 ' />
-               </div>
-
-                 <div className="slider-content gap-10 space-x-10">
-                <img src={img1} alt="" className='ml-8 w-auto h-14' />
-                <img src={img2} alt="" className='w-auto h-14' />
-                <img src={img3} alt="" className='w-auto h-14' />
-                <img src={img4} alt="" className='w-auto h-14' />
-                <img src={img5} alt="" className='w-auto h-14' />
-                <img src={img6} alt="" className='w-auto h-14' />
-                <img src={img7} alt="" className='w-auto h-14' />
-               
-                <img src={img9} alt="" className='w-auto h-14' />
-                <img src={img10} alt="" className='w-auto h-14' />
-                 <img src={img11} alt="" className='w-auto h-14' />
-                <img src={img12} alt="" className='w-auto h-14' />
-                <img src={img13} alt="" className='w-auto h-14' />
-                <img src={img14} alt="" className='w-auto h-14' />
-                <img src={img15} alt="" className='w-auto h-14' />
-                 <img src={img16} alt="" className='w-auto h-14' />
-             
-                <img src={img19} alt="" className='w-auto h-14' />
-                <img src={img20} alt="" className='w-auto h-14' />
-                <img src={img21} alt="" className='w-auto h-14' />
-                <img src={img22} alt="" className='w-auto h-14' />
-                <img src={img23} alt="" className='w-auto h-14' />
-                <img src={img24} alt="" className='w-auto h-14' />
-                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
-                <img src={img26} alt="" className='w-auto h-14 ' />
-                 <img src={img27} alt="" className='w-auto h-14 ' />
-                <img src={img28} alt="" className='w-auto h-14 ' />
-                <img src={img29} alt="" className='w-auto h-14 ' />
-                <img src={img30} alt="" className='w-auto h-14 ' />
-               </div>
-
-                 <div className="slider-content gap-10 space-x-10">
-                <img src={img1} alt="" className='ml-8 w-auto h-14' />
-                <img src={img2} alt="" className='w-auto h-14' />
-                <img src={img3} alt="" className='w-auto h-14' />
-                <img src={img4} alt="" className='w-auto h-14' />
-                <img src={img5} alt="" className='w-auto h-14' />
-                <img src={img6} alt="" className='w-auto h-14' />
-                <img src={img7} alt="" className='w-auto h-14' />
-               
-                <img src={img9} alt="" className='w-auto h-14' />
-                <img src={img10} alt="" className='w-auto h-14' />
-                 <img src={img11} alt="" className='w-auto h-14' />
-                <img src={img12} alt="" className='w-auto h-14' />
-                <img src={img13} alt="" className='w-auto h-14' />
-                <img src={img14} alt="" className='w-auto h-14' />
-                <img src={img15} alt="" className='w-auto h-14' />
-                 <img src={img16} alt="" className='w-auto h-14' />
-             
-                <img src={img19} alt="" className='w-auto h-14' />
-                <img src={img20} alt="" className='w-auto h-14' />
-                <img src={img21} alt="" className='w-auto h-14' />
-                <img src={img22} alt="" className='w-auto h-14' />
-                <img src={img23} alt="" className='w-auto h-14' />
-                <img src={img24} alt="" className='w-auto h-14' />
-                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
-                <img src={img26} alt="" className='w-auto h-14 ' />
-                 <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img27} alt="" className='w-auto h-14 ' />
                 <img src={img28} alt="" className='w-auto h-14 ' />
                 <img src={img29} alt="" className='w-auto h-14 ' />
                 <img src={img30} alt="" className='w-auto h-14 ' />
                 <img src={img32} alt="" className='w-auto h-14 ' />
+                <img src={img33} alt="" className='w-auto h-14 ' />
+                <img src={img34} alt="" className='w-auto h-14 ' />
+                <img src={img35} alt="" className='w-auto h-14 ' />
+                <img src={img37} alt="" className='w-auto h-14 ' />
+                <img src={img38} alt="" className='w-auto h-14 ' />
+                <img src={img40} alt="" className='w-auto h-14 ' />
+                <img src={img41} alt="" className='w-auto h-14 ' />
+                <img src={img42} alt="" className='w-auto h-14 ' />
+                <img src={img43} alt="" className='w-auto h-14 '/>
+                <img src={img51} alt="" className='w-auto h-14 ' />
+                <img src={img52} alt="" className='w-auto h-14 ' />
+                <img src={img53} alt="" className='w-auto h-14 bg-black ' />
+                <img src={img54} alt="" className='w-auto h-14 ' />
+                <img src={img55} alt="" className='w-auto h-14 ' />
+                <img src={img56} alt="" className='w-auto h-14 ' />
+                <img src={img57} alt="" className='w-auto h-14 ' />
+                <img src={img58} alt="" className='w-auto h-14 ' />
+               </div>
+
+                   <div className="slider-content space-x-8">
+                <img src={img1} alt="" className='ml-8 w-auto h-14' />
+                <img src={img2} alt="" className='w-auto h-14' />
+                <img src={img3} alt="" className='w-auto h-14' />
+                <img src={img4} alt="" className='w-auto h-14' />
+                <img src={img5} alt="" className='w-auto h-14' />
+                <img src={img6} alt="" className='w-auto h-14' />
+                <img src={img7} alt="" className='w-auto h-14' />
+                <img src={img9} alt="" className='w-auto h-14' />
+                <img src={img10} alt="" className='w-auto h-14' />
+                <img src={img11} alt="" className='w-auto h-14' />
+                <img src={img12} alt="" className='w-auto h-14' />
+                <img src={img13} alt="" className='w-auto h-14' />
+                <img src={img14} alt="" className='w-auto h-14' />
+                <img src={img15} alt="" className='w-auto h-14' />
+                <img src={img16} alt="" className='w-auto h-14' />
+                <img src={img19} alt="" className='w-auto h-14' />
+                <img src={img20} alt="" className='w-auto h-14' />
+                <img src={img21} alt="" className='w-auto h-14' />
+                <img src={img22} alt="" className='w-auto h-14' />
+                <img src={img23} alt="" className='w-auto h-14' />
+                <img src={img24} alt="" className='w-auto h-14' />
+                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
+                <img src={img26} alt="" className='w-auto h-14 ' />
+                <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img28} alt="" className='w-auto h-14 ' />
+                <img src={img29} alt="" className='w-auto h-14 ' />
+                <img src={img30} alt="" className='w-auto h-14 ' />
+                <img src={img32} alt="" className='w-auto h-14 ' />
+                <img src={img33} alt="" className='w-auto h-14 ' />
+                <img src={img34} alt="" className='w-auto h-14 ' />
+                <img src={img35} alt="" className='w-auto h-14 ' />
+                <img src={img37} alt="" className='w-auto h-14 ' />
+                <img src={img38} alt="" className='w-auto h-14 ' />
+                <img src={img40} alt="" className='w-auto h-14 ' />
+                <img src={img41} alt="" className='w-auto h-14 ' />
+                <img src={img42} alt="" className='w-auto h-14 ' />
+                <img src={img43} alt="" className='w-auto h-14 '/>
+                <img src={img51} alt="" className='w-auto h-14 ' />
+                <img src={img52} alt="" className='w-auto h-14 ' />
+                <img src={img53} alt="" className='w-auto h-14 bg-black' />
+                <img src={img54} alt="" className='w-auto h-14 ' />
+                <img src={img55} alt="" className='w-auto h-14 ' />
+                <img src={img56} alt="" className='w-auto h-14 ' />
+                <img src={img57} alt="" className='w-auto h-14 ' />
+                <img src={img58} alt="" className='w-auto h-14 ' />
+               </div>
+
+                 <div className="slider-content space-x-8">
+                <img src={img1} alt="" className='w-auto ml-8 h-14' />
+                <img src={img2} alt="" className='w-auto h-14' />
+                <img src={img3} alt="" className='w-auto h-14' />
+                <img src={img4} alt="" className='w-auto h-14' />
+                <img src={img5} alt="" className='w-auto h-14' />
+                <img src={img6} alt="" className='w-auto h-14' />
+                <img src={img7} alt="" className='w-auto h-14' />
+                <img src={img9} alt="" className='w-auto h-14' />
+                <img src={img10} alt="" className='w-auto h-14' />
+                <img src={img11} alt="" className='w-auto h-14' />
+                <img src={img12} alt="" className='w-auto h-14' />
+                <img src={img13} alt="" className='w-auto h-14' />
+                <img src={img14} alt="" className='w-auto h-14' />
+                <img src={img15} alt="" className='w-auto h-14' />
+                <img src={img16} alt="" className='w-auto h-14' />
+                <img src={img19} alt="" className='w-auto h-14' />
+                <img src={img20} alt="" className='w-auto h-14' />
+                <img src={img21} alt="" className='w-auto h-14' />
+                <img src={img22} alt="" className='w-auto h-14' />
+                <img src={img23} alt="" className='w-auto h-14' />
+                <img src={img24} alt="" className='w-auto h-14' />
+                <img src={img25} alt="" className='w-auto h-14 bg-zinc-300' />
+                <img src={img26} alt="" className='w-auto h-14 ' />
+                <img src={img27} alt="" className='w-auto h-14 ' />
+                <img src={img28} alt="" className='w-auto h-14 ' />
+                <img src={img29} alt="" className='w-auto h-14 ' />
+                <img src={img30} alt="" className='w-auto h-14 ' />
+                <img src={img32} alt="" className='w-auto h-14 ' />
+                <img src={img33} alt="" className='w-auto h-14 ' />
+                <img src={img34} alt="" className='w-auto h-14 ' />
+                <img src={img35} alt="" className='w-auto h-14 ' />
+                <img src={img37} alt="" className='w-auto h-14 ' />
+                <img src={img38} alt="" className='w-auto h-14 ' />
+                <img src={img40} alt="" className='w-auto h-14 ' />
+                <img src={img41} alt="" className='w-auto h-14 ' />
+                <img src={img42} alt="" className='w-auto h-14 ' />
+                <img src={img43} alt="" className='w-auto h-14 '/>
+                <img src={img51} alt="" className='w-auto h-14 ' />
+                <img src={img52} alt="" className='w-auto h-14 ' />
+                <img src={img53} alt="" className='w-auto h-14 bg-black ' />
+                <img src={img54} alt="" className='w-auto h-14 ' />
+                <img src={img55} alt="" className='w-auto h-14 ' />
+                <img src={img56} alt="" className='w-auto h-14 ' />
+                <img src={img57} alt="" className='w-auto h-14 ' />
+                <img src={img58} alt="" className='w-auto h-14 ' />
                </div>
               
               

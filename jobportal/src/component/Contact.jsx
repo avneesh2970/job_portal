@@ -107,9 +107,8 @@ export default function ContactPage() {
 </div>
 
            <div className="space-y-4">
-            <div className="flex items-center gap-2"><Mail /> info@novanectar.co.in</div>
-            <div className="flex items-center gap-2"><Phone />+91 8979891703  <br />
-+91 8979891705</div>
+            <div className="flex items-center gap-2"><Mail /> nnhire@novanectar.in</div>
+            <div className="flex items-center gap-2"><Phone /> +91 8979891705</div>
             <div className="flex items-center gap-2"><MapPin />GMS Rd, Haripuram, Kanwali, Dehradun, Uttarakhand 248001</div>
           </div>
           {/* <div className="flex gap-4 mt-4 text-blue-600">

@@ -172,7 +172,7 @@ function Profile({data}) {
               </div>
             </div>
              <div className='flex flex-col'>
-              <label htmlFor="">Profile</label>
+              <label htmlFor="">Domain</label>
               <input
                 type="text"
                 className='border border-[#DEE0E4] p-3 placeholder:font-normal placeholder:text-[14px] placeholder:text-[#A0A0A0]'

@@ -26,6 +26,9 @@ function FindJob() {
     // console.log('userInfo', userInfo);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [filteredJobs, setFilteredJobs] = useState([]);
+
+
+      const [activeDropdown, setActiveDropdown] = useState(null);
     
     useEffect(() => {
     const fetchJobs = async () => {
@@ -56,6 +59,42 @@ function FindJob() {
     setFilteredJobs(filtered);
   }
 }, [searchKeyword, jobs]);
+
+
+const filterOptions = {
+    'Job Type': ['Full-time', 'Part-time', 'Contract', 'Freelance', 'Internship'],
+    'Categories': ['Technology', 'Marketing', 'Sales', 'Design', 'Finance'],
+    'Salary': ['$0-$50k', '$50k-$100k', '$100k-$150k', '$150k+'],
+    'Experience': ['Entry Level', '1-3 years', '3-5 years', '5+ years'],
+    'Location': ['Remote', 'New York', 'San Francisco', 'London', 'Berlin']
+  };
+
+  const handleFilterClick = (filter, index) => {
+    if (activeDropdown === index) {
+      setActiveDropdown(null); // Close if already open
+    } else {
+      setActiveDropdown(index); // Open the clicked dropdown
+    }
+  };
+
+  const handleOptionSelect = (option) => {
+    console.log('Selected:', option);
+    setActiveDropdown(null); // Close dropdown after selection
+  };
+
+  const handleClickOutside = (e) => {
+    if (!e.target.closest('.dropdown-container')) {
+      setActiveDropdown(null);
+    }
+  };
+
+  // Add click outside listener
+  React.useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+ const filters = ['Job Type', 'Categories', 'Salary', 'Experience', 'Location'];
 
 
     return (
@@ -106,28 +145,54 @@ function FindJob() {
                         </button>
                     </div>
                 </div>
-
+               
               
                 </div>
-                <div>
-                      {isFilterOpen && (
-                    <div className="flex flex-wrap justify-between p-4 bg-white rounded-md mb-6">
-                        {['Job Type', 'Categories', 'Salary', 'Experience', 'Location',].map((filter, index) => (
-                            <button
-                                key={index}
-                                className="w-[14%] h-[5%] px-4 py-2 border rounded-full text-[#685bc7] border-[#c8bdf9] hover:bg-[#f0ebff] flex items-center justify-between"
-                            >
-                                <span>{filter}</span>
-                                <RiArrowDropDownLine className="w-7 h-7 text-xl" />
-                            </button>
-                        ))}
-                        <button className="px-4 py-2 border rounded-full text-gray-400 border-gray-300 cursor-not-allowed w-[13%] h-[8%]">
-                            Reset All
-                        </button>
-                    </div>
-                )}
+                 {
+                    isFilterOpen && (
+                         <div className="flex flex-wrap gap-4 mt-4">
+                     {filters.map((filter, index) => (
+          <div key={index} className="dropdown-container relative">
+            <button
+              onClick={() => handleFilterClick(filter, index)}
+              className="w-auto min-w-[120px] px-4 py-2 border rounded-full text-[#685bc7] border-[#c8bdf9] hover:bg-[#f0ebff] flex items-center justify-between bg-white transition-colors duration-200"
+            >
+              <span className="mr-2">{filter}</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''}`}
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {/* Modal Dropdown */}
+            {activeDropdown === index && (
+              <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+                <div className="p-2">
+                  <div className="text-sm font-medium text-gray-700 px-3 py-2 border-b">
+                    Select {filter}
+                  </div>
+                  {filterOptions[filter]?.map((option, optionIndex) => (
+                    <button
+                      key={optionIndex}
+                      onClick={() => handleOptionSelect(option)}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-[#f0ebff] hover:text-[#685bc7] rounded transition-colors duration-150"
+                    >
+                      {option}
+                    </button>
+                  ))}
                 </div>
-
+              </div>
+            )}
+            </div>
+            ))}
+            </div>
+                    )
+                }
+            
                 
 
               

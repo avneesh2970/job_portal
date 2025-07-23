@@ -169,10 +169,13 @@ const fetchData = async () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                   onMouseEnter={() => setDropdownOpen(true)}
                   onMouseLeave={() => setDropdownOpen(false)}
-                className="flex items-center gap-2 cursor-pointer border-2 border-[#4640DE] border-solid rounded-lg px-2.5 py-1.5 text-[#4640DE]"
+                className="flex items-center gap-2 cursor-pointer  rounded-lg px-2.5 py-1.5 text-[#4640DE]"
               >
-                <FaUserCircle size={28} className="text-[#4640DE]" />
-                <span className="text-[#4640DE] font-semibold">{companyName || users?.firstname ||  ''}</span>
+                 <img src={users.image ? `${import.meta.env.VITE_BACKEND_URL}${users.image}` :`/person.webp`} alt="User" className="w-10 h-10 object-cover rounded-full" />
+                <div>
+                  <span className="text-[#4640DE] font-semibold">{companyName || users?.firstname ||  ''}</span>
+                  <p className="text-gray-500">{users?.profile || ''}</p>
+                </div>
                 <FaChevronDown
                   className={`text-[#4640DE] transition-transform duration-300  ${dropdownOpen ? "rotate-180" : "rotate-0"
                     }`}

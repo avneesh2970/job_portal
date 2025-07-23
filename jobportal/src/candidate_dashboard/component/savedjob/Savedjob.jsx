@@ -39,7 +39,7 @@ const Savedjob = () => {
   return (
    <>
    <div className="max-w-full mx-3 ">
-      <h2 className="text-2xl font-semibold mb-6 my-5">💾 Saved Jobs</h2>
+      <h2 className="text-2xl font-semibold mb-6 my-5">Saved Jobs</h2>
 
       {savedJobs.length === 0 ? (
         <p className="text-gray-500">You have no saved jobs.</p>
