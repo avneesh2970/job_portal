@@ -156,7 +156,7 @@ function AllAplicant() {
 
       <div className='w-1/12'>
         <a
-          href={`${import.meta.env.VITE_BACKEND_URL}/${appl.resumePath.replace(/\\/g, '/')}`}
+          href={`${import.meta.env.VITE_BACKEND_URL}/${appl.resumePath?.replace(/\\/g, '/')}`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-800 inline-block "

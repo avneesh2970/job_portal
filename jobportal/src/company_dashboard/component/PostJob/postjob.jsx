@@ -371,7 +371,7 @@ const PostJob = () => {
                       <option value="" disabled>Select Job Category</option>
                       <option value="Engineering">Engineering</option>
                       <option value="Design">Design</option>
-                      <option value="Marking">Marking</option>
+                      <option value="Marketing">Marketing</option>
                       <option value="Sales">Sales</option>
                       <option value="Human Resources">Human Resources</option>
                       <option value="Bussiness">Bussiness</option>

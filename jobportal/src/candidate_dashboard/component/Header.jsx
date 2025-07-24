@@ -1,4 +1,5 @@
 import { MdMenu } from "react-icons/md";
+import {useLocation} from "react-router-dom";
 import { useState } from "react";
 import Sidebar from './Sidebar'
 import React, { useEffect } from "react";
@@ -25,6 +26,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 function Header() {
+  const location = useLocation();
    const [userInfo, setUserInfo] = useState("");
       console.log('userInfo FROM HEADER', userInfo);
   // const [chartData, setChartData] = useState(yearlyData);

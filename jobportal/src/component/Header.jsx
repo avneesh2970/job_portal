@@ -24,6 +24,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const menuRef = useRef(null);
+  
 
   // Close menu when clicking outside
   useEffect(() => {

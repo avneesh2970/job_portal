@@ -1,15 +1,18 @@
-import React, { useState , useContext, useEffect} from "react";
+import React, { useState , useContext, useEffect, use} from "react";
 import { X } from "lucide-react";
 import { AuthContext } from "../AuthContext";
+import axios from "axios";
 const JobApplicationModal = ({ isOpen, onClose, jobDetails }) => {
   const { user } = useContext(AuthContext);
+  const [userinfo, setUserInfo] = useState("");
+  console.log('user info !!!!!!!!!!!!!!!', userinfo);
   const [info, setInfo] = useState('');
   console.log('info',info);
   console.log('jb',jobDetails._id)
    const userid = JSON.parse(localStorage.getItem("user"));
     console.log("userId", userid?.id);
   
- 
+   const [showUploader, setShowUploader] = useState(false);
 
   
   
@@ -22,18 +25,41 @@ const JobApplicationModal = ({ isOpen, onClose, jobDetails }) => {
     linkedinUrl: "",
     portfolioUrl: "",
     additionalInfo: "",
+    videoIntroduction:'',
   });
 
 
+
   useEffect(() => {
-    if (info || jobDetails?.jobTitle) {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const user_id = storedUser ? storedUser.id : null;
+    const fetchUserInfo = async () => {
+      const user = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/profile/${user_id}`);
+      console.log('user!!!!!!!!!!!...........', user.data);
+      setUserInfo(user.data);
+
+    }
+    fetchUserInfo();
+  
+   
+  },[])
+
+  useEffect(() => {
+    if (userinfo) {
+      setInfo(userinfo.email || ''); // If userinfo is null, set empty string
       setFormData(prevFormData => ({
         ...prevFormData,
-        email: info || "",
-        jobTitle: jobDetails?.jobTitle || ""
+        firstname: userinfo?.firstname ,
+        lastname: userinfo?.lastname ,
+        email: userinfo?.email ,
+        jobTitle: jobDetails?.jobTitle || '',
+        phone: userinfo?.phone ,
+        linkedinUrl: userinfo?.linkedProfile ,
+        portfolioUrl: userinfo?.portfolio ,
+
       }));
     }
-  }, [info, jobDetails]);
+  },[ userinfo]);
   
 
   useEffect(() => {
@@ -64,14 +90,7 @@ const JobApplicationModal = ({ isOpen, onClose, jobDetails }) => {
       [name]: value,
     });
   };
-  React.useEffect(() => {
-    if (jobDetails?.title) {
-      setFormData((prev) => ({
-        ...prev,
-        jobTitle: jobDetails.title,
-      }));
-    }
-  }, [jobDetails]);
+  
   
   // Handle file changes
   const handleFileChange = (e) => {
@@ -100,9 +119,7 @@ const handleSubmit = async (e) => {
     if (resume) {
       submitData.append("resume", resume);
     }
-    if (videoIntroduction) {
-      submitData.append("videoIntroduction", videoIntroduction);
-    }
+    
 
     // ✅ Add userId and jobId
     const user = JSON.parse(localStorage.getItem("user"));
@@ -288,10 +305,10 @@ const handleSubmit = async (e) => {
             </div>
             
             {/* Additional Information */}
-            <div>
+            {/* <div>
               <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700 mb-1">Additional Information</label>
               <div className="border border-gray-300 rounded-md overflow-hidden">
-                {/* Simple text formatting toolbar */}
+             
                 <div className="flex items-center space-x-1 px-2 py-1 border-b border-gray-300 bg-gray-50">
                   <button type="button" className="p-1 hover:bg-gray-200 rounded text-gray-600">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,53 +339,92 @@ const handleSubmit = async (e) => {
                   {wordCount}/{maxWords}
                 </div>
               </div>
-            </div>
+            </div> */}
             
             {/* Video Introduction */}
             <div>
               <label htmlFor="videoFile" className="block text-sm font-medium text-gray-700 mb-2">Attach your Video Introduction</label>
               <input
-                type="file"
+                type="text"
                 id="videoFile"
                 name="videoIntroduction"
-                accept="video/*"
-                onChange={handleFileChange}
-                className="hidden"
+                placeholder="https://youtube.com/..."
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                value={formData.videoIntroduction}
+                onChange={handleChange}
               />
-              <label 
-                htmlFor="videoFile"
-                className="flex items-center justify-center w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-blue-600 bg-white hover:bg-gray-50 cursor-pointer"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                </svg>
-                {videoIntroduction ? videoIntroduction.name : "Attach Video Introduction"}
-              </label>
+              
             </div>
             
             {/* Resume Upload */}
-            <div>
-              <label htmlFor="resumeFile" className="block text-sm font-medium text-gray-700 mb-2">Attach your resume*</label>
-              <input
-                type="file"
-                id="resumeFile"
-                name="resume"
-                accept=".pdf,.doc,.docx"
-                required
-                onChange={handleFileChange}
-                className="hidden"
-              />
-              <label 
-                htmlFor="resumeFile"
-                className="flex items-center justify-center w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-blue-600 bg-white hover:bg-gray-50 cursor-pointer"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                {resume ? resume.name : "Attach Resume/CV"}
-              </label>
-            </div>
-            
+ 
+    <div className="mb-4">
+      <label htmlFor="resumeFile" className="block text-sm font-medium text-gray-700 mb-2">
+        Attach your resume*
+      </label>
+
+      {/* File Input */}
+      {showUploader && (
+        <>
+          <input
+            type="file"
+            id="resumeFile"
+            name="resume"
+            accept=".pdf,.doc,.docx"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
+          <label
+            htmlFor="resumeFile"
+            className="flex items-center justify-center w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-blue-600 bg-white hover:bg-gray-50 cursor-pointer"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            {resume
+              ? resume.name
+              : "Choose Resume"}
+          </label>
+        </>
+      )}
+
+      {/* Existing Resume Info */}
+      {!showUploader && userinfo?.resume && (
+        <div className="flex items-center justify-between">
+          <a
+            href={`${import.meta.env.VITE_BACKEND_URL}${userinfo.resume}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-blue-500 hover:underline"
+          >
+            {userinfo.resume.split("/").pop()}
+          </a>
+          <button
+            type="button"
+            onClick={() => setShowUploader(true)}
+            className="ml-4 text-sm text-indigo-600 hover:underline"
+          >
+            Change Resume
+          </button>
+        </div>
+      )}
+
+      {/* If no resume at all */}
+      {!userinfo?.resume && !resume && !showUploader && (
+        <button
+          type="button"
+          onClick={() => setShowUploader(true)}
+          className="text-sm text-indigo-600 hover:underline"
+        >
+          Upload Resume
+        </button>
+      )}
+    </div>
+  
+
+
+
             {/* Submit Button */}
             <button 
               type="submit" 
