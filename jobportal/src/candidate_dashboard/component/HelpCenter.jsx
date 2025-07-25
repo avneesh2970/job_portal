@@ -130,56 +130,62 @@ const HelpCenter = () => {
         
       </div>
       <div className=' flex py-4  flex-col items-start justify-center w-full md:w-5/12  '>
-        <div className='flex items-center justify-center w-full  '>
-      <img src="/img.jpg" alt="Help Center"
-          className="w-full h-56 rounded-3xl  object-contain" />
-
-      </div>
-    <div className="flex flex-col items-center justify-center w-full max-w-md mx-auto  mt-1.5 space-y-2 p-2  rounded-xl shadow-md">
-      {/* Address */}
-      <div className="flex items-start gap-2 border border-zinc-200 p-4 rounded-lg w-full  hover:shadow-md transition">
+           
+        <div className="flex flex-col items-center justify-center w-full max-w-md mx-auto  mt-1.5  p-3  rounded-xl shadow-md">
+           <div className='flex items-center justify-center w-full  '>
+          <img src="/img.jpg" alt="Help Center"
+              className="w-full h-56 rounded-t-sm  object-cover" />
+    
+          </div>
+         
+          <div className='w-full flex flex-col gap-1'>
+             {/* Address */}
+          <div className="flex items-start gap-2 mt-1 border border-zinc-200 p-4 rounded-lg w-full   transition">
+            <div className="bg-blue-100 p-2 rounded-full">
+              <MdLocationOn className="text-blue-500 text-2xl" />
+            </div>
+            <div>
+              <p className="font-semibold text-gray-700 mb-1">Address</p>
+              <p className="text-sm text-gray-600">
+                GMS Rd, Haripuram, Kanwali,<br />
+                Dehradun, Uttarakhand 248001
+              </p>
+            </div>
+          </div>
+    
+          {/* Email */}
+        
+           <a href="mailto:info@novanectar.co.in" className="block w-full">
+      <div className="flex items-start gap-4 border border-zinc-200 p-4 rounded-lg w-full hover:bg-zinc-50 transition cursor-pointer">
         <div className="bg-blue-100 p-2 rounded-full">
-          <MdLocationOn className="text-blue-500 text-2xl" />
-        </div>
-        <div>
-          <p className="font-semibold text-gray-700 mb-1">Address</p>
-          <p className="text-sm text-gray-600">
-            GMS Rd, Haripuram, Kanwali,<br />
-            Dehradun, Uttarakhand 248001
-          </p>
-        </div>
-      </div>
-
-      {/* Email */}
-      <div className="flex items-start gap-4 border border-zinc-200 p-4 rounded-lg w-full  hover:shadow-md transition">
-       <div className="bg-blue-100 p-2 rounded-full">
           <MdEmail className="text-blue-500 text-2xl" />
         </div>
         <div>
           <p className="font-semibold text-gray-700 mb-1">Email</p>
-          <a href="mailto:info@novanectar.co.in" className="text-sm text-blue-600 hover:underline">
-            info@novanectar.co.in
-          </a>
+          <p className="text-base text-blue-600">info@novanectar.co.in</p>
         </div>
       </div>
-
-      {/* Phone */}
-      <div className="flex items-start gap-2 border border-zinc-200 p-4 rounded-lg w-full shadow-sm hover:shadow-md transition">
-       <div className="bg-blue-100 p-2 rounded-full">
-          <MdPhone className="text-blue-500 text-2xl" />
+    </a>
+          
+    
+          {/* Phone */}
+          <div className="flex items-start gap-2 border border-zinc-200 p-4 rounded-lg w-full shadow-sm  transition">
+           <div className="bg-blue-100 p-2 rounded-full">
+              <MdPhone className="text-blue-500 text-2xl" />
+            </div>
+            <div>
+              <p className="font-semibold text-gray-700 mb-1">Phone Numbers</p>
+              <a href="tel:+918979891703" className="block text-sm text-gray-700 hover:underline">
+                +91 8979891703
+              </a>
+              <a href="tel:+918979891705" className="block text-sm text-gray-700 hover:underline">
+                +91 8979891705
+              </a>
+            </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="font-semibold text-gray-700 mb-1">Phone Numbers</p>
-          <a href="tel:+918979891703" className="block text-sm text-gray-700 hover:underline">
-            +91 8979891703
-          </a>
-          <a href="tel:+918979891705" className="block text-sm text-gray-700 hover:underline">
-            +91 8979891705
-          </a>
-        </div>
-      </div>
-    </div>
-      </div>
+          </div>
       </div>
     </div>
   );

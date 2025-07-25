@@ -137,7 +137,7 @@ export default function AboutPage() {
       alt="Background"
       className="w-full h-full object-cover "
     />
-    <div className="absolute inset-0 bg-radial from-zinc-100  opacity-90"></div>
+    <div className="absolute inset-0  bg-gradient-to-l from-zinc-300 to-zinc-400 opacity-70"></div>
   </div>
 
   {/* Foreground content */}
@@ -152,7 +152,7 @@ export default function AboutPage() {
       <br className="hidden md:block" />
       We bridge the gap between skilled professionals and emerging businesses by providing an effortless, intelligent, and reliable recruitment experience.
       <br className="hidden md:block" />
-      From <span className="font-semibold text-green-600">freshers</span> to <span className="font-semibold text-blue-600">seasoned professionals</span>, we’re here to build meaningful connections that move careers and businesses forward.
+      From features to <span className="font-semibold text-blue-600">seasoned professionals</span>, we’re here to build meaningful connections that move careers and businesses forward.
     </motion.p>
 
     <motion.div
@@ -391,7 +391,7 @@ export default function AboutPage() {
       The <span className="text-[#4640DE]">NNHire</span> Advantage
     </h2>
 
-    <div className="flex flex-col h-96 overflow-auto   gap-2 items-center text-lg text-gray-700 font-medium">
+    <div className="flex flex-col h-96 justify-center   gap-2 items-center text-lg text-gray-700 font-medium">
       {[
         "Smart Matching Algorithm for job recommendations",
         "Verified job listings and employers",
@@ -403,7 +403,7 @@ export default function AboutPage() {
       ].map((point, index) => (
         <motion.div
           key={index}
-          className="w-full max-w-3xl px-6 py-4 bg-white shadow-md rounded-xl border "
+          className="w-full justify-center  rounded-lg max-w-2xl px-6 py-2 cursor-pointer shadow hover:shadow-md transition-shadow duration-300 flex items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}

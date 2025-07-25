@@ -108,7 +108,7 @@ const SignUp = () => {
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md relative">
 
         {/* Tabs for Candidate/Employee */}
-        <div className="flex justify-center mt-4 mb-6">
+        {/* <div className="flex justify-center mt-4 mb-6">
           <div className="grid grid-cols-2 bg-gray-100 rounded-lg p-1 w-64">
             <button
               className={`py-2 px-4 rounded-lg transition-all ${activeTab === 'candidate' ? 'bg-white shadow-sm text-[#4640DE]' : 'text-gray-600'}`}
@@ -123,7 +123,7 @@ const SignUp = () => {
               Recruiter
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Form content */}
         <div className="px-6 pb-6">

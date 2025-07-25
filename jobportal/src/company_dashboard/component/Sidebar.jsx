@@ -61,9 +61,9 @@ function Sidebar({containerStyle, close}) {
            <div className="hidden">
              <p>Lorem, ipsum.</p>
            </div>
-       
-           <nav className="text-lg pb-6 justify-end ">
-             <Link to="/company_dashboard/comp_settings" onClick={close} className={`cursor-pointer block p-2 rounded ${isActive('/company_dashboard/comp_settings') ? 'bg-blue-100' : ''}`}>
+
+           <nav className="text-lg pb-6  justify-end ">
+             <Link to="/company_dashboard/comp_settings" onClick={close} className={`cursor-pointer w-[236px] pl-1.5 block p-2 rounded ${isActive('/company_dashboard/comp_settings') ? '  text-blue-500 bg-blue-100' : ''}`}>
                Setting
              </Link>
              <Link onClick={handleLogout} className="cursor-pointer block p-2 rounded">

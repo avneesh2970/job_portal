@@ -125,7 +125,7 @@ const CompanyDetail = () => {
                 </div>
 
                 {/* company external uri to apply */}
-                <div className="flex flex-col md:flex-row gap-6 mb-8">
+                {/* <div className="flex flex-col md:flex-row gap-6 mb-8">
                   <div className="w-full md:w-1/3">
                     <h2 className="text-xl font-semibold text-gray-700">External Apply URL</h2>
                     <p className="text-gray-500 text-sm">Provide a link for candidates to apply externally.</p>
@@ -140,7 +140,7 @@ const CompanyDetail = () => {
                       aria-label="External Apply URL"
                     />
                   </div>
-                </div>
+                </div> */}
                  {/* Social Links */}
                 <div className="flex flex-col md:flex-row gap-6 mb-8">
                   <div className="w-full md:w-1/3">
@@ -159,6 +159,7 @@ const CompanyDetail = () => {
                       onChange={(e) => setInstagramUrl(e.target.value)}
                       aria-label="Instagram URL"
                     />
+                    <span className='text-xs text-blue-600'>Instagram URL</span>
                   </div>
                    <div className="w-full md:w-2/3">
                     <input
@@ -171,6 +172,7 @@ const CompanyDetail = () => {
                       onChange={(e) => setLinkedInUrl(e.target.value)}
                       aria-label="LinkedIn URL"
                     />
+                     <span className='text-xs text-blue-600'>LinkedIn URL</span>
                   </div>
                    <div className="w-full md:w-2/3">
                     <input
@@ -183,6 +185,7 @@ const CompanyDetail = () => {
                       onChange={(e) => setFacebookUrl(e.target.value)}
                       aria-label="Facebook URL"
                     />
+                     <span className='text-xs text-blue-600'>Facebook URL</span>
                   </div>
                  </div>
                 </div>

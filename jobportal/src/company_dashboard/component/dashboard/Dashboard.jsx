@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineCardTravel } from "react-icons/md";
 import PersnolProfile from "./PersonalProfile"
+import { GoArrowUpRight } from "react-icons/go";
 import {
   FaUser,
   FaCalendarAlt,
@@ -199,13 +200,14 @@ function Dashboard() {
         </p>
 
   
-        <div className="md:flex gap-4 mt-6   lg:grid lg:grid-cols-3 mx-auto justify-around ">
-          <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+        <div className="md:flex gap-4 mt-6 lg:grid lg:grid-cols-3 mx-auto justify-around ">
+          <div onClick={() => navigate("/company_dashboard/allapplicants")} className="bg-blue-500 cursor-pointer text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaUser className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">{applicant.length}</h3>
               <p>New applicants to review</p>
             </div>
+             <GoArrowUpRight className="text-white h-10 w-10 ml-auto" />
           </div>
           <div className="bg-green-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaCalendarAlt className="text-2xl mr-2" />
@@ -214,12 +216,13 @@ function Dashboard() {
               <p>Interview schedule </p>
             </div>
           </div>
-          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          <div onClick={() => navigate("/company_dashboard/viewjob")} className="cursor-pointer bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <MdOutlineCardTravel className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">{userJobs.length}</h3>
               <p>Total Number of Job posted</p>
             </div>
+             <GoArrowUpRight className="text-white h-10 w-10 ml-auto" />
           </div>
         </div>
 
