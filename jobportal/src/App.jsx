@@ -40,6 +40,7 @@ import { View } from 'lucide-react'
 import HelpCenter from './candidate_dashboard/component/HelpCenter.jsx'
 import CompanyPage from './company_dashboard/component/company/CompanyPage.jsx'
 import HelpCenterComp from './company_dashboard/component/HelpCenterComp.jsx'
+import NotFoundPage from './component/NotFoundPage.jsx'
 
 function App() {
 
@@ -69,6 +70,9 @@ function App() {
         },{
           path:'/about',
           element:<About/>
+        },{
+          path: '*',
+          element: <NotFoundPage /> 
         }
       ]
     },{
@@ -109,6 +113,9 @@ function App() {
         },{
           path:'cand_helpcenter',
           element:<HelpCenter/>
+        },{
+          path: '*',
+          element: <NotFoundPage /> 
         }
       ]
     },{
@@ -158,6 +165,9 @@ function App() {
         },{
           path:'helpcenter',
           element:<HelpCenterComp/>
+        },{
+          path: '*',
+          element: <NotFoundPage /> 
         }
       ]
     }
