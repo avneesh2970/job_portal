@@ -72,7 +72,7 @@ export default function PersnolProfile({ user }) {
       <div className="relative  ">
         <h3 className="text-gray-700 font-medium">Work Experience</h3>
         <div className="mt-2 space-y-2">
-         {userinfo.workExperience.map((exp, index) => (
+         {userinfo.workExperience.slice(0.2).map((exp, index) => (
   <div
     key={index}
     className="w-full md:w-full bg-white shadow-md border border-gray-500 rounded-xl p-5 mb-4 transition hover:shadow-lg"

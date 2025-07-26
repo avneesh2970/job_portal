@@ -410,7 +410,8 @@ const applicationController = {
         jobTitle,
         linkedinUrl,
         portfolioUrl,
-        additionalInfo
+        additionalInfo,
+        videoIntroduction,
       } = req.body;
 
       const userId = req.body.user;
@@ -452,7 +453,8 @@ const applicationController = {
         portfolioUrl,
         additionalInfo,
         resumePath: req.files.resume ? req.files.resume[0].path : null,
-        videoPath: req.files.videoIntroduction ? req.files.videoIntroduction[0].path : null
+        videoPath: req.files.videoIntroduction ? req.files.videoIntroduction[0].path : null,
+        videoIntroduction, // Store video introduction if provided
       });
 
       // Save to database
@@ -640,7 +642,31 @@ const userController = {
       res.status(500).json({ message: 'Server error during login' });
     }
   },
-  
+
+
+  passwordReset : async (req, res) => {
+    try{
+      const { email , password} = req.body;
+      const user = await User.findOne({ email: email });
+      if(!user){
+        return res.status(404).json({ message: 'User with this email does not exist' });
+
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      // Update user's password
+      user.password = hashedPassword;
+      await user.save();
+      // Send confirmation email
+      res.status(200).json({ message: 'Password updated successfully' });
+
+    } catch (error) {
+      console.error('Password reset error:', error);
+      res.status(500).json({ message: 'Server error during password reset' });
+    }
+  },
+
   // Password reset request functionality with email
   requestPasswordReset: async (req, res) => {
     try {
@@ -965,7 +991,7 @@ sendEmailAdmin: async (req, res) => {
       const userId = req.params.id;
       console.log('User ID:', userId);
       try {
-        const user = await  User.findById(userId).select('-password');
+        const user = await  User.findById({_id : userId}).select('-password');
         if (!user) {
           return res.status(404).json({ message: 'User not found' });
         }

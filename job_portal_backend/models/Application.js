@@ -38,7 +38,8 @@ const applicationSchema = new mongoose.Schema({
   portfolioUrl: String,
   additionalInfo: String,
   resumePath: String,
-  videoPath: String,
+
+  videoIntroduction: String,
   appliedAt: { type: Date, default: Date.now }
 });
 

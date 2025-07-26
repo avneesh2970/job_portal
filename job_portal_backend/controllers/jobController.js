@@ -17,6 +17,7 @@ const createJobPost = async (req, res) => {
       .json({ message: "Job post saved successfully", jobPost: newJob });
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log({ error: error.message });
   }
 };
 
@@ -86,26 +87,32 @@ const User = require('../models/User'); // adjust the path as needed
 const getUserWithAppliedJobs = async (req, res) => {
   try {
     const userId = req.params.user_id;
-    // const usere = await User.findById(userId)
-    //   console.log('user', usere)
 
-    const user = await User.findById(userId).populate({
-      path: 'applied.job',
-      model: 'JobPost',
-      select: 'companyLogo jobTitle companyName location' // Optional: only select fields you need
-    });
-
+    // Fetch the user with populated jobs
+    const user = await User.findById(userId)
+      .populate({
+        path: 'applied.job',
+        model: 'JobPost',
+        select: 'companyLogo jobTitle companyName location'
+      })
+      .lean(); // optional for better performance
 
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    res.status(200).json({ success: true, user });
+    // Filter out applied entries where job is null (e.g. deleted)
+    if (Array.isArray(user.applied)) {
+      user.applied = user.applied.filter(app => app.job);
+    }
+
+    return res.status(200).json({ success: true, user });
   } catch (err) {
     console.error("Error populating applied jobs:", err);
-    res.status(500).json({ success: false, message: "Server error" });
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
 
 const createCompanyProfile = async (req, res) => {
   try {

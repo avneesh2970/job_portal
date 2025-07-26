@@ -35,7 +35,7 @@ const Login = () => {
     setError("");
     setLoading(true);
 
-    localStorage.setItem("password", formData.password);
+    
     try {
       // First, make the login request
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
@@ -99,7 +99,7 @@ const Login = () => {
         </div>
         
         {/* Tabs for Candidate/Employee */}
-        {/* <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6">
           <div className="grid grid-cols-2 border border-dashed border-blue-300 rounded-lg p-1 w-full">
             <button 
               className={`py-2 px-4 rounded-lg transition-all ${activeTab === 'candidate' ? 'bg-indigo-100 text-[#4640DE]' : 'text-gray-600'}`}
@@ -114,7 +114,7 @@ const Login = () => {
               Recruiter
             </button>
           </div>
-        </div> */}
+        </div>
         
         {/* Header */}
         <div className="mb-6">

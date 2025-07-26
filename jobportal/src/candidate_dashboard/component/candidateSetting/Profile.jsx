@@ -99,7 +99,7 @@ function Profile({data}) {
       {/* file upload */}
       <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
         <div className='flex-1 text-xl text-zinc-700 font-semibold'>Profile Photo</div>
-   <div className="flex justify-center mx-auto flex-col md:flex-row items-center gap-6">
+   <div className="flex pr-16 justify-center mx-auto flex-col md:flex-row items-center gap-6">
   <div className="w-24 h-24 flex items-center justify-center rounded-full overflow-hidden  bg-gray-100 border border-gray-300">
     {image ? (
       <img
@@ -141,9 +141,9 @@ function Profile({data}) {
 
       <div className='border-b-1 border-[#DEE0E4]'></div>
       {/* candidate personal info */}
-      <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
+      <div className='flex flex-col pr-16 md:flex-row justify-between py-4 gap-3 md:gap-0'>
         <div className='flex-1 text-xl text-zinc-700 font-semibold'>Personal Details</div>
-        <div className='flex-1'>
+        <div className='flex-1 '>
           <div action="" className=' grid gap-6'>
             <div className='flex gap-3    w-full'>
               <div className='flex flex-col w-6/12 '>
@@ -283,7 +283,7 @@ function Profile({data}) {
 
       <div className='border-b-1 border-[#DEE0E4]'></div>
       {/* address*/}
-      <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
+      <div className='flex flex-col pr-16 md:flex-row justify-between py-4 gap-3 md:gap-0'>
         <div className='flex-1 text-xl text-zinc-700 font-semibold'>Address Information</div>
         <div className='flex-1'>
           <div action="" className='grid gap-6'>

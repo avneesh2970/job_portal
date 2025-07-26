@@ -82,7 +82,7 @@ const MyApplications = () => {
             </thead>
             <tbody>
               {Array.isArray(applications) &&
-                applications.map((app, index) => (
+                [...applications].reverse().map((app, index) => (
                   <tr key={index}>
                     <td className="py-3 flex items-center gap-1 ">
                       <img className="flex items-center justify-center object-contain w-8 h-10" src={app?.job?.companyLogo} alt="" />

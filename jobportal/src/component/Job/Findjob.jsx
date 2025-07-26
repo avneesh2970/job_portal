@@ -55,13 +55,13 @@ const Findjob = () => {
     });
 
     // Check categories
-   job.categories?.forEach(category => {
-  const normalizedCategory = category.replace(/\s+/g, '').toLowerCase(); // "Human Resources" => "humanresources"
-  const matchedKey = Object.keys(typeCounts).find(key => key.toLowerCase() === normalizedCategory);
-  if (matchedKey) {
-    typeCounts[matchedKey]++;
-  }
-});
+    job.categories?.forEach(category => {
+      const normalizedCategory = category.replace(/\s+/g, '').toLowerCase(); // "Human Resources" => "humanresources"
+      const matchedKey = Object.keys(typeCounts).find(key => key.toLowerCase() === normalizedCategory);
+      if (matchedKey) {
+        typeCounts[matchedKey]++;
+      }
+    });
   });
 
 
@@ -394,6 +394,19 @@ const Findjob = () => {
   }
 
 
+  const selectedFilters = {
+    jobTypes: Object.keys(filters.jobTypes).filter((key) => filters.jobTypes[key]),
+    categories: Object.keys(filters.categories).filter((key) => filters.categories[key]),
+    salaryRange: Object.keys(filters.salaryRange).filter((key) => filters.salaryRange[key])
+  };
+
+
+  const selectedTags = [
+    ...selectedFilters.jobTypes,
+    ...selectedFilters.categories,
+    ...selectedFilters.salaryRange
+  ];
+
 
 
 
@@ -708,6 +721,17 @@ const Findjob = () => {
 
 
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  const removeFilter = (category, value) => {
+  setFilters((prev) => ({
+    ...prev,
+    [category]: {
+      ...prev[category],
+      [value]: false
+    }
+  }));
+};
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -921,6 +945,9 @@ const Findjob = () => {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold">All Jobs</h2>
+
+                  {/* Show selected filters in mobile view */}
+                 
                   <div className="hidden md:flex items-center">
                     <span className="text-sm text-gray-500 mr-2">Sort by:</span>
                     <select className="border rounded p-1 text-sm">
@@ -929,7 +956,7 @@ const Findjob = () => {
                       <option>oldest</option>
                     </select>
                   </div>
-                  {/* Filter button for small devices */}
+               
                   <div className="md:hidden flex justify-end mb-4">
                     <button
                       onClick={() => setIsMobileFilterOpen(true)}
@@ -939,6 +966,27 @@ const Findjob = () => {
                     </button>
                   </div>
                 </div>
+                   {/* Filter button for small devices */}
+                {selectedFilters && (
+  <div className="flex flex-wrap gap-2 mt-2 md:hidden">
+    {Object.entries(selectedFilters).map(([category, values]) =>
+      values.map((tag) => (
+        <span
+          key={`${category}-${tag}`}
+          className="flex items-center bg-indigo-100 text-indigo-600 text-xs font-medium px-2 py-1 rounded-full"
+        >
+          <span className="mr-1">{tag}</span>
+          <button
+            onClick={() => removeFilter(category, tag)}
+            className="text-indigo-500 hover:text-indigo-800 ml-1"
+          >
+            ✕
+          </button>
+        </span>
+      ))
+    )}
+  </div>
+)}
 
                 {/* Loading state */}
                 {loading ? (

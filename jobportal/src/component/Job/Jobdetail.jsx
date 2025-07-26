@@ -117,15 +117,23 @@ const Jobdetail = () => {
 
 
   const handleApplyNow = () => {
-    console.log('Clicked Apply Now');
-    const userInfo = localStorage.getItem('user');
+  const userInfo = localStorage.getItem('user');
 
-    if (!userInfo) {
-      toast.error('Please login first to apply.');
-    } else {
-      setIsModalOpen(true);
-    }
-  };
+  if (!userInfo) {
+    toast.error('Please login first to apply.');
+    return;
+  }
+
+  if (jobdata.externalApplyUrl) {
+    window.open(jobdata.externalApplyUrl, '_blank');
+    return;
+  }else{
+    setIsModalOpen(true);
+  }
+
+ 
+  
+};
 
 
   const handleViewCompanyProfile = () => {
@@ -198,13 +206,7 @@ const Jobdetail = () => {
                 <Heart className="h-5 w-5 text-gray-500" />
               </button>
               <button
-                onClick={() => {
-                  if (jobdata.externalApplyUrl) {
-                    window.open(jobdata.externalApplyUrl, '_blank');
-                  } else {
-                    handleApplyNow();
-                  }
-                }}
+                onClick={handleApplyNow}
 
 
                 disabled={hasApplied}

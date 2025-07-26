@@ -288,7 +288,7 @@ function Dashboard() {
           <tr className="bg-gray-100 text-gray-600 text-left text-sm">
             <th className="p-3">Company Name</th>
             <th className="p-3">Postion</th>
-            <th className="p-3">Date</th>
+            <th className="p-3">status</th>
             <th className="p-3">Date of Applied</th>
           </tr>
         </thead>
@@ -303,7 +303,7 @@ function Dashboard() {
     </td>
   </tr>
 ) : (
-  userApplied.map((job) => (
+  userApplied.slice(0,6).reverse().map((job) => (
     <tr key={job._id} className="border-b">
       <td className="">
         <div className="flex items-center gap-2 py-2">
@@ -329,16 +329,16 @@ function Dashboard() {
           className={`  py-2 flex justify-center items-center rounded-full text-sm font-semibold  transition-all duration-200
     ${
       job.status === "Submitted"
-        ? "border border-amber-300 bg-amber-50 text-amber-600"
+        ? "border border-amber-300 px-2.5 py-1  bg-amber-50 text-amber-600"
         : job.status === "Under Review"
         ? "border border-blue-300 px-2.5 py-1 text-sm w-full h-10 bg-blue-50 text-blue-600"
         : job.status === "Interview"
-        ? "border border-green-300 bg-green-50 text-green-600"
+        ? "border border-green-300 px-2.5 py-1 bg-green-50 text-green-600"
         : job.status === "Offered"
-        ? "border border-green-400 bg-green-100 text-green-700"
+        ? "border border-green-400 px-2.5 py-1 bg-green-100 text-green-700"
         : job.status === "Rejected"
-        ? "border border-red-300 bg-red-50 text-red-600"
-        : "border border-gray-300 bg-gray-50 text-gray-600"
+        ? "border border-red-300 px-2.5 py-1 bg-red-50 text-red-600"
+        : "border border-gray-300 px-2.5 py-1 bg-gray-50 text-gray-600"
     }`}
         >
           {job.statusHistory?.length > 0 ? (

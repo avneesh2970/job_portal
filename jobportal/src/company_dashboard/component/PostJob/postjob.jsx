@@ -1,5 +1,5 @@
 
-import React , { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { FaArrowLeft, FaSpinner } from "react-icons/fa"
 import bag from "../../assets/image/bag.png"
 import note from "../../assets/image/note.png"
@@ -23,7 +23,7 @@ const PostJob = () => {
   const [sallery, setSallery] = useState(1000)
   const [categories, setCategories] = useState([])
   console.log(categories);
-  
+
   const [requiredSkills, setRequiredSkills] = useState(["JavaScript", "React", "Node.js"])
   const [input, setInput] = useState("")
 
@@ -44,6 +44,7 @@ const PostJob = () => {
   const [day, setDay] = useState("")
   const [month, setMonth] = useState("")
   const [year, setYear] = useState("")
+  const [closingDate, setClosingDate] = useState("");
   const [aboutCompany, setAboutCompany] = useState("")
   const [user_id, setuser_id] = useState('');
 
@@ -88,7 +89,7 @@ const PostJob = () => {
 
     try {
       axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost`, {
           jobTitle,
           employmentType,
           sallery,
@@ -108,8 +109,9 @@ const PostJob = () => {
           day,
           month,
           year,
-          postedBy:user_id,
-          externalApplyUrl
+          postedBy: user_id,
+          externalApplyUrl: externalApplyUrl,
+          closeDate: closingDate
         })
         .then((result) => {
           console.log(result)
@@ -202,47 +204,48 @@ const PostJob = () => {
   )
 
 
- useEffect(()=>{
-  const userid = localStorage.getItem('user')
-  console.log('userii',userid)
-  try{
-    const info = JSON.parse(userid)
-    setuser_id(info.email);
-  }catch(err){
-    console.log(err);
-  }
- },[])
+  useEffect(() => {
+    const userid = localStorage.getItem('user')
+    console.log('userii', userid)
+    try {
+      const info = JSON.parse(userid)
+      setuser_id(info.email);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [])
 
 
 
   useEffect(() => {
-             const user = JSON.parse(localStorage.getItem('user'));
-            const user_email = user.email;
-            const fetchdata = async () => {
-             try {
-                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`);
-                 console.log('response', response);
-                 if (response.data && response.data.companyProfile) {
-                     const profile = response.data.companyProfile;
-                     setCompanyLogo(profile.companyLogo || "");
-                     setCompanyName(profile.companyName || "");
-                     setExternalApplyUrl(profile.externalApplyUrl || "");
-                     setWebsiteUrl(profile.websiteUrl || "");
-                     setLocation(profile.location || "");
-                     setEmployeeStrength(profile.employeeStrength || "");
-                     setIndustry(profile.industry || "");
-                     setTechnology(profile.technology || "");
-                     setDay(profile.day || "");
-                     setMonth(profile.month || "");
-                     setYear(profile.year || "");
-                     setAboutCompany(profile.aboutCompany || "");
-                 }
-             } catch (error) {
-                 console.error("Error fetching company profile:", error);
-             }
-            }
-            fetchdata();
-         },[])
+    const user = JSON.parse(localStorage.getItem('user'));
+    const user_email = user.email;
+    const fetchdata = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/job/jobpost/${user_email}/companyprofile`);
+        console.log('response', response);
+        if (response.data && response.data.companyProfile) {
+          const profile = response.data.companyProfile;
+          setCompanyLogo(profile.companyLogo || "");
+          setCompanyName(profile.companyName || "");
+          setExternalApplyUrl(profile.externalApplyUrl || "");
+          setWebsiteUrl(profile.websiteUrl || "");
+          setLocation(profile.location || "");
+          setEmployeeStrength(profile.employeeStrength || "");
+          setIndustry(profile.industry || "");
+          setTechnology(profile.technology || "");
+          setDay(profile.day || "");
+          setMonth(profile.month || "");
+          setYear(profile.year || "");
+          setAboutCompany(profile.aboutCompany || "");
+          setClosingDate(profile.closingDate || "");
+        }
+      } catch (error) {
+        console.error("Error fetching company profile:", error);
+      }
+    }
+    fetchdata();
+  }, [])
 
   return (
     <div className="p-6 bg-white shadow rounded-lg">
@@ -269,7 +272,7 @@ const PostJob = () => {
                       type="text"
                       placeholder="e.g. Software Engineer"
                       className="w-full border outline-none p-3 rounded-md placeholder-gray-400 disabled"
-                     
+
                       value={user_id}
                     />
                     <p className="text-xs text-gray-400 mt-1">At least 80 characters</p>
@@ -294,6 +297,25 @@ const PostJob = () => {
                     <p className="text-xs text-gray-400 mt-1">At least 80 characters</p>
                   </div>
                 </div>
+
+                {/* Closing Date */}
+                <div className="mb-6 flex flex-col md:flex-row gap-4">
+                  <div className="w-full md:w-1/3">
+                    <h1 className="font-semibold">Closing Date</h1>
+                    <p className="text-gray-500">Select the deadline date and time for job applications</p>
+                  </div>
+                  <div className="w-full md:w-2/3">
+                    <input
+                      type="datetime-local"
+                      className="w-full border border-gray-300 p-3 rounded-md text-gray-700"
+                      onChange={(e) => setClosingDate(e.target.value)}
+                      value={closingDate}
+                    />
+                    <p className="text-xs text-gray-400 mt-1">Job post will close after this date and time</p>
+                  </div>
+                </div>
+
+
 
                 {/* Employment Type */}
                 <div className="mb-6 flex flex-col md:flex-row gap-4">
@@ -337,17 +359,17 @@ const PostJob = () => {
                       <span className="text-sm text-gray-500 font-medium">₹ 15,000</span>
                     </div>
                     <div className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2">
-  <p className="font-semibold text-sm sm:text-base mb-2 sm:mb-0 text-right sm:text-left">
-    Selected Salary: <input
-    type="text"
-    value={sallery}
-    onChange={(e) => setSallery(e.target.value)}
-    className="border border-gray-300 rounded-md px-3 py-1 w-full sm:w-20 text-sm sm:text-base"
-    placeholder="Enter Salary"
-  />
-  </p>
-  
-</div>
+                      <p className="font-semibold text-sm sm:text-base mb-2 sm:mb-0 text-right sm:text-left">
+                        Selected Salary: <input
+                          type="text"
+                          value={sallery}
+                          onChange={(e) => setSallery(e.target.value)}
+                          className="border border-gray-300 rounded-md px-3 py-1 w-full sm:w-20 text-sm sm:text-base"
+                          placeholder="Enter Salary"
+                        />
+                      </p>
+
+                    </div>
 
 
 
@@ -364,8 +386,8 @@ const PostJob = () => {
                     <select
                       className="w-full border border-gray-300 p-3 rounded-md text-gray-600"
                       onChange={(e) => setCategories(e.target.value)}
-                     
-                      
+
+
                       value={categories}
                     >
                       <option value="" disabled>Select Job Category</option>

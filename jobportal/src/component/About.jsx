@@ -220,7 +220,7 @@ export default function AboutPage() {
         <img
           src="https://cdn.pixabay.com/photo/2024/07/15/12/27/ai-generated-8896730_1280.jpg" // Update path as needed
           alt="Mission Illustration"
-          className="w-full max-w-md rounded-2xl shadow-lg object-contain"
+          className="w-full max-w-md  hover:scale-105 duration-300 transition-all transform h-auto rounded-xl  shadow-lg object-contain"
         />
       </div>
     </div>
@@ -235,7 +235,7 @@ export default function AboutPage() {
   transition={{ duration: 0.8, ease: "easeOut" }}
   viewport={{ once: true, amount: 0.3 }}
 >
-  <div className="container mx-auto px-6 lg:px-20 flex flex-col-reverse lg:flex-row items-center gap-12">
+  <div className="container mx-auto px-3 lg:px-20 flex flex-col-reverse lg:flex-row-reverse items-center gap-12">
     {/* Left Text Content */}
     <div className="lg:w-1/2 text-center lg:text-left">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -258,7 +258,7 @@ export default function AboutPage() {
       <img
         src="https://cdn.pixabay.com/photo/2017/01/13/17/29/hiring-1977803_1280.jpg" // Replace with your actual image
         alt="Future of work"
-        className="w-full h-auto rounded-xl shadow-md"
+        className="w-full hover:scale-105 duration-300 transition-all transform h-auto rounded-xl shadow-md"
       />
     </div>
   </div>
@@ -292,15 +292,15 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className=" bg-gradient-to-b from-violet-500 to-blue-500 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center"
+                className=" mt-16 md:mt-6 bg-gradient-to-b from-violet-500 to-blue-500 px-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center"
                 variants={cardVariants}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="p-5 rounded-full  bg-blue-200 mb-6 inline-block">
+                <div className="p-4 -mt-8 rounded-full  bg-blue-200 mb-6 inline-block">
                   {value.icon}
                 </div>
                 <h3 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">{value.title}</h3>
-                <p className="text-black  text-center leading-relaxed">{value.description}</p>
+                <p className="text-black mb-6  text-center leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </motion.div>

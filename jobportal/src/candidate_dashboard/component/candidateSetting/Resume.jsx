@@ -213,18 +213,18 @@ const handleSubmit = async (e) => {
   return (
     <div>
       {/* Heading */}
-      <div className='py-4 flex justify-between flex-wrap items-center'>
+      <div className='py-4 flex justify-between  flex-wrap items-center'>
         <div>
           <p className='font-medium text-[18px] text-[#1C2638]'>Basic Information</p>
           <p className='font-normal text-[16px] text-[#A0A0A0]'>This information will be displayed publicly.</p>
         </div>
-        <div className='p-2 rounded-full border border-[#DEE0E4] cursor-pointer'>
+        {/* <div className='p-2 rounded-full border border-[#DEE0E4] cursor-pointer'>
           <PiPencilSimpleLine className='w-5 h-5' />
-        </div>
+        </div> */}
       </div>
       {/* Education Details */}
-      <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
-        <div className='flex-1'>Education Details</div>
+      <div className='flex flex-col md:flex-row pr-16 justify-between py-4 gap-3 md:gap-0'>
+        <div className='flex-1 text-xl text-zinc-700 font-semibold'>Education Details</div>
         <div className='flex-1'>
         <form className=' grid gap-6'>
             <div className='flex flex-col'>
@@ -302,39 +302,36 @@ const handleSubmit = async (e) => {
         </div>
       </div>
 
-      <div className='flex w-full my-10'>
-        <div className='w-4/12 font-semibold text-[16px] text-[#4640DE]'>
-          Institute Name
-        </div>
-        <div className='w-2/12 font-semibold text-[16px] text-[#4640DE]'>
-          Degree
-        </div>
-        <div className='w-2/12 font-semibold text-[16px] text-[#4640DE]'>
-          Specialization
-        </div>
-        <div className='w-2/12 font-semibold text-[16px] text-[#4640DE]'>
-          Start Date
-        </div>
-        <div className='w-2/12 font-semibold text-[16px] text-[#4640DE]'>
-          End Date
-        </div>
-      </div>
-      {educationList.map((edu, index) => (
-  <div key={index} className='flex w-full my-2'>
-    <div className='w-4/12 text-[15px] text-gray-800'>{edu.institute}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{edu.degree}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{edu.specialization}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{edu.StartDate}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{edu.EndDate}</div>
-  </div>
-))}
+      <table className="w-full my-10 border border-gray-300 text-sm">
+  <thead>
+    <tr className="bg-gray-100 text-[#4640DE] text-[16px] font-semibold">
+      <th className="border border-gray-300 px-3 py-2 w-4/12 text-left">Institute Name</th>
+      <th className="border border-gray-300 px-3 py-2 w-2/12 text-left">Degree</th>
+      <th className="border border-gray-300 px-3 py-2 w-2/12 text-left">Specialization</th>
+      <th className="border border-gray-300 px-3 py-2 w-2/12 text-left">Start Date</th>
+      <th className="border border-gray-300 px-3 py-2 w-2/12 text-left">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {educationList.map((edu, index) => (
+      <tr key={index} className="text-gray-800">
+        <td className="border border-gray-300 px-3 py-2">{edu.institute}</td>
+        <td className="border border-gray-300 px-3 py-2">{edu.degree}</td>
+        <td className="border border-gray-300 px-3 py-2">{edu.specialization}</td>
+        <td className="border border-gray-300 px-3 py-2">{edu.StartDate}</td>
+        <td className="border border-gray-300 px-3 py-2">{edu.EndDate}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
 
 
       <div className='border-b-1 border-[#DEE0E4]'></div>
 
       {/* Skills */}
-      <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
-        <div className="flex-1">Skills</div>
+      <div className='flex flex-col md:flex-row justify-between py-4 pr-16 gap-3 md:gap-0'>
+        <div className="flex-1 text-xl text-zinc-700 font-semibold">Skills</div>
         <div className="flex flex-wrap gap-3 flex-1">
           {Array.isArray(skills) &&
            skills.map((skill, index) => (
@@ -376,8 +373,8 @@ const handleSubmit = async (e) => {
 
       {/* Work experience */}
       <div className="flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0">
-        <div className="flex-1">Work Experience</div>
-        <div className='flex-1'>
+        <div className="flex-1 text-xl text-zinc-700 font-semibold">Work Experience</div>
+        <div className='flex-1 pr-16'>
           <form action="" className=' grid gap-6'>
             <div className='flex flex-wrap gap-3'>
               <div className='flex flex-col flex-1'>
@@ -495,44 +492,35 @@ const handleSubmit = async (e) => {
         </div>
 
       </div>
-      <div className='flex w-full my-2'>
-        <div className='w-3/12 font-semibold text-[13px] text-[#4640DE]'>
-         Job Title
-        </div>
-         <div className='w-2/12 font-semibold text-[13px] text-[#4640DE]'>
-        Company
-        </div>
-        <div className='w-2/12 font-semibold text-[13px] text-[#4640DE]'>
-          Employment Type
-        </div>
-        <div className='  w-1/12 font-semibold text-[13px] text-[#4640DE]'>
-         Industry
-        </div>
-        <div className='w-2/12 font-semibold text-[13px] text-[#4640DE]'>
-          Start Date
-        </div>
-        <div className='w-2/12 font-semibold text-[13px] text-[#4640DE]'>
-          End Date
-        </div>
-        <div  className='w-1/12 font-semibold text-[13px] text-[#4640DE]'>
-          Salary
-        </div>
-        <div  className='w-2/12 font-semibold text-[13px] text-[#4640DE]'> 
-          Location
-        </div>
-      </div>
-     {workExperiencelist.map((exp, index) => (
-  <div key={index} className='flex w-full my-2'>
-    <div className='w-3/12 text-[15px] text-gray-800'>{exp.jobTitle}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{exp.company}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{exp.employmentType}</div>
-    <div className='w-1/12 text-[15px] text-gray-800'>{exp.industry}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{exp.StartDate}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{exp.EndDate}</div>
-    <div className='w-1/12 text-[15px] text-gray-800'>{exp.salary}</div>
-    <div className='w-2/12 text-[15px] text-gray-800'>{exp.location}</div>
-  </div>
-))}
+<table className="w-full my-10 border border-gray-300 text-sm">
+  <thead>
+    <tr className="bg-gray-100 text-[#4640DE] text-[13px] font-semibold">
+      <th className="border border-gray-300 px-2 py-2 w-3/12 text-left">Job Title</th>
+      <th className="border border-gray-300 px-2 py-2 w-2/12 text-left">Company</th>
+      <th className="border border-gray-300 px-2 py-2 w-2/12 text-left">Employment Type</th>
+      <th className="border border-gray-300 px-2 py-2 w-1/12 text-left">Industry</th>
+      <th className="border border-gray-300 px-2 py-2 w-2/12 text-left">Start Date</th>
+      <th className="border border-gray-300 px-2 py-2 w-2/12 text-left">End Date</th>
+      <th className="border border-gray-300 px-2 py-2 w-1/12 text-left">Salary</th>
+      <th className="border border-gray-300 px-2 py-2 w-2/12 text-left">Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    {workExperiencelist.map((exp, index) => (
+      <tr key={index} className="text-gray-800 text-[14px]">
+        <td className="border border-gray-300 px-2 py-2">{exp.jobTitle}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.company}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.employmentType}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.industry}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.StartDate}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.EndDate}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.salary}</td>
+        <td className="border border-gray-300 px-2 py-2">{exp.location}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
 
       <div className='border-b-1 border-[#DEE0E4]'></div>
 
@@ -689,7 +677,7 @@ const handleSubmit = async (e) => {
 
       {/* Resume */}
     <div className='flex flex-col md:flex-row justify-between py-4 gap-3 md:gap-0'>
-      <div className="flex-1">Resume</div>
+      <div className="flex-1 text-xl text-zinc-700 font-semibold">Resume</div>
       <div className='flex-1'>
         <form className='grid gap-6'>
 

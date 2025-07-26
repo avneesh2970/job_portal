@@ -33,6 +33,7 @@ const ViewJob = () => {
   }, []);
 
   const [selectedJob, setSelectedJob] = useState(null);
+  
 const [isModalOpen, setIsModalOpen] = useState(false);
 
 const handleCardClick = (job) => {
@@ -68,7 +69,7 @@ const closeModal = () => {
    <div
   key={job._id}
   onClick={() => handleCardClick(job)}
-  className="cursor-pointer w-80 h-72 bg-white rounded-2xl shadow border-2 border-gray-200 p-4 flex flex-col justify-between hover:shadow-lg transition"
+  className="cursor-pointer w-80 h-80 bg-white rounded-2xl shadow border-2 border-gray-200 p-4 flex flex-col  hover:shadow-lg hover:scale-105 duration-300 transition"
 >
   <div className="flex items-center gap-3 mb-2">
     <img src={job.companyLogo} alt="Logo" className="w-10 h-10 object-contain" />
@@ -80,19 +81,24 @@ const closeModal = () => {
 
   <div className="mb-2">
     <p className="text-base text-gray-700 line-clamp-3">
-      <span className="font-medium">Responsibilities:</span> {job.responsibilities}
+      <span className="font-medium">Responsibilities :</span> {job.responsibilities}
+    </p>
+  </div>
+  <div className="mb-2">
+    <p className="text-base text-gray-700 line-clamp-3">
+      <span className="font-medium">Job Description :</span> {job.jobDescription}
     </p>
   </div>
    <div className="mb-2">
     <p className="text-base text-gray-700 line-clamp-3">
-      <span className="font-medium">Skills:</span> {job.requiredSkills.join(", ")}
+      <span className="font-medium">Required Skills:</span> {job.requiredSkills.join(", ")}
     </p>
   </div>
 
-  <div className="mt-auto flex justify-between gap-2 pt-3">
-    <Link to={`/company_dashboard/updatejob/${job._id}`} className="bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold py-1 px-6 rounded-md">Update</Link>
-    <button onClick={(e) => { e.stopPropagation(); handleDelete(job._id); }} className="bg-red-500 hover:bg-red-600 text-white text-lg font-semibold py-1 px-6 rounded-md">Delete</button>
-  </div>
+ <div>
+  <a  className="text-blue-500 hover:text-blue-600 underline  font-serif">View Details </a>
+ </div>
+
 </div>
   ))}
 </div>
@@ -153,10 +159,42 @@ const closeModal = () => {
           <h3 className="font-semibold">About Company</h3>
           <p>{selectedJob.aboutCompany}</p>
         </div>
-        <div className="mt-auto flex justify-between gap-2 pt-3">
-    <Link to={`/company_dashboard/updatejob/${selectedJob._id}`} className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold py-2.5 px-8 rounded-md">Update</Link>
-    <button onClick={(e) => { e.stopPropagation(); handleDelete(selectedJob._id); }} className="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-2.5 px-8 rounded-md">Delete</button>
-  </div>
+     <div className="mt-auto flex justify-between gap-2 pt-3">
+  {/* Update Button */}
+  <Link
+    to={`/company_dashboard/updatejob/${selectedJob._id}`}
+    className={`text-white text-xs font-semibold py-2.5 px-8 rounded-md ${
+      selectedJob.isDeletable
+        ? "bg-blue-500 hover:bg-blue-600"
+        : "bg-blue-300 cursor-not-allowed"
+    }`}
+    onClick={(e) => {
+      if (!selectedJob.isDeletable) e.preventDefault();
+    }}
+  >
+    Update
+  </Link>
+
+  {/* Delete Button */}
+  <button
+    onClick={(e) => {
+      if (!selectedJob?.isDeletable) return;
+      e.stopPropagation();
+      handleDelete(selectedJob._id);
+      closeModal();
+    }}
+    disabled={!selectedJob?.isDeletable}
+    className={`text-white text-lg font-semibold py-1 px-6 rounded-md ${
+      selectedJob?.isDeletable
+        ? "bg-red-500 hover:bg-red-600"
+        : "bg-red-300 cursor-not-allowed"
+    }`}
+  >
+    Delete
+  </button>
+</div>
+
+
       </div>
     </div>
   </div>

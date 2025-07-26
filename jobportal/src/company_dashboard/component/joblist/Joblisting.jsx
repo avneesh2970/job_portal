@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Eye, ChevronDown, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import ApplicantView from './ApplicantView';
 import axios from 'axios';
+import { refresh } from 'aos';
 export default function CompanyJobListing() {
   const [jobListings, setJobListings] = useState([]);
   
@@ -17,9 +18,13 @@ export default function CompanyJobListing() {
   const sortOptions = ["Latest", "Oldest", "Most Applicants", "Fewest Applicants", "Alphabetical"];
 
   const getStatusStyle = (status) => {
-    return status === "Open" 
-      ? "text-green-500 border border-green-200 bg-green-50" 
-      : "text-red-500 border border-red-200 bg-red-50";
+     if(status === "open") {
+      return  "text-green-600 bg-green-100 border border-green-200";
+    } else if (status === "closed") {
+      return "text-red-600 bg-red-100 border border-red-200";
+    }else{
+      return "text-gray-600 bg-gray-100 border border-gray-200";
+    }
   };
 
   useEffect(() => {
@@ -196,34 +201,37 @@ export default function CompanyJobListing() {
 
       {/* Job Listings Table */}
       <div className="rounded-lg border hidden md:flex flex-col border-gray-200 overflow-hidden">
-        <div className="grid grid-cols-7 gap-4 py-3 px-4 text-sm text-gray-500 border-b border-gray-200 bg-gray-50">
-          <div className="col-span-1">Roles</div>
-          <div className="col-span-1">Status</div>
-          <div className="col-span-2">Date Posted</div>
-         
-          <div className="col-span-2">Job Type</div>
-          <div className="col-span-1 text-center">Applicants</div>
-         
+        <div className="flex  w-full gap-4 py-3 px-4 text-sm text-gray-500 border-b border-gray-200 bg-gray-50">
+          <div className="w-2/12">Roles</div>
+          <div className="w-1/12">Status</div>
+          <div className="w-2/12">Date Posted</div>
+          <div className='w-2/12'>Date Close</div>
+
+          <div className="w-3/12">Job Type</div>
+          <div className="w-2/12 text-center">Applicants</div>
+
         </div>
 
         {jobListings.map((job) => (
-          <div key={job.id} className="grid grid-cols-7 gap-4 py-6 px-4 border-b border-gray-200 items-center text-sm hover:bg-gray-50">
-            <div className="col-span-1 font-medium text-gray-800">{job.jobTitle}</div>
-            <div className="col-span-1">
+          <div key={job.id} className="flex w-full gap-4 py-6 px-4 border-b border-gray-200 items-center text-sm hover:bg-gray-50">
+            <div className="w-2/12 font-medium text-gray-800">{job.jobTitle}</div>
+            <div className="w-1/12">
               <span className={`px-4 py-1 rounded-full text-xs ${getStatusStyle(job.status)}`}>
-               Open
+                {job.status}
               </span>
             </div>
-            <div className="col-span-2 text-gray-600">{job.createdAt}</div>
-            
-            <div className="col-span-2">
+            <div className="w-2/12 text-gray-600">{new Date(job.createdAt).toLocaleDateString()}</div>
+
+            <div className="w-2/12 text-gray-600">{new Date(job.closedAt).toLocaleDateString()}</div>
+
+            <div className="w-3/12">
               {job.employmentType && job.employmentType.map((type, index) => (
               <span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">
                 {type}
               </span>
 ))}
             </div>
-            <div className="col-span-1 text-center">{job.applicants}</div>
+            <div className="w-2/12 text-center">{job.applicants}</div>
            
           </div>
         ))}
@@ -237,13 +245,13 @@ export default function CompanyJobListing() {
             <h3 className="text-lg font-semibold text-gray-800">{job.jobTitle}</h3>
             <div className="flex items-center space-x-2 mt-2">
               <span className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(job.status)}`}>
-                Open
+                {job.status}
               </span>
               <span className={`px-3 py-1 rounded-full text-xs ${getJobTypeStyle(job.employmentType[0])}`}>
                 {job.employmentType[0]}
               </span>
             </div>
-            <p className="text-sm text-gray-600 mt-2">{job.createdAt}</p>
+            <p className="text-sm text-gray-600 mt-2">{new Date(job.createdAt).toLocaleDateString()}</p>
             <button 
               className="my-4 px-4  py-2 border border-solid border-blue-400  text-blue-400 rounded-md"
               onClick={() => handleViewApplicants(job)}

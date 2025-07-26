@@ -56,6 +56,10 @@ router.put('/profileUpdate/:id/upload-image', uploads.single('image'), userContr
 router.post('/profileUpdate/:id', upload.fields([{ name: 'videoIntroduction', maxCount: 1 },{ name: 'resume', maxCount: 1 }]), userController.updateResume);
 
 
+//password update route
+router.put('/update-password', userController.passwordReset);
+
+
 // get all the users
 router.get('/users', userController.getAllUsers);
 

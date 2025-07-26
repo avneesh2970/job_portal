@@ -11,6 +11,7 @@ const SignUp = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
