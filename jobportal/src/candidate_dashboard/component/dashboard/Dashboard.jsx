@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {useNavigate} from "react-router-dom";
 import PersnolProfile from "./PersonalProfile"
+import { GoArrowUpRight } from "react-icons/go";
 import axios from 'axios';
 import {
   FaUser,
@@ -155,12 +156,13 @@ function Dashboard() {
 
        
         <div className="md:flex mx-8 gap-4 mt-6 gap-y-4   lg:grid lg:grid-cols-4    ">
-          <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          <div onClick={() => navigate("/candidate_dashboard/cand_myapplication")} className="bg-blue-500 cursor-pointer text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaUser className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">{applied}</h3>
               <p>application Sent</p>
             </div>
+            <GoArrowUpRight className="text-white h-10 w-10 ml-auto" />
           </div>
           <div className="bg-green-500 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaCalendarAlt className="text-2xl mr-2" />
@@ -175,12 +177,13 @@ function Dashboard() {
               <p>Interview schedule</p>
             </div>
           </div>
-          <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
+          <div onClick={() => navigate("/candidate_dashboard/Cand_job")} className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaEnvelope className="text-2xl mr-2" />
             <div>
               <h3 className="text-lg font-bold">{job.length}</h3>
               <p>Total job offer</p>
             </div>
+              <GoArrowUpRight className="text-white h-10 w-10 ml-auto" />
           </div>
           {/* <div className="bg-blue-300 text-white p-4 rounded-lg flex items-center md:mb-0 mb-4 ">
             <FaEnvelope className="text-2xl mr-2" />

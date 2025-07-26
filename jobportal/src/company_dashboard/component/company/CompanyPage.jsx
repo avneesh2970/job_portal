@@ -109,7 +109,7 @@ function Company_profile() {
                 </button>
               </div>
             </div>
-            <div class="md:flex justify-center items-center mb-6 ">
+            <div class="md:flex items-center mb-6 ">
               <div className=" p-4 rounded-lg flex items-center">
                    <img src={found} alt="" className="text-2xl mr-2"  />
                 <div>
@@ -148,7 +148,7 @@ function Company_profile() {
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-semibold">Company Profile</h2>
                   <button className="text-blue-600 rounded-full border-amber-100 border p-1">
-                    <CiEdit className="text-2xl" />
+                    {/* <CiEdit className="text-2xl" /> */}
                   </button>
                 </div>
                 <p className="text-gray-600 line-clamp-6">
@@ -162,26 +162,26 @@ function Company_profile() {
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-semibold">Contact us</h2>
                   <button className="text-blue-600 rounded-full border-amber-100 border p-1 ">
-                    <CiEdit className="text-2xl" />
+                    {/* <CiEdit className="text-2xl" /> */}
                   </button>
                 </div>
                <div className="flex flex-wrap justify-center gap-4 mb-4">
   {/* Facebook */}
   <button onClick={()=>window.open(companyProfile?.facebookUrl, "_blank")} className="flex items-center justify-center gap-2 text-blue-600 border-2 px-4 py-2 w-36  h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
     <img src={facebook} alt="facebook" className="w-8 h-8" />
-    <p className="text-sm font-semibold">Facebook</p>
+    <p className="text-base font-semibold">Facebook</p>
   </button>
 
   {/* Instagram */}
   <button onClick={()=>window.open(companyProfile?.instagramUrl, "_blank")} className="flex items-center justify-center gap-2 text-pink-600 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-pink-50 transition-all duration-200">
     <img src={instagram} alt="instagram" className="w-8 h-8" />
-    <p className="text-sm font-semibold">Instagram</p>
+    <p className="text-base font-semibold">Instagram</p>
   </button>
 
   {/* LinkedIn */}
   <button onClick={()=>window.open(companyProfile?.linkedInUrl, "_blank")} className="flex items-center justify-center gap-2 text-blue-700 border-2 px-4 py-2 w-36 h-14 rounded-lg shadow-sm hover:bg-blue-50 transition-all duration-200">
     <img src={LinkedIn} alt="linkedin" className="w-8 h-8" />
-    <p className="text-sm font-semibold">LinkedIn</p>
+    <p className="text-base font-semibold">LinkedIn</p>
   </button>
 
  

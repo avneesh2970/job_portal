@@ -41,7 +41,8 @@ const Findjob = () => {
     'Marketing': 0,
     'Bussiness': 0,
     'HumanResources': 0,
-    'Engineering': 0,
+    'Technology': 0,
+    'Engineering': 0
 
   };
 
@@ -54,11 +55,13 @@ const Findjob = () => {
     });
 
     // Check categories
-    job.categories?.forEach(category => {
-      if (typeCounts.hasOwnProperty(category)) {
-        typeCounts[category]++;
-      }
-    });
+   job.categories?.forEach(category => {
+  const normalizedCategory = category.replace(/\s+/g, '').toLowerCase(); // "Human Resources" => "humanresources"
+  const matchedKey = Object.keys(typeCounts).find(key => key.toLowerCase() === normalizedCategory);
+  if (matchedKey) {
+    typeCounts[matchedKey]++;
+  }
+});
   });
 
 
@@ -99,15 +102,15 @@ const Findjob = () => {
 
       if (salary < 2000) {
         salaryCounts.below2k++;
-      } else if (salary >= 2000 && salary < 4000) {
+      } if (salary >= 2000 && salary <= 4000) {
         salaryCounts.from2kTo4k++;
-      } else if (salary >= 4000 && salary < 6000) {
+      } if (salary >= 4000 && salary <= 6000) {
         salaryCounts.from4kTo6k++;
-      } else if (salary >= 6000 && salary < 8000) {
+      } if (salary >= 6000 && salary <= 8000) {
         salaryCounts.from6kTo8k++;
-      } else if (salary >= 8000 && salary < 10000) {
+      } if (salary >= 8000 && salary <= 10000) {
         salaryCounts.from8kTo10k++;
-      } else if (salary >= 10000) {
+      } if (salary >= 10000) {
         salaryCounts.above10k++;
       }
     }
@@ -327,7 +330,7 @@ const Findjob = () => {
               return (salary <= 10000 && salary >= 8000) ||
                 (salary >= 8000 && salary <= 10000);
             case "above10k":
-              return salary > 10000 || salary > 10000;
+              return salary >= 10000 || salary > 10000;
             default:
               return false;
           }
@@ -419,7 +422,7 @@ const Findjob = () => {
 
   const locations = ["Dehradun", "Delhi", "Mumbai", "Pune", "Bangalore", "Noida", "Gurgaon", "Chennai", "Hyderabad", "Kolkata"];
 
-  const categories = ["Design", "Marketing", "Engineering", "Sales", "Bussiness", "Human Resources", "IT"];
+  const categories = ["Design", "Marketing", "Engineering", "Technology", "Sales", "Bussiness", "Human Resources", "IT"];
 
 
 
@@ -518,13 +521,13 @@ const Findjob = () => {
         whileHover={{ scale: 1.05 }}
       >
         <div className="flex items-center space-x-3 mb-3">
-         <div className="w-10 h-10 bg-zinc-200 border rounded-full overflow-hidden">
-  <img
-    src={job.companyLogo || "ins"} // Fallback to default logo if companyLogo1 is not available
-    alt="Company Logo"
-    className="w-full h-full object-cover"
-  />
-</div>
+          <div className="w-10 h-10 bg-zinc-200 border rounded-full overflow-hidden">
+            <img
+              src={job.companyLogo || "ins"} // Fallback to default logo if companyLogo1 is not available
+              alt="Company Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           <div className="flex-1 flex justify-between items-center">
             <div className="flex flex-col ">
@@ -537,13 +540,13 @@ const Findjob = () => {
           </div>
         </div>
 
-        <p className="text-xs text-gray-600 mb-4 line-clamp-3" onClick={()=> navigate(`/job/${job._id}`)}>
+        <p className="text-xs text-gray-600 mb-4 line-clamp-3" onClick={() => navigate(`/job/${job._id}`)}>
           {job.jobDescription}
           <span className="text-[#4f46e5] underline cursor-pointer"> <br /> see more...</span>
         </p>
 
         {/* Responsive Badge Section */}
-        <div className="flex flex-wrap justify-start gap-2 text-xs mb-4" onClick={()=> navigate(`/job/${job._id}`)}>
+        <div className="flex flex-wrap justify-start gap-2 text-xs mb-4" onClick={() => navigate(`/job/${job._id}`)}>
 
           {job.employmentType.map((type, index) => {
             return (
@@ -632,8 +635,8 @@ const Findjob = () => {
             key={number}
             onClick={() => paginate(number)}
             className={`px-4 py-2 border-t border-b ${number === currentPage
-                ? "bg-indigo-600 text-white"
-                : "text-gray-700 hover:bg-gray-100"
+              ? "bg-indigo-600 text-white"
+              : "text-gray-700 hover:bg-gray-100"
               }`}
           >
             {number}
@@ -649,8 +652,8 @@ const Findjob = () => {
             onClick={prevPage}
             disabled={currentPage === 1}
             className={`px-2 py-2 rounded-l border ${currentPage === 1
-                ? "text-gray-300 cursor-not-allowed"
-                : "text-indigo-600 hover:bg-gray-100"
+              ? "text-gray-300 cursor-not-allowed"
+              : "text-indigo-600 hover:bg-gray-100"
               }`}
           >
             <svg
@@ -675,8 +678,8 @@ const Findjob = () => {
             onClick={nextPage}
             disabled={currentPage === totalPages}
             className={`px-2 py-2 rounded-r border ${currentPage === totalPages
-                ? "text-gray-300 cursor-not-allowed"
-                : "text-indigo-600 hover:bg-gray-100"
+              ? "text-gray-300 cursor-not-allowed"
+              : "text-indigo-600 hover:bg-gray-100"
               }`}
           >
             <svg
@@ -704,7 +707,7 @@ const Findjob = () => {
   }, [searchTerm, selectedLocation, selectedCategory, filters]);
 
 
-
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -722,7 +725,7 @@ const Findjob = () => {
           <div className="sticky top-0 bg-white  rounded-lg p-4 shadow-lg max-w-4xl mx-auto">
             <div className="  flex flex-col md:flex-row items-center gap-4">
 
-              <div className="flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
+              <div className="flex w-full items-center rounded-lg border border-gray-200 px-4 py-3 flex-1">
                 <Search className="text-gray-400 h-5 w-5 mr-2" />
                 <input
 
@@ -733,7 +736,7 @@ const Findjob = () => {
                 />
               </div>
 
-              <div className=" relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
+              <div className=" relative w-full flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
                 onMouseEnter={() => setIsLocationDropdownOpen(true)}
                 onMouseLeave={() => setIsLocationDropdownOpen(false)}>
                 <MapPin className="text-gray-400 h-5 w-5 mr-2" />
@@ -782,7 +785,7 @@ const Findjob = () => {
 
               </div>
 
-              <div className="relative flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
+              <div className="relative w-full flex items-center rounded-lg border border-gray-200 px-4 py-3 flex-1"
                 onMouseEnter={() => setIsCategoryDropdownOpen(true)}
                 onMouseLeave={() => setIsCategoryDropdownOpen(false)}>
                 <Briefcase className="text-gray-400 h-5 w-5 mr-2" />
@@ -841,8 +844,8 @@ const Findjob = () => {
       {/* Job Listings */}
       <div className="max-w px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row">
-          {/* Sidebar - Filters */}
-          <div className="w-full md:w-64 lg:w-72 pr-0 md:pr-8 mb-8 md:mb-0">
+          {/* Sidebar - Filters for md and larger */}
+          <div className="hidden md:block w-full md:w-64 lg:w-72 pr-0 md:pr-8 mb-8 md:mb-0">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Filters</h2>
               <button
@@ -863,11 +866,6 @@ const Findjob = () => {
               items={filterConfigs.categories}
               category="categories"
             />
-            {/* <FilterSection 
-              title="Experience Level" 
-              items={filterConfigs.experience} 
-              category="experience" 
-            /> */}
             <FilterSection
               title="Salary Range"
               items={filterConfigs.salaryRange}
@@ -875,19 +873,70 @@ const Findjob = () => {
             />
           </div>
 
+          {/* Mobile Filter Popup */}
+          {isMobileFilterOpen && (
+            <div className="fixed inset-0 z-50 bg-white/30 backdrop-blur-md flex justify-center items-start pt-10 transition-all">
+              <div className="bg-white w-11/12 max-h-[90vh] overflow-y-auto rounded-xl p-4 relative shadow-lg">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-semibold">Filters</h2>
+                  <button
+                    onClick={() => setIsMobileFilterOpen(false)}
+                    className="text-gray-500 hover:text-gray-700 text-xl"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-indigo-600 hover:text-indigo-800 mb-4"
+                >
+                  Clear All
+                </button>
+                <FilterSection
+                  title="Type of Employment"
+                  items={filterConfigs.jobTypes}
+                  category="jobTypes"
+                  collapsible={false}
+                />
+                <FilterSection
+                  title="Categories"
+                  items={filterConfigs.categories}
+                  category="categories"
+                />
+                <FilterSection
+                  title="Salary Range"
+                  items={filterConfigs.salaryRange}
+                  category="salaryRange"
+                />
+              </div>
+            </div>
+          )}
+
+
+
+
           {/* Main Content */}
           <div className="flex-1">
             <div className="bg-white rounded-lg mb-6">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold">All Jobs</h2>
-                  <div className="flex items-center">
+                  <div className="hidden md:flex items-center">
                     <span className="text-sm text-gray-500 mr-2">Sort by:</span>
                     <select className="border rounded p-1 text-sm">
                       <option>default</option>
                       <option>newest</option>
                       <option>oldest</option>
                     </select>
+                  </div>
+                  {/* Filter button for small devices */}
+                  <div className="md:hidden flex justify-end mb-4">
+                    <button
+                      onClick={() => setIsMobileFilterOpen(true)}
+                      className="text-sm bg-indigo-600 text-white px-4 py-2 rounded"
+                    >
+                      Filters
+                    </button>
                   </div>
                 </div>
 

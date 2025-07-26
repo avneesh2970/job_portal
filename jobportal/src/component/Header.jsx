@@ -241,87 +241,84 @@ const fetchData = async () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-15 w-full">
-          <div className="md:hidden bg-white shadow-md w-full">
-
-            <ul className="flex flex-col items-center space-y-4 py-4">
-
-              <div>
-                 {users ? (
-            <div className="relative inline-block text-left">
-              <div
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+     {/* Wrapper for relative positioning */}
+<div className="absolute top-14 w-full ">
+  {isOpen && (
+    <div className="absolute top-full bg-white  w-full z-50">
+      <div className="md:hidden rounded-b-lg shadow-md">
+        <ul className=" flex flex-col items-center space-y-2 py-4">
+          <div className="">
+            {users ? (
+              <div className="relative inline-block text-left">
+                <div
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
                   onMouseEnter={() => setDropdownOpen(true)}
                   onMouseLeave={() => setDropdownOpen(false)}
-                className="flex items-center gap-2 cursor-pointer border-2 border-[#4640DE] border-solid rounded-lg px-2.5 py-1.5 text-[#4640DE]"
-              >
-                <FaUserCircle size={28} className="text-[#4640DE]" />
-                <span className="text-[#4640DE] font-semibold">{user.email}</span>
-                <FaChevronDown
-                  className={`text-[#4640DE] transition-transform duration-300  ${dropdownOpen ? "rotate-180" : "rotate-0"
-                    }`}
-                />
-              </div>
+                  className="flex items-center gap-2 cursor-pointer border-2 border-[#4640DE] rounded-lg px-2.5 py-1.5 text-[#4640DE]"
+                >
+                  <FaUserCircle size={28} />
+                  <span className="font-semibold">{user.email}</span>
+                  <FaChevronDown
+                    className={`transition-transform duration-300 ${dropdownOpen ? "rotate-180" : "rotate-0"}`}
+                  />
+                </div>
 
-              {dropdownOpen && (
-                <div className="reolative right-0 w-60 border-gray-300 bg-gray-200 border border-solid rounded-md shadow-lg z-10"
-                 onMouseEnter={() => setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}>
-                  {
-                    userType === "candidate" ? (
+                {dropdownOpen && (
+                  <div
+                    className="absolute right-0 w-60 mt-2 bg-gray-200 border border-gray-300 rounded-md shadow-lg z-50"
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                  >
+                    {userType === "candidate" ? (
                       <button
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                       onClick={() => {
-                          navigate('/candidate_dashboard');
+                        onClick={() => {
+                          navigate("/candidate_dashboard");
                           window.scrollTo(0, 0);
                         }}
-              // onClick={()=>navigate('/candidate_dashboard')}
                       >
                         Candidate Dashboard
                       </button>
                     ) : (
                       <button
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                       onClick={() =>{
-                        navigate('/company_dashboard')
-                        window.scrollTo(0, 0);
-                       }}
+                        onClick={() => {
+                          navigate("/company_dashboard");
+                          window.scrollTo(0, 0);
+                        }}
                       >
                         Recruiter Dashboard
                       </button>
-                    )
-                  }
-                  <button
-                    className="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-100"
-                    onClick={() => {
-                      handleLogout();
-                      setDropdownOpen(false);
-                    }}
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flex gap-4">
-              <Link to="/login" className="text-blue-500">Login</Link>
-              <Link to="/signup" className="text-green-500">Signup</Link>
-            </div>
-          )}
+                    )}
+                    <button
+                      className="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-100"
+                      onClick={() => {
+                        handleLogout();
+                        setDropdownOpen(false);
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
-              <li  onClick={() => navigate('/')} className="hover:text-blue-500 cursor-pointer">Home</li>
-              <li onClick={() => navigate('/job')} className="hover:text-blue-500 cursor-pointer">Find Jobs</li>
-              {/* <li className="hover:text-blue-500 cursor-pointer">For Candidate</li>
-            <li className="hover:text-blue-500 cursor-pointer">For Employee</li>
-            <li className="hover:text-blue-500 cursor-pointer">Pages</li> */}
-
-            </ul>
+            ) : (
+              <div className="flex gap-4">
+                <Link to="/login" className="text-blue-500">Login</Link>
+                <Link to="/signup" className="text-green-500">Signup</Link>
+              </div>
+            )}
           </div>
 
-        </div>
-      )}
+          <li onClick={() => navigate('/')} className="hover:text-blue-500 cursor-pointer">Home</li>
+          <li onClick={() => navigate('/job')} className="hover:text-blue-500 cursor-pointer">Find Jobs</li>
+          <li onClick={() => navigate('/about')} className="hover:text-blue-500 cursor-pointer">About us</li>
+        </ul>
+      </div>
+    </div>
+  )}
+</div>
+
     </nav>
   );
 };

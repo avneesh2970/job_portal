@@ -209,7 +209,7 @@ const Jobdetail = () => {
 
                 disabled={hasApplied}
                 className={`${hasApplied ? 'bg-gray-600 cursor-not-allowed' : '   bg-blue-500 hover:bg-blue-600'
-                  } md:w-[160px] sm:w-auto text-white text-base px-4 py-3 rounded-md`}
+                  } md:w-[160px] sm:w-auto text-white text-sm md:text-base px-2 md:px-4 py-1.5 md:py-3 rounded-md`}
               >
                 {hasApplied ? 'Applied' : 'Apply Now'}
               </button>
